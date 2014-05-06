@@ -1,4 +1,4 @@
 scalactic-website
-=================
+==================
 
-Scalactic Website
+Scalactic Official Website

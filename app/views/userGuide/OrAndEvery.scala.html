@@ -1,0 +1,673 @@
+@*
+* Copyright 2010-2013 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("Or and Every") {
+<div style="text-align: left">
+
+<h1>Or and Every</h1>
+
+<p>
+The <a href="@{latestScaladoc}/#org.scalactic.Or"><code>Or</code></a> and <a href="@{latestScaladoc}/#org.scalactic.Every"><code>Every</code></a>
+types of Scalactic allow you to represent errors as an &ldquo;alternate return
+value&rdquo; (like <code>Either</code>) and to optionally accumulate errors.
+<code>Or</code> represents a value that is one of two possible types, with one type being &ldquo;good&rdquo;
+(a value wrapped in an instance of <a href="@{latestScaladoc}/#org.scalactic.Good"><code>Good</code></a>)
+and the other &ldquo;bad&rdquo;
+(a value wrapped in an instance of <a href="@{latestScaladoc}/#org.scalactic.Bad"><code>Bad</code></a>).
+</p>
+
+<h2>The motivation for <code>Or</code></h2>
+
+<p>
+<code>Or</code> differs from Scala's <code>Either</code> type in that
+<code>Either</code> treats both its <code>Left</code> and <code>Right</code> alternatives in an identical manner, whereas
+<code>Or</code> treats its two alternatives differently: it favors
+<code>Good</code> over <code>Bad</code>.
+Because of this, it is more convenient to work with <code>Or</code>s
+when you prefer one alternative over the other; for example, if one alternative represents a valid result
+and another represents an error.
+</p>
+
+<p>
+To illustrate, imagine you want to create instances this <code>Person</code> class from user input strings:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">case</span> <span class="stReserved">class</span> Person(name: String, age: Int)
+</pre>
+
+<p>
+You might write a method that parses the name from user input string and returns an
+<code>Option[String]</code>: <code>None</code> if the string is empty or blank, else the
+trimmed string wrapped in a <code>Some</code>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">def</span> parseName(input: String): Option[String] = {
+  <span class="stReserved">val</span> trimmed = input.trim
+  <span class="stReserved">if</span> (!trimmed.isEmpty) Some(trimmed) <span class="stReserved">else</span> None
+}
+</pre>
+
+<p>
+You might also write a method that parses the age from user input string and returns an
+<code>Option[Int]</code>: <code>None</code> if either the string is not a valid integer or
+it is a negative integer, else the string converted to an integer wrapped in a <code>Some</code>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">def</span> parseAge(input: String): Option[Int] = {
+  <span class="stReserved">try</span> {
+    <span class="stReserved">val</span> age = input.trim.toInt
+    <span class="stReserved">if</span> (age &gt;= 0) Some(age) <span class="stReserved">else</span> None
+  }
+  <span class="stReserved">catch</span> {
+    <span class="stReserved">case</span> _: NumberFormatException =&gt; None
+  }
+}
+</pre>
+
+<p>
+With these building blocks you could write a method that parses name and age input
+strings and returns either a <code>Person</code>, wrapped in a <code>Some</code>, or
+<code>None</code> if either the name or age, or both, was invalid:
+</p>
+
+<pre class="stHighlighted">
+  <span class="stReserved">def</span> parsePerson(inputName: String, inputAge: String): Option[Person] =
+  <span class="stReserved">for</span> {
+    name &lt;- parseName(inputName)
+    age &lt;- parseAge(inputAge)
+  } <span class="stReserved">yield</span> Person(name, age)
+</pre>
+
+<p>
+Here are some examples of invoking <code>parsePerson</code>:
+</p>
+
+<pre class="stHighlighted">
+parsePerson("Bridget Jones", "29")
+// Result: Some(Person(Bridget Jones,29))
+
+parsePerson("Bridget Jones", "")
+// Result: None
+
+parsePerson("Bridget Jones", "-29")
+// Result: None
+
+parsePerson("", "")
+// Result: None
+</pre>
+
+<p>
+Now imagine you want to give an error message back if the user's input is invalid.
+You might rewrite the parsing methods to return an <code>Either</code> instead. In this
+case, the desired result is a valid name or age, which by convention should be placed
+on the right of the <code>Either</code>. The left will be a <code>String</code> error
+message. Here's the new <code>parseName</code> function, which returns an <code>Either[String, String]</code>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">def</span> parseName(input: String): Either[String, String] = {
+  <span class="stReserved">val</span> trimmed = input.trim
+  <span class="stReserved">if</span> (!trimmed.isEmpty) Right(trimmed) <span class="stReserved">else</span> Left(s&quot;&quot;&quot;&quot;${input}&quot; is not a valid name&quot;&quot;&quot;)
+}
+</pre>
+
+<p>
+And here's the new <code>parseAge</code> function, which returns an <code>Either[String, Int]</code>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">def</span> parseAge(input: String): Either[String, Int] = {
+  <span class="stReserved">try</span> {
+    <span class="stReserved">val</span> age = input.trim.toInt
+    <span class="stReserved">if</span> (age &gt;= 0) Right(age) <span class="stReserved">else</span> Left(s&quot;&quot;&quot;&quot;${age}&quot; is not a valid age&quot;&quot;&quot;)
+  }
+  catch {
+    <span class="stReserved">case</span> _: NumberFormatException =&gt; Left(s&quot;&quot;&quot;&quot;${input}" is not a valid integer&quot;&quot;&quot;)
+  }
+}
+</pre>
+
+<p>
+The new <code>parsePerson</code> method will return an <code>Either[String, Person]</code>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">def</span> parsePerson(inputName: String, inputAge: String): Either[String, Person] =
+  <span class="stReserved">for</span> {
+    name &lt;- parseName(inputName).right
+    age &lt;- parseAge(inputAge).right
+  } <span class="stReserved">yield</span> Person(name, age)
+</pre>
+
+<p>
+Note that <code>Either</code> requires you to add <code>.right</code>
+at the end of each generator in the <code>for</code> expression. Although the convention is to place the
+valid result on the right, you must explicitly (and repetitively) indicate that you've done so by transforming
+the <code>Either</code> to a <code>RightProjection</code> by invoking <code>.right</code> at each step.
+Given this implementation, the <code>parsePerson</code> method will now short-circuit at the first sign
+of trouble (as it did when we used an <code>Option</code>), but you now get the first error message returned
+in a <code>Left</code>. Here are some examples:
+</p>
+
+<pre class="stHighlighted">
+parsePerson("Bridget Jones", "29")
+// Result: Right(Person(Bridget Jones,29))
+
+parsePerson("Bridget Jones", "")
+// Result: Left("" is not a valid integer)
+
+parsePerson("Bridget Jones", "-29")
+// Result: Left("-29" is not a valid age)
+
+parsePerson("", "")
+// Result: Left("" is not a valid name)
+</pre>
+
+<h2>An <code>Either</code> with &ldquo;attitude&rdquo;</h2>
+
+<p>
+Because <code>Or</code> declares one alternative to be &ldquo;good&rdquo; and the other &ldquo;bad,&rdquo;
+it is more convenient than <code>Either</code> in this kind of situation. One difference to note with
+<code>Or</code> is that the <code>Good</code> alternative is on the left, <code>Bad</code> on the right.
+The reason is that <code>Or</code> is designed to be written using infix notation, and placing the
+&ldquo;happy path&rdquo; first is more readable. For example, instead of writing:
+</p>
+
+<pre class="stHighlighted">
+Or[Int, ErrorMessage]
+</pre>
+
+<p>
+You can write:
+</p>
+
+<pre class="stHighlighted">
+Int Or ErrorMessage
+</pre>
+
+<p>
+Here's how the <code>parseName</code> method might be written using an <code>Or</code>, where
+<code>ErrorMessage</code> is a type alias for <code>String</code> declared in the <code>org.scalactic</code>
+package object:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalactic._
+
+<span class="stReserved">def</span> parseName(input: String): String Or ErrorMessage = {
+  <span class="stReserved">val</span> trimmed = input.trim
+  <span class="stReserved">if</span> (!trimmed.isEmpty) Good(trimmed) <span class="stReserved">else</span> Bad(s&quot;&quot;&quot;&quot;${input}" is not a valid name&quot;&quot;&quot;)
+}
+</pre>
+
+<p>
+You can think of the <code>String</code> <code>Or</code> <code>ErrorMessage</code> result
+type like this:
+</p>
+
+<blockquote>
+<em>The <code>parseName</code> method will return a name <code>String</code> or, if the input string
+is not a valid name, an <code>ErrorMessage</code>.</em>
+</blockquote>
+
+<p>
+Here's how the <code>parseAge</code> method might be written:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">def</span> parseAge(input: String): Int Or ErrorMessage = {
+  <span class="stReserved">try</span> {
+    <span class="stReserved">val</span> age = input.trim.toInt
+    <span class="stReserved">if</span> (age &gt;= 0) Good(age) <span class="stReserved">else</span> Bad(s&quot;&quot;&quot;&quot;${age}" is not a valid age&quot;&quot;&quot;)
+  }
+  <span class="stReserved">catch</span> {
+    <span class="stReserved">case</span> _: NumberFormatException =&gt; Bad(s&quot;&quot;&quot;${input}" is not a valid integer&quot;&quot;&quot;)
+  }
+}
+</pre>
+
+<p>
+Given these implementations, here's how you'd write the <code>parsePerson</code> method:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">def</span> parsePerson(inputName: String, inputAge: String): Person Or ErrorMessage =
+  <span class="stReserved">for</span> {
+    name &lt;- parseName(inputName)
+    age &lt;- parseAge(inputAge)
+  } <span class="stReserved">yield</span> Person(name, age)
+</pre>
+
+<p>
+Because of <code>Or</code>'s attitude, you need not write <code>.good</code> at the end of
+each generator. <code>Or</code> will keep going so long as each step produces a <code>Good</code>,
+short circuiting at the first sign of a <code>Bad</code>. Here are a few invocations of this
+<code>parsePerson</code> method:
+</p>
+
+<pre class="stHighlighted">
+parsePerson("Bridget Jones", "29")
+// Result: Good(Person(Bridget Jones,29))
+
+parsePerson("Bridget Jones", "")
+// Result: Bad("" is not a valid integer)
+
+parsePerson("Bridget Jones", "-29")
+// Result: Bad("-29" is not a valid age)
+
+parsePerson("", "")
+// Result: Bad("" is not a valid name)
+</pre>
+
+<a name="accumulatingErrors"></a>
+<h2>Accumulating errors with <code>Or</code></h2>
+
+<p>
+Another difference between <code>Or</code> and <code>Either</code> is that <code>Or</code> enables
+you to accumulate errors if the <code>Bad</code> type is an <a href="@{latestScaladoc}/#org.scalactic.Every"><code>Every</code></a>.
+An <code>Every</code> is similar to a <code>Seq</code> in that it contains ordered elements, but
+different from <code>Seq</code> in that it cannot be empty. An <code>Every</code> is
+either a <a href="@{latestScaladoc}/#org.scalactic.One"><code>One</code></a>,
+which contains one and only one element, or a <a href="@{latestScaladoc}/#org.scalactic.Many"><code>Many</code></a>, which contains two or
+more elements.
+</p>
+
+<p>
+<em>Note: an <code>Or</code> whose <code>Bad</code> type is an <code>Every</code>, or one of its subtypes,
+is called an &ldquo;accumulating <code>Or</code>.&rdquo;</em>
+</p>
+
+<p>
+To rewrite the previous example so that errors can be accumulated, you need first to return an <code>Every</code>
+as the <code>Bad</code> type. Here's how you'd change the <code>parseName</code> method:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">def</span> parseName(input: String): String Or One[ErrorMessage] = {
+  <span class="stReserved">val</span> trimmed = input.trim
+  <span class="stReserved">if</span> (!trimmed.isEmpty) Good(trimmed) <span class="stReserved">else</span> Bad(One(s&quot;&quot;&quot;&quot;${input}&quot; is not a valid name&quot;&quot;&quot;))
+}
+</pre>
+
+<p>
+Because <code>parseName</code> will either return a valid name <code>String</code> wrapped in a
+<code>Good</code>, or <em>one</em> error message, wrapped in a <code>Bad</code>, you would write the
+<code>Bad</code> type as <code>One[ErrorMessage]</code>. The same is true for <code>parseAge</code>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">def</span> parseAge(input: String): Int Or One[ErrorMessage] = {
+  <span class="stReserved">try</span> {
+    <span class="stReserved">val</span> age = input.trim.toInt
+    <span class="stReserved">if</span> (age &gt;= 0) Good(age) <span class="stReserved">else</span> Bad(One(s&quot;&quot;&quot;&quot;${age}&quot; is not a valid age&quot;&quot;&quot;))
+  }
+  <span class="stReserved">catch</span> {
+    <span class="stReserved">case</span> _: NumberFormatException =&gt; Bad(One(s&quot;&quot;&quot;&quot;${input}" is not a valid integer&quot;&quot;&quot;))
+  }
+}
+</pre>
+
+<p>
+Because a <code>for</code> expression short-circuits on the first <code>Bad</code> encountered, you'll
+need to use a different approach to write the <code>parsePerson</code> method. In this example, the
+<code>withGood</code> method from trait <a href="@{latestScaladoc}/#org.scalactic.Accumulation"><code>Accumulation</code></a>
+will do the trick:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> Accumulation._
+
+<span class="stReserved">def</span> parsePerson(inputName: String, inputAge: String): Person Or Every[ErrorMessage] = {
+  <span class="stReserved">val</span> name = parseName(inputName)
+  <span class="stReserved">val</span> age = parseAge(inputAge)
+  withGood(name, age) { Person(_, _) }
+}
+</pre>
+
+<p>
+Trait <code>Accumulation</code> offers overloaded <code>withGood</code> methods that take 1 to
+22 accumulating <code>Or</code>s, plus a function taking the same number of corresponding
+<code>Good</code> values.  In this example, if both <code>name</code> and <code>age</code> are
+<code>Good</code>s, the <code>withGood</code> method will pass the good name <code>String</code>
+and age <code>Int</code> to the <code>Person(_, _)</code> function, and return the resulting <code>Person</code>
+object wrapped in a <code>Good</code>. If either <code>name</code> and <code>age</code>, or both,
+are <code>Bad</code>, <code>withGood</code> will return the accumulated errors in a <code>Bad</code>.
+</p>
+
+<p>
+The result of <code>parsePerson</code>, if <code>Bad</code>, will therefore contain either one or two
+error messages, <em>i.e.</em>, the result will either be a <code>One</code> or a <code>Many</code>.
+As a result, the result type of <code>parsePerson</code> must be <code>Person</code> <code>Or</code>
+<code>Every[ErrorMessage]</code>. Regardless of whether a <code>Bad</code> result contains one
+or two error messages, it will contain <em>every</em> error message. Here's some invocations of
+this accumulating version of <code>parsePerson</code>:
+</p>
+
+<pre class="stHighlighted">
+parsePerson("Bridget Jones", "29")
+// Result: Good(Person(Bridget Jones,29))
+
+parsePerson("Bridget Jones", "")
+// Result: Bad(One("" is not a valid integer))
+
+parsePerson("Bridget Jones", "-29")
+// Result: Bad(One("-29" is not a valid age))
+
+parsePerson("", "")
+// Result: Bad(Many("" is not a valid name, "" is not a valid integer))
+</pre>
+
+<p>
+Note that in the last example, the <code>Bad</code> contains an error message for both name and age.
+</p>
+
+<h2>Working with <code>Every</code>s</h2>
+
+<p>
+The previous examples demonstrate constructing a one-element <code>Every</code> with
+a factory method in the <code>One</code> companion object. You can similarly create an <code>Every</code> that contains more than one
+using a <code>Many</code> factory method. Here are some examples:
+</p>
+
+<pre class="stHighlighted">
+One(1)
+Many(1, 3)
+Many(1, 2, 3)
+</pre>
+
+<p>
+You can also construct an <code>Every</code> by passing one or more elements to the <code>Every.apply</code> factory method:
+</p>
+
+<pre class="stHighlighted">
+Every(1)
+Every(1, 2)
+Every(1, 2, 3)
+</pre>
+
+<p>
+<code>Every</code> does not extend Scala's <code>Seq</code> or <code>Traversable</code> traits because these require that
+implementations may be empty. For example, if you invoke <code>tail</code> on a <code>Seq</code> that contains just one element,
+you'll get an empty <code>Seq</code>:
+</p>
+
+<pre class="stExamples">
+scala&gt; List(1).tail
+res6: List[Int] = List()
+</pre>
+
+<p>
+On the other hand, many useful methods exist on <code>Seq</code> that when invoked on a non-empty <code>Seq</code> are guaranteed
+to not result in an empty <code>Seq</code>. For convenience, <code>Every</code> defines a method corresponding to every such <code>Seq</code>
+method. Here are some examples:
+</p>
+
+<pre class="stHighlighted">
+Many(1, 2, 3).map(_ + 1)                  // Result: Many(2, 3, 4)
+One(1).map(_ + 1)                         // Result: One(2)
+Every(1, 2, 3).containsSlice(Every(2, 3)) // Result: true
+Every(1, 2, 3).containsSlice(Every(3, 4)) // Result: false
+Every(-1, -2, 3, 4, 5).minBy(_.abs)       // Result: -1
+</pre>
+
+<p>
+<code>Every</code> does <em>not</em> currently define any methods corresponding to <code>Seq</code> methods that could result in
+an empty <code>Seq</code>. However, an implicit converison from <code>Every</code> to <code>collection.immutable.IndexedSeq</code>
+is defined in the <code>Every</code> companion object that will be applied if you attempt to call one of the missing methods. As a
+result, you can invoke <code>filter</code> on an <code>Every</code>, even though <code>filter</code> could result
+in an empty sequence&mdash;but the result type will be <code>collection.immutable.IndexedSeq</code> instead of <code>Every</code>:
+</p>
+
+<pre class="stHighlighted">
+Every(1, 2, 3).filter(_ &lt; 10) // Result: Vector(1, 2, 3)
+Every(1, 2, 3).filter(_ &gt; 10) // Result: Vector()
+</pre>
+
+
+<p>
+You can use <code>Every</code>s in <code>for</code> expressions. The result will be an <code>Every</code> unless
+you use a filter (an <code>if</code> clause). Because filters are desugared to invocations of <code>filter</code>, the
+result type will switch to a <code>collection.immutable.IndexedSeq</code> at that point. Here are some examples:
+</p>
+
+<pre class="stExamples">
+scala&gt; import org.scalactic._
+import org.scalactic._
+
+scala&gt; for (i &lt;- Every(1, 2, 3)) yield i + 1
+res0: org.scalactic.Every[Int] = Many(2, 3, 4)
+
+scala&gt; for (i &lt;- Every(1, 2, 3) if i &lt; 10) yield i + 1
+res1: scala.collection.immutable.IndexedSeq[Int] = Vector(2, 3, 4)
+
+scala&gt; for {
+     |   i &lt;- Every(1, 2, 3)
+     |   j &lt;- Every('a', 'b', 'c')
+     | } yield (i, j)
+res3: org.scalactic.Every[(Int, Char)] =
+        Many((1,a), (1,b), (1,c), (2,a), (2,b), (2,c), (3,a), (3,b), (3,c))
+
+scala&gt; for {
+     |   i &lt;- Every(1, 2, 3) if i &lt; 10
+     |   j &lt;- Every('a', 'b', 'c')
+     | } yield (i, j)
+res6: scala.collection.immutable.IndexedSeq[(Int, Char)] =
+        Vector((1,a), (1,b), (1,c), (2,a), (2,b), (2,c), (3,a), (3,b), (3,c))
+</pre>
+
+
+<h2>Other ways to accumulate errors</h2>
+
+<p>
+The <code>Accumlation</code> trait also enables other ways of accumulating errors.
+</p>
+
+<a name="usingCombined"></a>
+<h3>Using <code>combined</code></h3>
+
+<p>
+If you have a collection of
+accumulating <code>Or</code>s, for example, you can <em>combine</em> them into one <code>Or</code> using <code>combined</code>, like this:
+</p>
+
+<pre class="stHighlighted">
+List(parseAge("29"), parseAge("30"), parseAge("31")).combined
+// Result: Good(List(29, 30, 31))
+
+List(parseAge("29"), parseAge("-30"), parseAge("31")).combined
+// Result: Bad(One("-30" is not a valid age))
+
+List(parseAge("29"), parseAge("-30"), parseAge("-31")).combined
+// Result: Bad(Many("-30" is not a valid age, "-31" is not a valid age))
+</pre>
+
+<a name="usingValidatedBy"></a>
+<h3>Using <code>validatedBy</code></h3>
+
+<p>
+Or if you have a collection of values and a function that transforms that type of value into an accumulating
+<code>Or</code>s, you can validate the values using the function using <code>validatedBy</code>, like this:
+</p>
+
+<pre class="stHighlighted">
+List("29", "30", "31").validatedBy(parseAge)
+// Result: Good(List(29, 30, 31))
+
+List("29", "-30", "31").validatedBy(parseAge)
+// Result: Bad(One("-30" is not a valid age))
+
+List("29", "-30", "-31").validatedBy(parseAge)
+// Result: Bad(Many("-30" is not a valid age, "-31" is not a valid age))
+</pre>
+
+<a name="usingZip"></a>
+<h3>Using <code>zip</code></h3>
+
+<p>
+You can also zip two accumulating <code>Or</code>s together. If both are <code>Good</code>, you'll get a
+<code>Good</code> tuple containin both original <code>Good</code> values. Otherwise, you'll get a <code>Bad</code>
+containing every error message. Here are some examples:
+</p>
+
+<pre class="stHighlighted">
+parseName("Dude") zip parseAge("21")
+// Result: Good((Dude,21))
+
+parseName("Dude") zip parseAge("-21")
+// Result: Bad(One("-21" is not a valid age))
+
+parseName("") zip parseAge("-21")
+// Result: Bad(Many("" is not a valid name, "-21" is not a valid age))
+</pre>
+
+<a name="usingWhen"></a>
+<h3>Using <code>when</code></h3>
+
+<p>
+In addition, given an accumlating <code>Or</code>, you can pass one or more <em>validation functions</em> to <code>when</code> on the <code>Or</code>
+to submit that <code>Or</code> to further scrutiny. A validation function accepts a <code>Good</code> type and returns a <code>Validation[E]</code>,
+where <code>E</code> is the type in the <code>Every</code> in the <code>Bad</code> type. For an <code>Int</code> <code>Or</code> <code>One[ErrorMessage]</code>, for example
+the validation function type would be <code>Int</code> <code>=&gt;</code> <code>Validation[ErrorMessage]</code>. Here are a few examples:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">def</span> isRound(i: Int): Validation[ErrorMessage] =
+    <span class="stReserved">if</span> (i % 10 == 0) Pass <span class="stReserved">else</span> Fail(i + " was not a round number")
+
+<span class="stReserved">def</span> isDivBy3(i: Int): Validation[ErrorMessage] =
+  <span class="stReserved">if</span> (i % 3 == 0) Pass <span class="stReserved">else</span> Fail(i + " was not divisible by 3")
+</pre>
+
+<p>
+If the <code>Or</code> on which you call <code>when</code> is already <code>Bad</code>, you get the same (<code>Bad</code>) <code>Or</code> back, because
+no <code>Good</code> value exists to pass to the valiation functions:
+</p>
+
+<pre class="stHighlighted">
+parseAge("-30").when(isRound, isDivBy3)
+// Result: Bad(One("-30" is not a valid age))
+</pre>
+
+<p>
+If the <code>Or</code> on which you call <code>when</code> is <code>Good</code>, and also passes all the validation functions (<em>i.e.</em>, the
+all return <code>None</code>), you again get the same <code>Or</code> back, but this time, a <code>Good</code> one:
+</p>
+
+<pre class="stHighlighted">
+parseAge("30").when(isRound, isDivBy3)
+// Result: Good(30)
+</pre>
+
+<p>
+If one or more of the validation functions fails, however, you'll get a <code>Bad</code> back contining every error. Here are some examples:
+</p>
+
+<pre class="stHighlighted">
+parseAge("33").when(isRound, isDivBy3)
+// Result: Bad(One(33 was not a round number))
+
+parseAge("20").when(isRound, isDivBy3)
+// Result: Bad(One(20 was not divisible by 3))
+
+parseAge("31").when(isRound, isDivBy3)
+// Result: Bad(Many(31 was not a round number, 31 was not divisible by 3))
+</pre>
+
+<p>
+Note that you can use <code>when</code> to accumulate errors in a <code>for</code> expression involving an accumulating <code>Or</code>, like this:
+</p>
+
+<pre class="stHighlighted">
+for (age &lt;- parseAge("-30") when (isRound, isDivBy3)) yield age
+// Result: Bad(One("-30" is not a valid age))
+
+for (age &lt;- parseAge("30") when (isRound, isDivBy3)) yield age
+// Result: Good(30)
+
+for (age &lt;- parseAge("33") when (isRound, isDivBy3)) yield age
+// Result: Bad(One(33 was not a round number))
+
+for (age &lt;- parseAge("20") when (isRound, isDivBy3)) yield age
+// Result: Bad(One(20 was not divisible by 3))
+
+for (age &lt;- parseAge("31") when (isRound, isDivBy3)) yield age
+// Result: Bad(Many(31 was not a round number, 31 was not divisible by 3))
+</pre>
+
+<a name="muchAdoAboutNothing"></a>
+<h2>Much ado about <code>Nothing</code></h2>
+
+<p>
+Because <code>Or</code> has two types, but each of its two subtypes only takes a value of one or the other type, the Scala compiler will
+infer <code>Nothing</code> for the unspecified type:
+</p>
+
+<pre class="stExamples">
+scala&gt; Good(3)
+res0: org.scalactic.Good[Int,Nothing] = Good(3)
+
+scala&gt; Bad("oops")
+res1: org.scalactic.Bad[Nothing,String] = Bad(oops)
+</pre>
+
+<p>
+Often <code>Nothing</code> will work fine, as it will be widened as soon as the compiler encounters a more specific type.
+Sometimes, however, you may need to specify it. In such situations you can use this syntax:
+</p>
+
+<pre class="stExamples">
+scala&gt; Good(3).orBad[String]
+res2: org.scalactic.Good[Int,String] = Good(3)
+
+scala&gt; Good[Int].orBad("oops")
+res3: org.scalactic.Bad[Int,String] = Bad(oops)
+</pre>
+
+<p>
+If you want to specify both types, because you don't like the inferred type, you can do so like this:
+</p>
+
+<pre class="stExamples">
+scala&gt; Good[AnyVal, String](3)
+res4: org.scalactic.Good[AnyVal,String] = Good(3)
+
+scala&gt; Bad[Int, ErrorMessage]("oops")
+res5: org.scalactic.Bad[Int,org.scalactic.ErrorMessage] = Bad(oops)
+</pre>
+
+<p>
+But you may find the code is clearer if you instead use a type ascription, like this:
+</p>
+
+<pre class="stExamples">
+scala&gt; Good(3): AnyVal Or String
+res6: org.scalactic.Or[AnyVal,String] = Good(3)
+
+scala&gt; Bad("oops"): Int Or ErrorMessage
+res7: org.scalactic.Or[Int,org.scalactic.ErrorMessage] = Bad(oops)
+</pre>
+
+<p>
+Next, learn about <a href="@routes.UserGuide.timesOnInt.url">TimesOnInt</a>.
+</p>
+
+</div>
+}

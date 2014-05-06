@@ -1,0 +1,168 @@
+@*
+* Copyright 2010-2013 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("Constrained Equality") {
+<div style="text-align: left">
+
+<h1>Constrained equality</h1>
+
+<p>
+Scalactic provides a way to get a compile-time type error if two types being compared with <code>===</code> violate a tunable type
+<a href="@{latestScaladoc}/#org.scalactic.Constraint"><code>Constraint</code></a>. The basic <a href="@{latestScaladoc}/#org.scalactic.TripleEquals"><code>TripleEquals</code></a> trait allows you to compare any
+type for equality with any other type:
+</p>
+
+<pre class="stExamples">
+scala&gt; import org.scalactic._
+import org.scalactic._
+
+scala&gt; import TripleEquals._
+import TripleEquals._
+
+scala&gt; Some(1) === 2
+res0: Boolean = false
+
+scala&gt; 1 === 1L
+res1: Boolean = true
+</pre>
+
+<p>
+<a href="@{latestScaladoc}/#org.scalactic.TypeCheckedTripleEquals"><code>TypeCheckedTripleEquals</code></a> will compile only if the left and right sides are in a subtype/supertype relationship (including
+when the left and right sides are exactly the same type):
+</p>
+
+<pre class="stExamples">
+scala&gt; import TypeCheckedTripleEquals._
+import TypeCheckedTripleEquals._
+
+scala&gt; Some(1) === 2
+&lt;console&gt;:17: error: types Some[Int] and Int do not adhere to the type constraint selected for the === and !== operators;
+    the missing implicit parameter is of type org.scalactic.Constraint[Some[Int],Int]
+              Some(1) === 2
+
+scala&gt; 1 === 1L
+&lt;console&gt;:17: error: types Int and Long do not adhere to the type constraint selected for the === and !== operators;
+    the missing implicit parameter is of type org.scalactic.Constraint[Int,Long]
+              1 === 1L
+                ^
+</pre>
+
+<p>
+Note that the latter case is an example of an over-protective type error. If this expression were allowed to compile and run, it would yield
+<code>true</code>, because the <code>Int</code> would be implicitly converted to <code>Long</code>. One way to solve such errors is with a type
+ascription. In this case, you can case either side to <code>AnyVal</code>, a supertype of both <code>Int</code> and <code>Long</code>:
+</p>
+
+<pre class="stExamples">
+scala&gt; 1 === (1L: AnyVal)
+res7: Boolean = true
+
+scala&gt; 1L === (1: AnyVal)
+res8: Boolean = true
+</pre>
+
+<p>
+Since every type is a subtype of <code>Any</code>, you can always solve an over-protective type error with a type ascription of <code>Any</code>.
+</p>
+
+<p>
+</p>
+<p>
+Another way to address this type error, since an implicit conversion exists between the two types, is to use
+<a href="@{latestScaladoc}/#org.scalactic.ConversionCheckedTripleEquals"><code>ConversionCheckedTripleEquals</code></a>.
+<code>ConversionCheckedTripleEquals</code> will compile if the left and right sides are
+in a subtype/supertype relationship <em>or</em> an implicit conversion exists between the left and right sides:
+</p>
+
+<pre class="stExamples">
+scala&gt; import ConversionCheckedTripleEquals._
+import ConversionCheckedTripleEquals._
+
+scala&gt; Some(1) === 2
+&lt;console&gt;:20: error: types Some[Int] and Int do not adhere to the type constraint selected for the === and !== operators;
+    the missing implicit parameter is of type org.scalactic.Constraint[Some[Int],Int]
+              Some(1) === 2
+                      ^
+
+scala&gt; 1 === 1L
+res5: Boolean = true
+</pre>
+
+<p>
+The comparison between <code>Int</code> and <code>Long</code> in the previous <code>ConversionCheckedTripleEquals</code> example compiles
+because an implicit widening conversion from <code>Int</code> to <code>Long</code> is defined in <code>scala.Predef</code>. The implicit conversion
+can be in either direction. In the previous example, it is from the left type (<code>Int</code>) to the right type (<code>Long</code>). Here
+the implicit conversion is from the right type (<code>Int</code>) to the left type (<code>Long</code>):
+</p>
+
+<pre class="stExamples">
+scala&gt; 1L === 1
+res6: Boolean = true
+</pre>
+
+<p>
+Another way to solve over-protective type errors is to actually supply <code>Constraint</code> objects that will allow
+specific types causing the errors to compile. For example, Scalactic provides <code>Constraints</code> for Scala's collection
+types, whose equality behavior is not modeled by either <code>TypeCheckedTripleEquals</code> or <code>ConversionCheckedTripleEquals</code>.
+If the following were allowed to compile, it would yield <code>true</code>, because two <code>Seq</code>s are considered equal
+if they contain equal elements in the same order:
+</p>
+
+<pre class="stExamples">
+scala&gt; List(1, 2, 3) === Vector(1, 2, 3)
+&lt;console&gt;:14: error: types List[Int] and scala.collection.immutable.Vector[Int] do not adhere to the type constraint
+    selected for the === and !== operators; the missing implicit parameter is of type
+    org.scalactic.Constraint[List[Int],scala.collection.immutable.Vector[Int]]
+              List(1, 2, 3) === Vector(1, 2, 3)
+                            ^
+</pre>
+
+<p>
+Trait <code>TraversableEqualityConstraints</code> provides type constraints that allow <code>Seq</code>s to be compared with <code>Seq</code>s, 
+<code>Set</code>s with <code>Set</code>s, and <code>Map</code>s with <code>Map</code>s, so long as an equality constraint exists between
+the respective element types:
+</p>
+
+<pre class="stExamples">
+scala&gt; import TraversableEqualityConstraints._
+import TraversableEqualityConstraints._
+
+scala&gt; List(1, 2, 3) === Vector(1, 2, 3)
+res1: Boolean = true
+
+scala&gt; List(1, 2, 3) === Vector("1", "2", "3")
+&lt;console&gt;:17: error: types List[Int] and scala.collection.immutable.Vector[String] do not adhere to the type constraint
+    selected for the === and !== operators; the missing implicit parameter is of type 
+    org.scalactic.Constraint[List[Int],scala.collection.immutable.Vector[String]]
+              List(1, 2, 3) === Vector("1", "2", "3")
+                            ^
+</pre>
+
+<p>
+The last example doesn't compile because no equality constraint exists between the element types, <code>Int</code> and <code>String</code>.
+Most often the constraints provided by Scalactic will be all you need, but if you do find yourself struggling with over-protective
+type errors, you can look at <code>TraversableEqualityConstraints</code> for examples of how to provide <code>Constraint</code>s for
+your own types.
+</p>
+
+<p>
+Next, learn about <a href="@routes.UserGuide.tolerance.url">Tolerance</a>.
+</p>
+
+</div>
+}

@@ -1,0 +1,75 @@
+@*
+* Copyright 2010-2013 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("The Explicitly DSL") {
+<div style="text-align: left">
+
+<h1>The Explicitly DSL</h1>
+
+<p>
+Scalactic's <a href="@{latestScaladoc}/#org.scalactic.Explicitly"><code>Explicitly</code></a> trait provides the &ldquo;explicitly DSL,&rdquo; which facilitates the
+explicit specification of an <a href="@{latestScaladoc}/#org.scalactic.Equality"><code>Equality[T]</code></a> or a
+<a href="@{latestScaladoc}/#org.scalactic.Uniformity"><code>Uniformity[T]</code></a> where <code>Equality[T]</code> is taken implicitly.
+</p>
+
+<p>
+The Explicitly DSL can be used with the <code>===</code> and <code>!==</code> operators of Scalactic
+as well as the <code>should</code> <code>equal</code>, <code>be</code>, <code>contain</code>, and
+<code>===</code> syntax of <a href="@{latestScaladoc}/#org.scalatest.Matchers">ScalaTest matchers</a>.
+</p>
+
+<p>
+If you want to customize equality for a type in general, you would likely want to place an
+implicit <code>Equality[T]</code> for that type in scope (or in <code>T</code>'s companion object). That implicit
+equality definition will then be picked up and used when that type is compared for equality with the <code>equal</code>,
+<code>be</code>, and <code>contain</code> matchers in ScalaTest tests and with <code>===</code> in both tests and
+production code.  If you just want to use a custom equality for a single comparison, however, you may prefer to pass it
+explicitly. For example, if you have an implicit <code>Equality[String]</code> in scope, you can force a comparison to
+use the default equality with this syntax:
+</p>
+
+<pre class="stHighlighted">
+// In production code:
+<span class="stReserved">if</span> ((result === "hello")(decided by defaultEquality)) <span class="stReserved">true</span> <span class="stReserved">else</span> <span class="stReserved">false</span>
+
+// In tests:
+result should equal ("hello") (decided by defaultEquality)
+</pre>
+
+<p>
+The explicitly DSL also provides support for specifying a one-off equality that is based on a normalization. For
+example, Scalactic offers a <a href="@{latestScaladoc}/#org.scalactic.StringNormalizations"><code>StringNormalizations</code></a>
+trait that provides methods such as <code>trimmed</code> and <code>lowerCased</code> that return <code>Uniformity[String]</code>
+instances that normalize by trimming and lower-casing, respectively. If you bring those into scope by mixing in or importing the
+members of <code>StringNormalizations</code>, you could use the explicitly DSL like this:
+</p>
+
+<pre class="stHighlighted">
+// In production code:
+<span class="stReserved">if</span> ((result === "hello")(after being lowerCased)) <span class="stReserved">true</span> <span class="stReserved">else</span> <span class="stReserved">false</span>
+
+// In tests:
+result should equal ("hello") (after being lowerCased and trimmed)
+</pre>
+
+<p>
+Next, learn about <a href="@routes.UserGuide.orAndEvery.url">Or and Every</a>.
+</p>
+
+</div>
+}

@@ -1,0 +1,237 @@
+@*
+ * Copyright 2010-2013 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestScaladoc
+@import controllers.Application.latestVersion
+@import controllers.Application.latestJar
+@import controllers.Application.majorMinorScalaVersion
+
+@nonHomePage("Quick Start") {
+
+<div style="text-align: left">
+
+<h1>Scalactic quick start</h1>
+
+<p>
+A good way to get started with Scalactic is to try out its type-checking <code>===</code> operator in the Scala interpreter.
+First start Scala 2.10, including <a href="@{latestJar}">this Scalactic Jar file</a> on the classpath:
+</p>
+
+<pre class="scala">
+$ scala -cp scalatest_@{majorMinorScalaVersion}-@{latestVersion}.jar
+Welcome to Scala version 2.10.3 (...).
+Type in expressions to have them evaluated.
+Type :help for more information.
+</pre>
+
+<p>
+Copy and paste this code into the interpreter:
+</p>
+
+<pre class="stHighlighted">
+import org.scalactic._
+import TypeCheckedTripleEquals._
+Some(1) === 2
+Some(1) === Some(2)
+1 === 1L
+import ConversionCheckedTripleEquals._
+1 === 1L
+List(1, 2, 3) === Vector(1, 2, 3)
+import TraversableEqualityConstraints._
+List(1, 2, 3) === Vector(1, 2, 3)
+List(1, 2, 3) === Set(1, 2, 3)
+</pre>
+
+<p>
+You should see the output shown below.
+By importing the members of <code>org.scalactic.TypeCheckedTripleEquals</code>, you get a <code>===</code> operator that requires
+the left- and right-hand types to be a subtype and/or supertype of each other:
+</p>
+
+<pre class="scala">
+scala&gt; import org.scalactic._
+import org.scalactic._
+
+scala&gt; import TypeCheckedTripleEquals._
+import TypeCheckedTripleEquals._
+</pre>
+
+<p>
+For example, in the following expression because the left-hand type, <code>Some[Int]</code>, and the right-hand type, <code>Int</code>, are not in
+a subtype/supertype relationship, you'll get a compiler error:
+</p>
+
+<pre class="scala">
+scala&gt; Some(1) === 2
+&lt;console&gt;:14: error: types Some[Int] and Int do not adhere to the type
+    constraint selected for the === and !== operators; the missing implicit
+    parameter is of type org.scalactic.Constraint[Some[Int],Int]
+              Some(1) === 2
+                      ^
+</pre>
+
+<p>
+By contrast, in the following expression both the left- and right-hand types are <code>Some[Int]</code>. Because a type is a subtype and supertype of
+itself, the code compiles (and at runtime yields false):
+</p>
+
+<pre class="scala">
+scala&gt; Some(1) === Some(2)
+res1: Boolean = false
+</pre>
+
+<p>
+However, because <code>Int</code> and <code>Long</code> are not in a subtype/supertype relationship, the following will
+generate a compiler error, even though if this were allowed to compile, it would yield <code>true</code>:
+</p>
+
+<pre class="scala">
+scala&gt; 1 === 1L
+&lt;console&gt;:14: error: types Int and Long do not adhere to the type constraint
+    selected for the === and !== operators; the missing implicit parameter is of
+    type org.scalactic.Constraint[Int,Long]
+              1 === 1L
+                ^
+</pre>
+
+<p>
+The previous expression would yield <code>true</code> if allowed to compile because the <code>Int</code> would be implicitly
+widened to <code>Long</code> via an implicit conversion in <code>scala.Predef</code>. Importing the members of
+<code>ConversionCheckedTripleEquals</code> will give you a <code>===</code> operator that requires that either the left- and right-hand
+types to be a subtype or supertype of each other, or an implicit conversion exists in one direction or the other:
+</p>
+
+<pre class="scala">
+scala&gt; import ConversionCheckedTripleEquals._
+import ConversionCheckedTripleEquals._
+</pre>
+
+<p>
+Now the same expression compiles and yields <code>true</code>:
+</p>
+
+<pre class="scala">
+scala&gt; 1 === 1L
+res3: Boolean = true
+</pre>
+
+<p>
+The following expression does <em>not</em> compile, however, because <code>List[Int]</code> and <code>Vector[Int]</code> are not a subtype or
+supertype of each other, and no implicit conversion exists between them:
+</p>
+
+<pre class="scala">
+scala&gt; List(1, 2, 3) === Vector(1, 2, 3)
+&lt;console&gt;:17: error: types List[Int] and scala.collection.immutable.Vector[Int]
+    do not adhere to the type constraint selected for the === and !== operators;
+    the missing implicit parameter is of type org.scalactic.Constraint[
+    List[Int], scala.collection.immutable.Vector[Int]]
+              List(1, 2, 3) === Vector(1, 2, 3)
+                            ^
+</pre>
+
+<p>
+Importing the members of <code>TraversableEqualityConstraints</code>s provides additional implicits that enable
+equality comparisons of collections that make sense for Scala. For example, any subtype of <code>GenSeq</code> can be compared with any
+other subtype of <code>GenSeqs</code>:
+</p>
+
+<pre class="scala">
+scala&gt; import TraversableEqualityConstraints._
+import TraversableEqualityConstraints._
+
+scala&gt; List(1, 2, 3) === Vector(1, 2, 3)
+res5: Boolean = true
+</pre>
+
+<p>
+In addition, subtypes of <code>GenSet</code> can be compared with each other, as can subtypes of <code>GenMap</code>. But
+an attempt to compare a <code>Seq</code> with a <code>Set</code> for equality won't compile, because it would always yield <code>false</code>:
+</p>
+
+<pre class="scala">
+scala&gt; List(1, 2, 3) === Set(1, 2, 3)
+&lt;console&gt;:20: error: types List[Int] and scala.collection.immutable.Set[Int]
+    do not adhere to the type constraint selected for the === and !== operators;
+    the missing implicit parameter is of type org.scalactic.Constraint[
+    List[Int], scala.collection.immutable.Set[Int]]
+              List(1, 2, 3) === Set(1, 2, 3)
+                            ^
+</pre>
+
+<p>
+In short, Scalactic's type-checking <code>===</code> operator provides you with a tunable type check for equality comparisons. For more
+information, see the documentation for <a href="@latestScaladoc/#org.scalactic.TypeCheckedTripleEquals"><code>TypeCheckedTripleEquals</code></a>,
+<a href="@latestScaladoc/#org.scalactic.ConversionCheckedTripleEquals"><code>ConversionCheckedTripleEquals</code></a>, and
+<a href="@latestScaladoc/#org.scalactic.TraversableEqualityConstraints"><code>TraversableEqualityConstraints</code></a>.
+</p>
+
+<p>
+Like ScalaTest, Scalactic consists if discrete traits so that you can import only the implicits you need, minimizing potential conflicts and
+maximizing compiler speed. If you decide you'll want certain features of Scalactic generally, you can mix them into a singleton object and
+just import its members. Here's an example:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">package</span> com.mycompany.myproject
+
+<span class="stReserved">import</span> org.scalactic._
+
+<span class="stReserved">object</span> <span class="stType">OurScalactic</span> <span class="stReserved">extends</span> <span class="stType">TypeCheckedTripleEquals</span>
+    <span class="stReserved">with</span> <span class="stType">TraversableEqualityConstraints</span> <span class="stReserved">with</span> <span class="stType">Tolerance</span>
+    <span class="stReserved">with</span> <span class="stType">Explicitly</span> <span class="stReserved">with</span> <span class="stType">TimesOnInt</span>
+</pre>
+
+<p>
+You can now import your desired Scalactic functionality in one line:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">package</span> com.mycompany.myproject
+
+<span class="stReserved">import</span> OurScalactic._
+
+<span class="stLineComment">// Your code here</span>
+</pre>
+
+
+<p>
+To include Scalactic in your sbt project, simply add this line:
+</p>
+
+<pre class="stHighlighted">
+libraryDependencies += <span class="stQuotedString">"org.scalactic"</span> % <span class="stQuotedString">"scalactic_@{majorMinorScalaVersion}"</span> % <span class="stQuotedString">"@{latestVersion}"</span>
+</pre>
+
+<p>
+To include Scalactic in your Maven project, use:
+</p>
+
+<pre class="stHighlighted">
+&lt;dependency&gt;
+&lt;groupId&gt;org.scalactic&lt;/groupId&gt;
+&lt;artifactId&gt;scalactic_2.10&lt;/artifactId&gt;
+&lt;version&gt;@{latestVersion}&lt;/version&gt;
+&lt;/dependency&gt;
+</pre>
+
+<p>
+You are off and running! For more information, consult the <a href="@routes.UserGuide.userGuideIndex">user guide</a>.
+</p>
+
+</div>
+
+}

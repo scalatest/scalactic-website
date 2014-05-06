@@ -1,0 +1,752 @@
+body {
+  margin: 10px 0 0 0; padding: 0;
+  font-family: verdana, "Lucida Grande", arial, helvetica, sans-serif;
+  color: #333;
+  background: #fff url(/public/images/topbluefade.gif) repeat-x;
+  text-align: center;
+}
+ 
+a:link, a:visited { color: #000; text-decoration: underline; }
+a:hover { color: #fff; background-color: #333; text-decoration: none; }
+ 
+a.attention:link, a.attention:visited { color: #900; }
+a.attention:hover { color: #fff; }
+ 
+a.scalatestLogo:hover { color: #fff; background-color: #fff }
+
+pre { width: 100%; padding-bottom: 24px; }
+ 
+ 
+.highlight {
+        background-color: #ffc;
+}
+ 
+.clearall, .clearallrule {
+        margin: 0 0 10px;
+        padding: 10px 0 0 0;
+        clear: both;
+        font-size: 2px;
+}
+ 
+.clearallrule {
+        border-bottom: 1px solid #ccc;
+}
+ 
+h1 {
+        padding: 0;
+        margin: 0 0 20px 0;
+        color: #000;
+        font-size: 16px;
+        font-weight: bold;
+}
+ 
+h2 {
+        margin: 10px 0 1px 0px;
+        font-size: 13px;
+        line-height: 16px;
+        font-weight: bold;
+        padding: 0;
+}
+ 
+h3 {
+        margin: 10px 0 1px 0;
+        font-size: 12px;
+        line-height: 16px;
+        padding: 0;
+        font-weight: bold;
+        font-style: italic;
+}
+ 
+div.Container {
+        margin: 0 auto 30px auto;
+        text-align: center;
+        width: 726px;
+}
+ 
+div.WideContainer {
+        margin: 0 auto 30px auto;
+        text-align: center;
+        width: 876px;
+}
+ 
+div.UserGuideContainer {
+        margin: 0 100px 30px 100px;
+        text-align: center;
+}
+ 
+div.minibar {
+  font-size: 11px;
+}
+ 
+.img a {
+  border: none;
+}
+ 
+input.big {
+  padding: 3px;
+  font-size: 16px;
+  text-align: center;
+}
+ 
+div#Header {
+  text-align: center;
+  margin: 15px 0 10px 0;
+}
+ 
+div#Header div#Nav {
+  font-size: 10px;
+  color: #999;
+}
+ 
+div#Header div#Nav a:link,
+div#Header div#Nav a:visited {
+  font-size: 11px;
+  font-weight: bold;
+  color: #000;
+}
+ 
+div#Header div#Nav a:hover {
+  color: #fff;
+}
+ 
+div#Header div#Nav a.current:hover {
+  color: #000;
+}
+ 
+div#Header a.current:link,
+div#Header a.current:visited,
+div#Header a.current:hover {
+  text-decoration: none;
+  background: none;
+  color: #800;
+}
+ 
+div#Header div.clearall {
+        margin: 0 0 20px;
+  padding: 0;
+        clear: both;
+        font-size: 2px;
+}
+ 
+div#ImageHeader {
+  clear: both;
+  margin: 0 0 20px 0;
+  background-image: url(/images/banner-nobloat.gif);
+  width: 726px;
+  height: 63px;
+}
+ 
+div#ImageHeader h1,
+div#ImageHeader p {
+  font-size: 10px;
+  margin: 0 0 0 -3000px;
+}
+ 
+div.producttable {
+        text-align: center;
+        width: 726px;
+}
+ 
+div.producttable img {
+        border: none;
+}
+ 
+div.producttable table {
+  width: 726px;
+  margin-bottom: 10px;
+}
+ 
+div.producttable table td {
+  width: 199px;
+  vertical-align: top;
+  padding: 3px;
+  text-align: left;
+}
+ 
+div.producttable table td h2 a {
+  color: #036;
+}
+ 
+div.producttable table td h2 a:hover {
+  color: #fff;
+}
+ 
+div.producttable table tr.for td {
+  width: 199px;
+  padding: 1px;
+  text-align: center;
+  line-height: 14px;
+  font-size: 11px;
+  color: red;
+  font-weight: bold;
+}
+ 
+div.producttable table tr.for td span {
+  color: #666;
+  font-size: 10px;
+  font-weight: normal;
+}
+ 
+div.producttable table h2 {
+  color: #393;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+}
+ 
+div.producttable table p {
+  font-size: 12px;
+  line-height: 16px;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+ 
+div.maincol {
+        width: 425px;
+        text-align: left;
+        float: left;
+}
+ 
+div.maincol p {
+        font-size: 12px;
+        line-height: 16px;
+        margin: 3px 0 15px 0;
+}
+ 
+div.maincol h1 {
+        font-size: 16px;
+        color: #036;
+        font-weight: bold;
+        padding: 0;
+        margin: 0 0 15px 0;
+}
+ 
+div.maincol h2 {
+        font-size: 12px;
+        color: #333;
+        font-weight: bold;
+        padding: 0;
+        margin: 0 0 1px 0;
+}
+ 
+div.maincol h3 {
+        font-size: 12px;
+        color: #000;
+        font-weight: bold;
+        padding: 0;
+        margin: 0 0 15px 0;
+}
+ 
+div.maincol p {
+        font-size: 11px;
+        line-height: 15px;
+        color: #333;
+        margin: 0 0 15px 0;
+}
+ 
+cite {
+  color: #999;
+  font-size: 10px;
+  font-style: italic;
+}
+ 
+div.sidecol {
+        float: right;
+        width: 260px;
+        text-align: left;
+        padding: 0;
+        margin: 0;
+}
+ 
+div.sidecol h2 {
+        font-size: 13px;
+        font-weight: bold;
+        line-height: 14px;
+        margin: 0 0 2px 0;
+        color: #036;
+        padding: 0;
+}
+ 
+div.sidecol p {
+        font-size: 11px;
+        line-height: 14px;
+        margin: 0 0 15px 0;
+        padding: 0;
+  clear: left;
+}
+ 
+div.sidecol p img.qt {
+  padding: 0 5px 5px 0;
+  float: left;
+}
+ 
+div#Footer {
+  padding-top: 15px;
+  clear: both;
+}
+ 
+div#Footer h1 {
+        padding: 0;
+        margin: 0 0 20px 0;
+        color: #000;
+        font-size: 16px;
+        font-weight: bold;
+}
+ 
+div#Footer p {
+  font-size: 10px;
+  color: #666;
+}
+ 
+div#Footer img {
+  margin: 10px 0 0 0;
+}
+ 
+div.copyright {
+  font-size: 11px;
+  color: #666;
+}
+ 
+body.overview h1 {
+        font-size: 37px;
+        font-weight: normal;
+        line-height: 120%;
+        font-family: georgia;
+}
+ 
+body.overview h1 span {
+        color: #999;
+        font-size: 58%;
+}
+ 
+div.message {
+        margin: 50px auto 10px auto;
+}
+ 
+body.overview div.content {
+        width: 700px;
+        margin: 40px auto 0px auto;
+        text-align: left;
+}
+ 
+ 
+body.overview div.content div.sub {
+        float: left;
+        width: 200px;
+        text-align: right;
+}
+ 
+body.overview div.content div.sub h1 {
+        font-family: georgia;
+        font-size: 28px;
+        font-weight: normal;
+        text-align: right;
+}
+ 
+body.overview div.content div.main {
+        float: right;
+        width: 450px;
+}
+ 
+body.overview div.content table.productgrid img {
+        padding: 1px;
+        border: 1px solid #ccc;
+        margin-bottom: 5px;
+}
+ 
+body.overview div.content table.productgrid p {
+        font-size: 10px;
+        font-family: verdana;
+        text-align: left;
+}
+ 
+body.overview div.content table.productgrid {
+        margin-bottom: 0;
+}
+ 
+body.overview div.content table.productgrid td {
+        text-align: left;
+}
+ 
+body.overview div.content p, body.overview div.content p.noindent {
+        font-size: 18px;
+        font-weight: normal;
+        line-height: 140%;
+        margin-top: 0;
+        font-family: georgia;
+        margin-bottom: 25px;
+}
+ 
+#quote-show {
+        font-size: 16px;
+        width: 600px;
+        font-weight: normal;
+        margin: 40px auto 30px auto;
+        line-height: 140%;
+        text-align: center;
+        margin-top: 10px;
+        font-family: georgia;
+}
+ 
+.class {
+  zoom:1
+}
+ 
+body.overview div.content p a {
+        color: #369;
+}
+ 
+body.overview div.content h2 {
+        font-size: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-family: helvetica;
+        padding: 0; margin: 40px 0 30px 0;
+        text-align: center;
+        color: #000;
+}
+ 
+body.overview div.content h2 span {
+        color: #333;
+        padding: 4px;
+}
+ 
+body.overview div.content img {
+        margin: 0 10px 5px 0;
+}
+ 
+body.overview div.Container {
+        text-align: center;
+}
+ 
+body.overview table {
+        margin: 0 auto 50px auto;
+}
+ 
+body.overview table td {
+        text-align: center;
+}
+ 
+body.overview div.content span.highlight {
+        font-weight: normal;
+        background-color: #ffc;
+}
+ 
+body.overview cite {
+        font-size: 14px;
+        color: #A69E8A;
+}
+ 
+body.overview cite a, body.overview cite a:visited {
+        font-size: 14px;
+        color: #A69E8A;
+}
+ 
+body.overview div.content cite {
+        font-size: 14px;
+        color: #A69E8A;
+        margin-left: 25px;
+}
+ 
+body.overview div.content a:hover {
+        background-color: #F4DDA6;
+}
+ 
+div.slivers {
+        margin: 0 auto;
+        text-align: center;
+        background:url("/images/herobackground.gif") repeat-x;
+        border-top: 2px solid #F6E69F;
+        border-bottom: 2px solid #F6E69F;
+        padding: 10px;
+        margin-bottom: 30px;
+}
+ 
+div.announce {
+        margin: 0 auto 0 auto;
+        text-align: center;
+        background-color: #981A21;
+        font-size: 11px;
+        padding: 5px;
+        color: #fff;
+}
+ 
+div.slivers h2 {
+        font-size: 22px;
+        font-weight: normal;
+        margin: 0 0 15px 0;
+        font-family: georgia;
+        color:#0E3062;
+}
+ 
+div.slivers a {
+        color: #000;
+}
+ 
+div.slivers a:hover {
+        color: #fff;
+}
+ 
+div.announce a, div.announce a:visited {
+        color: #fff;
+}
+ 
+div.slivers h3 {
+        font-size: 14px;
+        margin: 4px 0;
+}
+ 
+div.slivers p {
+        font-size: 10px;
+        margin: 0;
+}
+ 
+div.slivers li {
+        font-size: 9px;
+        list-style: none;
+        text-align: left;
+        margin: 0; padding: 0;
+}
+ 
+table, div.slivers table {
+        margin: 0 auto;
+}
+ 
+div.slivers table td {
+        text-align: center;
+        vertical-align: top;
+        padding: 0 10px;
+        width: 175px;
+}
+ 
+div.slivers img {
+        padding: 1px;
+        margin: 0 7px 5px 7px;
+}
+ 
+div.slivers img.bordered {
+  border: 1px solid #ccc;
+}
+ 
+img.bordered {
+  padding: 2px;
+  border: 2px solid #ccc;
+}
+ 
+img { border-width:0; }
+a.no_link_hover:hover { background: none !important; }
+ 
+body.casestudy span.pullquote {
+        float: right;
+        border-left: 1px solid #ccc;
+        padding: 0 0 0 10px;
+        margin: 20px;
+        width: 150px;
+        font-size: 12px;
+        font-family: verdana;
+        color: #A69E8A;
+        line-height: 16px;
+}
+ 
+body.casestudy div.sub h2 {
+        font-weight: bold;
+        color: #900;
+        margin: 0; !important
+        padding: 0; !important
+        text-indent: 0;
+        text-align: right;
+}
+ 
+body.casestudy div.sub p {
+        font-size: 75%;
+        font-family: verdana;
+        line-height: 1.2em;
+}
+ 
+body.casestudy div.sub h3 {
+        font-size: 10px;
+        font-weight: normal;
+        font-family: verdana;
+}
+
+#code {
+  color: white;
+  display: block;
+  font-size: 95%;
+  line-height: 110%;
+  padding-top: 24px;
+  width: 244px;
+}
+#code div {
+  display: block;
+  font-family: "Lucida Console", Monaco, monospace;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+pre.scala {
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 95%;
+  line-height: 110%;
+  padding-left: 4%;
+  padding-top: 24px;
+  background-color: #2c415c;
+  color: white;
+  text-align: left;
+}
+
+.greenincolor {
+  color: #00cc00;
+}
+.cyanincolor {
+  color: #428bdd;
+}
+.yellowincolor {
+  color: #cfc923
+}
+.type {
+  color: #428bdd;
+}
+.literal {
+  color: #00cc00;
+}
+.quotedString {
+  color: #00cc00;
+}
+.blank-line {
+  line-height: 70%;
+}
+.blockComment, .lineComment {
+  color: gray;
+  font-style: italic;
+}
+
+.systemoutput {
+  color: #550000;
+}
+
+pre.stGrayback {
+  background-color: #ecedec;
+  padding: 10px;
+  color: black;
+}
+
+pre.stExamples {
+  background-color: #1b3449;
+  padding: 10px;
+  color: white;
+}
+
+pre.stREPL {
+  background-color: #1b3449;
+  padding: 10px;
+  color: white;
+}
+
+.stYellow {
+  color: #cfc923;
+}
+
+.stCyan {
+  color: #00dddd;
+}
+
+.stGreen {
+  color: #00cc00;
+}
+
+.stRed {
+  color: #dd2233;
+}
+
+pre.stHighlighted {
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 95%;
+  line-height: 110%;
+  padding: 10px;
+  background-color: #ecedec;
+  color: black;
+  text-align: left;
+}
+
+p.stHighlighted {
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 95%;
+    line-height: 110%;
+    padding: 10px;
+    background-color: #ecedec;
+    color: black;
+    text-align: left;
+}
+
+pre.stStyleExamples {
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 95%;
+  line-height: 110%;
+  padding: 10px;
+  color: black;
+  text-align: left;
+}
+
+.stStyleDesc {
+  padding: 10px;
+  color: gray;
+  text-align: left;
+}
+
+.stType {
+  color: #418da7;
+}
+
+.stLiteral {
+  color: #2b875e;
+}
+
+.stQuotedString {
+  color: #2b875e;
+}
+
+.stReserved {
+  color: #00008b;
+}
+
+.stBlockComment, .stLineComment {
+  color: gray;
+  font-style: italic;
+}
+
+table.stTable {
+ border-collapse: collapse;
+ border: 1px solid black;
+}
+
+th.stHeadingCell {
+  background-color: #CCCCCC;
+  border-width: 1px;
+  padding: 3px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+td.stTableCell {
+  border-width: 1px;
+  padding: 3px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+td.quickref {
+  border-width: 1px;
+  padding: 6px;
+  border: 1px solid #999999;
+  text-align: left
+}
+
+th.quickref {
+  background-color: #CCCCCC;
+  border-width: 1px;
+  padding: 6px;
+  border: 1px solid #999999;
+  text-align: left;
+}
+

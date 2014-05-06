@@ -1,0 +1,169 @@
+@*
+ * Copyright 2010-2013 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@nonHomePage("Download") {
+
+<div style="text-align: left">
+
+<h1>Downloading Scalactic</h1>
+
+<p>
+<strong>Scalactic 2.1.0</strong> (for 2.10.0+) is available at
+<a href="https://oss.sonatype.org/content/groups/public/org/scalactic/">Sonatype OSS</a> Maven repository (which is mirrored on the
+central Maven repository as well).
+
+<p>
+Scalactic is a small library of utilities released as part of the <a href="http://www.scalatest.org/">ScalaTest</a> project that are useful in production both code and tests.
+For every release of ScalaTest, there is a corresponding release of Scalactic with the same version number.
+Thus if you use both Scalactic and ScalaTest in the same project, you should make sure the version numbers match.
+</p>
+
+<p>
+A copy of Scalactic is
+included in <a href="http://www.scalatest.org/">ScalaTest</a>'s jar file, so if you are using ScalaTest as your test framework, you need not include a copy of Scalactic
+in your test class path. If you want to use use Scalactic in your production code, or in your tests when using a test framework other
+than ScalaTest, you'll need to add it explicitly to your class path. Here is the information for including Scalactic in your project:
+</p>
+
+<ul>
+    <li>group id: org.scalactic</li>
+    <li>artifact id: scalactic_2.10</li>
+    <li>version: 2.1.0</li>
+</ul>
+
+<p>Here's the code for your Maven POM:</p>
+
+<pre class="stHighlighted">
+&lt;dependency&gt;
+&lt;groupId&gt;org.scalactic&lt;/groupId&gt;
+&lt;artifactId&gt;scalactic_2.10&lt;/artifactId&gt;
+&lt;version&gt;2.1.0&lt;/version&gt;
+&lt;/dependency&gt;
+</pre>
+
+<p>
+And for sbt, version 0.10 or higher (for Scala 2.10.0+):
+</p>
+
+<pre class="stGrayback">
+    libraryDependencies += "org.scalactic" % "scalactic_2.10" % "2.1.0"
+</pre>
+
+<p>
+Alternatively you can just download Jar files for the library and Scaladoc documentation by hand from Sonatype. The artifacts tagged with 2.10
+can be used with any 2.10.x release.
+Jar files are valid zip files, so to access the Scaladoc documentation just unzip the Jar file. The Scaladoc Jars
+do not contain a top-level directory, however, so you should unzip them in an empty directory.
+</p>
+
+<p>
+For Scala 2.10.x:
+</p>
+
+<ul>
+    <li><a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.10/2.1.0/scalactic_2.10-2.1.0.jar">Download Scalactic 2.1.0 Jar</a></li>
+    <li><a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.10/2.1.0/scalactic_2.10-2.1.0-scaladoc.jar">Download Scalactic 2.1.0 Scaladoc documentation</a></li>
+</ul>
+
+<p>
+If you don't have it already, you'll also need Scala. You can use any 2.10 release, which you can get from here:
+</p>
+
+<ul>
+    <li><a href="http://www.scala-lang.org/downloads">Download latest Scala release</a></li>
+</ul>
+
+<p>
+For a list of the changes in this release, see the <a href="/release_notes/2.1.0">release notes</a>. For detailed
+documentation, see the <a href="http://www.artima.com/docs-scalatest-2.1.0/#org.scalactic.package">Scalactic 2.1.0 Scaladoc</a>.
+</p>
+
+<hr />
+
+<p>
+<strong>Scalactic 2.0</strong> (for 2.10.0+) is available at
+<a href="https://oss.sonatype.org/content/groups/public/org/scalactic/">Sonatype OSS</a> Maven repository (which is mirrored on the
+central Maven repository as well).
+
+<p>
+Scalactic is a small library of utilities released as part of the <a href="http://www.scalatest.org/">ScalaTest</a> project that are useful in production both code and tests.
+For every release of ScalaTest, there is a corresponding release of Scalactic with the same version number.
+Thus if you use both Scalactic and ScalaTest in the same project, you should make sure the version numbers match.
+</p>
+
+<p>
+A copy of Scalactic is
+included in <a href="http://www.scalatest.org/">ScalaTest</a>'s jar file, so if you are using ScalaTest as your test framework, you need not include a copy of Scalactic
+in your test class path. If you want to use use Scalactic in your production code, or in your tests when using a test framework other
+than ScalaTest, you'll need to add it explicitly to your class path. Here is the information for including Scalactic in your project:
+</p>
+
+<ul>
+    <li>group id: org.scalactic</li>
+    <li>artifact id: scalactic_2.10</li>
+    <li>version: 2.0</li>
+</ul>
+
+<p>Here's the code for your Maven POM:</p>
+
+<pre class="stHighlighted">
+&lt;dependency&gt;
+&lt;groupId&gt;org.scalactic&lt;/groupId&gt;
+&lt;artifactId&gt;scalactic_2.10&lt;/artifactId&gt;
+&lt;version&gt;2.0&lt;/version&gt;
+&lt;/dependency&gt;
+</pre>
+
+<p>
+And for sbt, version 0.10 or higher (for Scala 2.10.0+):
+</p>
+
+<pre class="stGrayback">
+    libraryDependencies += "org.scalactic" % "scalactic_2.10" % "2.0"
+</pre>
+
+<p>
+Alternatively you can just download Jar files for the library and Scaladoc documentation by hand from Sonatype. The artifacts tagged with 2.10
+can be used with any 2.10.x release.
+Jar files are valid zip files, so to access the Scaladoc documentation just unzip the Jar file. The Scaladoc Jars
+do not contain a top-level directory, however, so you should unzip them in an empty directory.
+</p>
+
+<p>
+For Scala 2.10.x:
+</p>
+
+<ul>
+    <li><a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.10/2.0/scalactic_2.10-2.0.jar">Download Scalactic 2.0 Jar</a></li>
+    <li><a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.10/2.0/scalactic_2.10-2.0-scaladoc.jar">Download Scalactic 2.0 Scaladoc documentation</a></li>
+</ul>
+
+<p>
+If you don't have it already, you'll also need Scala. You can use any 2.10 release, which you can get from here:
+</p>
+
+<ul>
+    <li><a href="http://www.scala-lang.org/downloads">Download latest Scala release</a></li>
+</ul>
+
+<p>
+For a list of the changes in this release, see the <a href="/release_notes/2.0">release notes</a>. For detailed
+documentation, see the <a href="http://www.artima.com/docs-scalatest-2.0/#org.scalactic.package">Scalactic 2.0 Scaladoc</a>.
+</p>
+
+</div>
+}
+

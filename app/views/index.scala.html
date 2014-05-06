@@ -1,0 +1,211 @@
+@*
+ * Copyright 2010-2013 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.majorMinorScalaVersion
+@import controllers.Application.latestScaladoc
+
+@homePage("Home") {
+
+  <div style="text-align: left">
+
+    <p>
+      The Scalactic library is focused on constructs related to quality that are useful in both production
+      code and tests. Although <a href="http://scalatest.org">ScalaTest</a> is tightly integrated with Scalactic, you can use Scalactic
+      with any Scala project and any test framework. The Scalactic library has no dependencies other than Scala itself.
+    </p>
+
+    <h1>The <code>===</code> and <code>!==</code> operators</h1>
+
+    <p>
+      Scalactic provides a powerful <code>===</code> operator (and its complement, <code>!==</code>) that allows you to
+    </p>
+
+    <ul>
+    <li>Customize equality for a type outside its class</li>
+    <li>Get compiler errors for suspicious equality comparisons</li>
+    <li>Compare numeric values for equality with a tolerance</li>
+    <li>Normalize values before comparing them for equality</li>
+    </ul>
+
+    <p>
+    For example, you can compare strings for equality after being normalized by forcing them to lowercase by customizing
+    <a href="@latestScaladoc/#org.scalactic.Equality"><code>Equality</code></a> explicitly, like this:
+    </p>
+
+    <pre class="scala">
+    import org.scalactic._
+    import TripleEquals._
+    import StringNormalizations._
+    import Explicitly._
+
+    (<span class="quotedString">"Hello"</span> === <span class="quotedString">"hello"</span>) (after being lowerCased) <span class="lineComment">// true</span>
+    </pre>
+
+    <p>
+    You can also define implicit <a href="@latestScaladoc/#org.scalactic.Normalization"><code>Normalization</code></a> strategies for types and access
+    them by invoking <code>norm</code> methods:
+    </p>
+
+    <pre class="scala">
+    import NormMethods._
+
+    <span class="reserved">implicit</span> <span class="reserved">val</span> strNormalization = lowerCased
+
+    <span class="quotedString">"WHISPER"</span>.norm                                <span class="lineComment">// "whisper"</span>
+    <span class="quotedString">"WHISPER"</span>.norm === <span class="quotedString">"whisper"</span>                  <span class="lineComment">// true</span>
+    </pre>
+
+    <p>
+    The &ldquo;<code>after being lowerCased</code>&rdquo; syntax shown previously is provided by Scalactic'
+    <a href="@latestScaladoc/#org.scalactic.Explicitly"><code>Explicitly</code></a> DSL, which allows you to specify <code>Equality</code>
+    explicitly. You can also define custom <code>Equality</code>s implicitly:
+    </p>
+
+    <pre class="scala">
+    <span class="reserved">implicit</span> <span class="reserved">val</span> strEquality =
+      decided by defaultEquality[<span class="type">String</span>] afterBeing lowerCased
+
+    <span class="quotedString">"Hello"</span> === <span class="quotedString">"hello"</span>                           <span class="lineComment">// true</span>
+    <span class="quotedString">"normalized"</span> === <span class="quotedString">"NORMALIZED"</span>                 <span class="lineComment">// true</span>
+    </pre>
+
+    <p>
+    You can compare numeric values for equality with a <a href="@latestScaladoc/#org.scalactic.Tolerance"><code>Tolerance</code></a>, like this:
+    </p>
+
+    <pre class="scala">
+    import Tolerance._
+
+    <span class="literal">2.00001</span> === <span class="literal">2.0</span> +- <span class="literal">0.01</span>                       <span class="lineComment">// true</span>
+    </pre>
+
+    <p>
+    Or you could use <a href="@latestScaladoc/#org.scalactic.TolerantNumerics"><code>TolerantNumerics</code></a> define an implicit <code>Equality[Double]</code> that
+    compares <code>Double</code>s with a tolerance:
+    </p>
+
+    <pre class="scala">
+    import TolerantNumerics._
+
+    <span class="reserved">implicit</span> <span class="reserved">val</span> dblEquality = tolerantDoubleEquality(<span class="literal">0.01</span>)
+
+    <span class="literal">2.00001</span> === <span class="literal">2.0</span>                               <span class="lineComment">// true</span>
+    </pre>
+
+    <p>
+    A compiler error for an equality comparison that would always yield false looks like:
+    </p>
+
+    <pre class="scala">
+    import TypeCheckedTripleEquals._
+
+    <span class="type">Some</span>(<span class="quotedString">"hi"</span>) === <span class="quotedString">"hi"</span>
+    error: types Some[String] and String do not adhere to the type constraint
+    selected for the === and !== operators; the missing implicit parameter is
+    of type org.scalactic.Constraint[Some[String],String]
+              Some("hi") === "hi"
+                         ^
+    </pre>
+
+    <h1><code>Or</code> and <code>Every</code></h1>
+
+    <p>
+      Scalactic provides an &ldquo;<code>Either</code> with attitude&rdquo; named <a href="@latestScaladoc/#org.scalactic.Or"><code>Or</code></a>, which gives you
+      more convenient chaining of <code>map</code> and <code>flatMap</code> calls (and <code>for</code> expressions) than <code>Either</code> and, when, combined
+      with <a href="@latestScaladoc/#org.scalactic.Every"><code>Every</code></a>, enables you to accumulate errors. <code>Every</code> is an ordered
+      collection of one or more elements. An <code>Or</code> is either <a href="@latestScaladoc/#org.scalactic.Good"><code>Good</code></a> or
+      <a href="@latestScaladoc/#org.scalactic.Bad"><code>Bad</code></a>. An <code>Every</code> is either
+      <a href="@latestScaladoc/#org.scalactic.One"><code>One</code></a> or <a href="@latestScaladoc/#org.scalactic.Many"><code>Many</code></a>. Here's an
+      example of accumulating errors with <code>Or</code> and <code>Every</code>:
+    </p>
+
+<pre class="scala">
+import org.scalactic._
+import Accumulation._
+
+<span class="reserved">case</span> <span class="reserved">class</span> <span class="type">Person</span>(name: <span class="type">String</span>, age: <span class="type">Int</span>)
+
+<span class="reserved">def</span> parseName(input: <span class="type">String</span>): <span class="type">String</span> <span class="type">Or</span> <span class="type">One[ErrorMessage]</span> = {
+  <span class="reserved">val</span> trimmed = input.trim
+  <span class="reserved">if</span> (!trimmed.isEmpty)
+    <span class="type">Good</span>(trimmed)
+  <span class="reserved">else</span>
+    <span class="type">Bad</span>(<span class="type">One</span>(s<span class="quotedString">&quot;&quot;&quot;&quot;${input}&quot; is not a valid name&quot;&quot;&quot;</span>))
+}
+
+<span class="reserved">def</span> parseAge(input: <span class="type">String</span>): <span class="type">Int</span> <span class="type">Or</span> <span class="type">One[ErrorMessage]</span> = {
+  <span class="reserved">try</span> {
+    <span class="reserved">val</span> age = input.trim.toInt
+    <span class="reserved">if</span> (age &gt;= <span class="literal">0</span>) <span class="type">Good</span>(age) <span class="reserved">else</span> <span class="type">Bad</span>(<span class="type">One</span>(s<span class="quotedString">&quot;&quot;&quot;&quot;${age}&quot; is not a valid age&quot;&quot;&quot;</span>))
+  }
+  <span class="reserved">catch</span> {
+    <span class="reserved">case</span> _: <span class="type">NumberFormatException</span> =&gt;
+      <span class="type">Bad</span>(<span class="type">One</span>(s<span class="quotedString">&quot;&quot;&quot;&quot;${input}&quot; is not a valid integer&quot;&quot;&quot;</span>))
+  }
+}
+
+<span class="reserved">def</span> parsePerson(inputName: <span class="type">String</span>,
+      inputAge: <span class="type">String</span>): <span class="type">Person</span> <span class="type">Or</span> <span class="type">Every[ErrorMessage]</span> = {
+
+  <span class="reserved">val</span> name = parseName(inputName)
+  <span class="reserved">val</span> age = parseAge(inputAge)
+  withGood(name, age) { <span class="type">Person</span>(_, _) }
+}
+</pre>
+
+
+<p>
+Here are some examples of <code>parsePerson</code> in action:
+</p>
+
+<pre class="scala">
+parsePerson(<span class="quotedString">&quot;Bridget Jones&quot;</span>, <span class="quotedString">&quot;29&quot;</span>)
+<span class="lineComment">// Result: Good(Person(Bridget Jones,29))</span>
+<br />parsePerson(<span class="quotedString">&quot;Bridget Jones&quot;</span>, <span class="quotedString">&quot;&quot;</span>)
+<span class="lineComment">// Result: Bad(One(&quot;&quot; is not a valid integer))</span>
+<br />parsePerson(<span class="quotedString">&quot;Bridget Jones&quot;</span>, <span class="quotedString">&quot;-29&quot;</span>)
+<span class="lineComment">// Result: Bad(One(&quot;-29&quot; is not a valid age))</span>
+<br />parsePerson(<span class="quotedString">&quot;&quot;</span>, <span class="quotedString">&quot;&quot;</span>)
+<span class="lineComment">// Result: Bad(Many(&quot;&quot; is not a valid name, &quot;&quot; is not a valid integer))</span>
+</pre>
+
+<p>
+<code>Or</code> offers several other ways to accumulate errors besides the <code>withGood</code> methods shown in the example above. See the
+<a href="@latestScaladoc/#org.scalactic.Or">documentation for <code>Or</code></a> for more information.
+</p>
+
+    <h1>And more (but not much more)...</h1>
+
+<p>
+Scalactic also includes a <a href="@latestScaladoc/#org.scalactic.TimesOnInt"><code>TimesOnInt</code></a> trait that allows you to perform
+side-effecting loops a specified number of times, like this:
+</p>
+
+<pre class="scala">
+import TimesOnInt._
+
+<span class="literal">3</span> times println(<span class="quotedString">"hello "</span>) <span class="lineComment">// Output: hello hello hello</span>
+</pre>
+
+<p>
+You can also define an alternate <code>String</code> forms for types using <a href="@latestScaladoc/#org.scalactic.Prettifier"><code>Prettifier</code></a>s
+and create extractors for <code>Throwable</code>s via the <a href="@latestScaladoc/#org.scalactic.Catcher"><code>Catcher</code></a> factory.
+</p>
+
+<p>
+And that's it: Scalactic is a small, very focused library.
+Why not give it a try? Just <a href="download">Download Scalactic</a>, then visit the <a href="@routes.Application.quickStart.url">Quick Start</a> page.</p>
+}

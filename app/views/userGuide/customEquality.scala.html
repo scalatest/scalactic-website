@@ -1,0 +1,98 @@
+@*
+ * Copyright 2010-2013 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("Custom equality") {
+<div style="text-align: left">
+
+<h1>Custom equality</h1>
+
+<p>
+Scalactic's <a href="@{latestScaladoc}/#org.scalactic.Equality"><code>Equality</code></a> typeclass enables you to define
+alternate notions of equality for specified types that can be used with
+Scalactic's <code>===</code> and <code>!==</code> syntax (and <a href="@{latestScaladoc}/#org.scalatest.Matchers">ScalaTest's matcher</a>) syntax.
+</p>
+
+<p>
+For example, say you have a case class that includes a <code>Double</code> value:
+</p>
+
+<pre class="stExamples">
+scala&gt; case class Person(name: String, age: Double)
+defined class Person
+</pre>
+
+<p>
+Imagine you are calculating the <code>age</code> values in such as way that occasionally tests
+are failing because of rounding differences that you actually don't care about. For example, you
+expect an age of 29.0, but you're sometimes seeing 29.0001:
+</p>
+
+<pre class="stExamples">
+scala&gt; import org.scalactic._
+import org.scalactic._
+
+scala&gt; import TripleEquals._
+import TripleEquals._
+
+scala&gt; Person("Joe", 29.0001) === Person("Joe", 29.0)
+res0: Boolean = false
+</pre>
+
+<p>
+Scalactic's <a href="@{latestScaladoc}/#org.scalactic.TripleEquals"><code>===</code> operator</a> looks for an implicit <code>Equality[L]</code>, where <code>L</code> is the left-hand type: in this
+case, <code>Person</code>. Because you didn't specifically provide an implicit <code>Equality[Person]</code>, <code>===</code> will fall back on
+<a href="DefaultEquality"><em>default equality</em></a>, which will call <code>Person</code>'s <code>equals</code> method. That <code>equals</code> method, provided by the Scala compiler
+because <code>Person</code> is a case class, will declare these two objects unequal because 29.001 does not exactly equal 29.0.
+</p>
+
+<p>
+To make the equality check more forgiving, you could define an implicit <code>Equality[Person]</code> that compares
+the <code>age</code> <code>Double</code>s with a <a href="Tolerance">tolerance</a>, like this:
+</p>
+
+<pre class="stExamples">
+scala&gt; import Tolerance._
+import Tolerance._
+
+scala&gt; implicit val personEq =
+     |   new Equality[Person] {
+     |     def areEqual(a: Person, b: Any): Boolean =
+     |       b match {
+     |         case p: Person =&gt; a.name == p.name &amp;&amp; a.age === p.age +- 0.0002
+     |         case _ =&gt; false
+     |       }
+     |   }
+personEq: org.scalactic.Equality[Person] = $anon$1@@2b29f6e7
+</pre>
+
+<p>
+Now the <code>===</code> operator will use your more forgiving <code>Equality[Person]</code> for the equality check instead
+of default equality:
+</p>
+
+<pre class="stExamples">
+scala&gt; Person("Joe", 29.0001) === Person("Joe", 29.0)
+res1: Boolean = true
+</pre>
+
+<p>
+Next, learn more about <a href="@routes.UserGuide.defaultEquality.url">default equality</a>.
+</p>
+
+</div>
+}

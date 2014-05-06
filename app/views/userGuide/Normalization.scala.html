@@ -1,0 +1,140 @@
+@*
+* Copyright 2010-2013 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("Normalization") {
+<div style="text-align: left">
+
+<h1>Normalization</h1>
+
+<p>
+The Scalactic <a href="@{latestScaladoc}/#org.scalactic.Normalization"><code>Normalization</code></a> trait allows you to define a custom ways normalize objects based on their type.
+</p>
+
+<p>
+For example, to normalize <code>Double</code>s by truncating off any decimal part,
+you might write:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalactic._
+
+<span class="stReserved">val</span> truncated =
+  <span class="stReserved">new</span> Normalization[Double] {
+    <span class="stReserved">def</span> normalized(d: Double) = d.floor
+  }
+</pre>
+
+<p>
+Given this definition you could use it with the <a href="@routes.UserGuide.explicitly.url"><code>explicitly DSL</code></a> like this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> Matchers._
+<span class="stReserved">import</span> TypeCheckedTripleEquals._
+
+(2.1 should === (2.0)) (after being truncated)
+</pre>
+
+<p>
+Note that to use a <code>Normalization</code> with the <code>Explicitly</code> DSL, you'll need to be using either
+<a href="@{latestScaladoc}/#org.scalactic.TypeCheckedTripleEquals"><code>TypeCheckedTripleEquals</code></a> or
+<a href="@{latestScaladoc}/#org.scalactic.ConversionCheckedTripleEquals"><code>ConversionCheckedTripleEquals</code></a>.
+If you're just using plain-old <a href="@{latestScaladoc}/#org.scalactic.TripleEquals"><code>TripleEquals</code></a>,
+you'll need a <a href="@{latestScaladoc}/#org.scalactic.Uniformity"><code>Uniformity</code></a> (described below), a <code>Normalization</code> subtrait.
+</p>
+
+<p>
+If you make the <code>truncated</code> <code>val</code> implicit and import or mix in the members of
+<a href="@{latestScaladoc}/#org.scalactic.NormMethods"><code>NormMethods</code></a>,
+you can access the behavior by invoking <code>.norm</code> on <code>Double</code>s.
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">implicit</span> <span class="stReserved">val</span> doubleNormalization = truncated
+<span class="stReserved">import</span> NormMethods._
+
+<span class="stReserved">val</span> d = 2.1
+d.norm // returns 2.0
+</pre>
+
+<h1>Uniformity</h1>
+
+<p>
+An important subtype of <code>Normalization</code> is <a href="@{latestScaladoc}/#org.scalactic.Uniformity"><code>Uniformity</code></a>, which
+defines a custom way to normalize instances of a type that can also handle normalization of that type when passed as <code>Any</code>.
+</p>
+
+<p>
+For example, to normalize <code>Double</code>s by truncating off any decimal part,
+you might write:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalactic._
+<br /><span class="stReserved">val</span> truncated =
+  <span class="stReserved">new</span> <span class="stType">Uniformity[Double]</span> {
+   <span class="stReserved">def</span> normalized(d: <span class="stType">Double</span>) = d.floor
+   <span class="stReserved">def</span> normalizedCanHandle(o: <span class="stType">Any</span>) = o.isInstanceOf[<span class="stType">Double</span>]
+   <span class="stReserved">def</span> normalizedOrSame(o: <span class="stType">Any</span>): <span class="stType">Any</span> =
+     o <span class="stReserved">match</span> {
+       <span class="stReserved">case</span> d: <span class="stType">Double</span> =&gt; normalized(d)
+       <span class="stReserved">case</span> _ =&gt; o
+     }
+ }
+</pre>
+
+<p>
+Given this definition you could use it with the <a href="@{latestScaladoc}/#org.scalactic.Explicitly"><code>Explicitly</code></a> DSL like this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> Matchers._
+<br /><span class="stLiteral">2.1</span> should equal (<span class="stLiteral">2.0</span>) (after being truncated)
+</pre>
+
+<p>
+If you make the <code>truncated</code> <code>val</code> implicit and import or mix in the members of <a href="@{latestScaladoc}/#org.scalactic.NormMethods"><code>NormMethods</code></a>,
+you can access the behavior by invoking <code>.norm</code> on <code>Double</code>s.
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">implicit</span> <span class="stReserved">val</span> doubleUniformity = truncated
+<span class="stReserved">import</span> NormMethods._
+<br /><span class="stReserved">val</span> d = <span class="stLiteral">2.1</span>
+d.norm <span class="stLineComment">// returns 2.0</span>
+</pre>
+
+<p>
+As mentioned previously, by creating a <code>Uniformity</code> rather than just an instance of its supertype, <a href="@{latestScaladoc}/#org.scalactic.Normalization"><code>Normalization</code></a>,
+it can be used more generally. For example, <code>Uniformity</code>s allow you to the <code>Explicitly</code> DSL with
+<a href="@{latestScaladoc}/#org.scalactic.TripleEquals"><code>TripleEquals</code></a>, whereas <code>Normalization</code>s require
+<a href="@{latestScaladoc}/#org.scalactic.TypeCheckedTripleEquals"><code>TypeCheckedTripleEquals</code></a> or
+<a href="@{latestScaladoc}/#org.scalactic.ConversionCheckedTripleEquals"><code>ConversionCheckedTripleEquals</code></a>.
+<code>Uniformity</code>s also enable you to use the <code>Explicitly</code> DSL with ScalaTest's <code>should</code> <code>===</code>, <code>equal</code>,
+and <code>contain</code> matcher syntax, whereas a plain <code>Normalization</code> can only be used with <code>should</code> <code>===</code>, and only
+under either <code>TypeCheckedTripleEquals</code> or <code>ConversionCheckedTripleEquals</code>.
+</p>
+
+<p>
+Next, learn about <a href="@routes.UserGuide.explicitly.url">The Explicitly DSL</a>.
+</p>
+
+</div>
+}

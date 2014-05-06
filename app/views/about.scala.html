@@ -1,0 +1,102 @@
+@*
+ * Copyright 2010-2013 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@nonHomePage("About") {
+
+<div style="text-align: left">
+<h1>About Scalactic</h1>
+
+<p>
+Scalactic was written by Bill Venners starting in 2012.
+The Scalactic library grew out of the ScalaTest 2.0 effort, it is small and can
+be used in production conveniently without depending to ScalaTest.
+</p>
+
+<p>
+Scalactic's source code is hosted together with ScalaTest, but deployed as different artifacts (ScalaTest Jar includes
+Scalactic also, but you can use Scalactic alone).  You can browse the source code:
+</p>
+
+<p>
+<a href="javascript:void(window.open('https://github.com/scalatest/scalatest', '_blank'))">https://github.com/scalatest/scalatest</a>
+</p>
+
+<p>
+You can git clone it to your local disk with this command
+</p>
+
+<p>
+<code>git clone https://github.com/scalatest/scalatest.git</code>
+</p>
+
+<p>
+To contribute, please fork the repo on your GitHub account, make your changes and submit a pull request.
+</p>
+
+<h2>Building ScalaTest/Scalactic</h2>
+
+<h3>Pre-Requisites</h3>
+
+<p>
+The followings are needed for building ScalaTest/Scalactic:
+</p>
+
+<ul>
+  <li><a href="javascript:void(window.open('http://www.oracle.com/technetwork/java/javasebusiness/downloads/java-archive-downloads-javase6-419409.html', '_blank'))">JDK 6</a> (JDK 7 won't work currently)</li>
+  <li><a href="javascript:void(window.open('http://www.scala-sbt.org/0.13.0/docs/Getting-Started/Setup.html', '_blank'))">SBT 0.13.0</a></li>
+</ul>
+
+<p>
+and use the following options in your SBT launch file:
+</p>
+
+<p>
+<code>SBT_OPTS="-server -Xms512M -Xmx2048M -Dfile.encoding=UTF8 -Xss1M -XX:MaxPermSize=512M -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:+DoEscapeAnalysis -XX:ReservedCodeCacheSize=64m"</code>
+</p>
+
+<h3>Building and Running Tests</h3>
+
+<p>
+This command will build and run the regular tests:
+</p>
+
+<p>
+<code>$ sbt test</code>
+</p>
+
+<p>
+To run generated tests, you'll need to increase maximum heap size to <code>-Xmx3072M</code>, and use this command instead:
+</p>
+
+<p>
+<code>$ sbt "project gentests" "test"</code>
+</p>
+
+<p>What it does is simply switch to <code>gentests</code> project and run <code>test</code>.</p>
+
+<h2>Issues Reporting</h2>
+
+<p>
+Issues can be submitted here:
+</p>
+
+<p>
+<a href="javascript:void(window.open('https://github.com/scalatest/scalatest/issues', '_blank'))">https://github.com/scalatest/scalatest/issues</a>
+</p>
+
+</div>
+
+}
