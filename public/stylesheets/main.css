@@ -590,7 +590,7 @@ pre.scala {
   line-height: 110%;
   padding-left: 4%;
   padding-top: 24px;
-  background-color: #2c415c;
+  background-color: #333333;
   color: white;
   text-align: left;
 }
@@ -632,13 +632,13 @@ pre.stGrayback {
 }
 
 pre.stExamples {
-  background-color: #1b3449;
+  background-color: #333333;
   padding: 10px;
   color: white;
 }
 
 pre.stREPL {
-  background-color: #1b3449;
+  background-color: #333333;
   padding: 10px;
   color: white;
 }
