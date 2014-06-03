@@ -20,6 +20,8 @@ GET        /user_guide/ConstrainedEquality        controllers.UserGuide.constrai
 GET        /user_guide/Tolerance                  controllers.UserGuide.tolerance
 GET        /user_guide/Normalization              controllers.UserGuide.normalization
 GET        /user_guide/Explicitly                 controllers.UserGuide.explicitly
+GET        /user_guide/Requirements               controllers.UserGuide.requirements
+GET        /user_guide/Snapshots                  controllers.UserGuide.snapshots
 GET        /user_guide/OrAndEvery                 controllers.UserGuide.orAndEvery
 GET        /user_guide/Catcher                    controllers.UserGuide.catcher
 GET        /user_guide/Prettifier                 controllers.UserGuide.prettifier

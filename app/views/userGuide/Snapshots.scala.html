@@ -1,0 +1,51 @@
+@*
+* Copyright 2010-2013 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("Snapshots") {
+<div style="text-align: left">
+
+<h1>Snapshots</h1>
+
+<p>The <a href="@{latestScaladoc}/#org.scalactic.Snapshots">Snapshots</a> trait provides a <code>snap</code> method that takes one or more arguments and results in a
+<a href="@{latestScaladoc}/#org.scalactic.SnapshotSeq"><code>SnapshotSeq</code></a>, whose <code>toString</code> lists the names
+and values of each argument.</p><p>The intended use case of this trait is to help you write debug and log
+messages that give a &quot;snapshot&quot; of program state. Here's an example:</p><p><pre class="stREPL">
+scala&gt; import Snapshots._
+import Snapshots._</p><p>scala&gt; snap(a, b, c, d, e, f)
+res3: org.scalactic.SnapshotSeq = a was 1, b was 2, c was 3, d was 4, e was null, f was null
+</pre></p><p><code>SnapshotSeq</code> offers a <code>lines</code> method that places each variable name/value pair on its own line:</p><p><pre class="stREPL">
+scala&gt; snap(a, b, c, d, e, f).lines
+res4: String =
+a was 1
+b was 2
+c was 3
+d was 4
+e was null
+f was null
+</pre></p><p>Or, because a <code>SnapshotSeq</code> is a <code>IndexedSeq[Snapshot]</code>, you can process it just like any other <code>Seq</code>, for example:</p><p><pre class="stREPL">
+scala&gt; snap(a, b, c, d, e, f).mkString(&quot;Wow! &quot;, &quot;, and &quot;, &quot;. That's so awesome!&quot;)
+res6: String = Wow! a was 1, and b was 2, and c was 3, and d was 4, and e was null, and f was null. That's so awesome!
+</pre>
+</p>
+
+<p>
+Next, learn about <a href="@routes.UserGuide.timesOnInt.url">TimesOnInt</a>.
+</p>
+
+</div>
+}

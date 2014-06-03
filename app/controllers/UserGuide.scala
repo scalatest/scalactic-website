@@ -48,6 +48,14 @@ object UserGuide extends Controller {
     Ok(views.html.userGuide.Explicitly())
   }
 
+  def requirements = Action {
+    Ok(views.html.userGuide.Requirements())
+  }
+
+  def snapshots = Action {
+    Ok(views.html.userGuide.Snapshots())
+  }
+
   def orAndEvery = Action {
     Ok(views.html.userGuide.OrAndEvery())
   }
