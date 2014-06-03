@@ -187,6 +187,43 @@ parsePerson(<span class="quotedString">&quot;Bridget Jones&quot;</span>, <span c
 <a href="@latestScaladoc/#org.scalactic.Or">documentation for <code>Or</code></a> for more information.
 </p>
 
+    <h1><code>Requirements</code> and <code>Snapshots</code></h1>
+
+<p>
+Scalactic includes a <a href="@latestScaladoc/#org.scalactic.Requirements"><code>Requirements</code></a> trait that offers
+<code>require</code>, and <code>requireState</code>, and <code>requireNonNull</code> methods for checking pre-conditions
+that give descriptive error messages extracted via a macro. Here are some examples:</p>
+</p>
+
+<pre class="scala">
+<span class="reserved">val</span> a = <span class="literal">-1</span>
+
+require(a &gt;= <span class="literal">0</span>)
+<span class="lineComment">// throws IllegalArgumentException: -1 was not greater than or equal to 0</span>
+
+requireState(a &gt;= <span class="literal">0</span>)
+<span class="lineComment">// throws IllegalStateException: -1 was not greater than or equal to 0</span>
+
+<span class="reserved">val</span> b: <span class="type">String</span> = <span class="reserved">null</span>
+
+requireNonNull(a, b)
+<span class="lineComment">// throws NullPointerException: b was null</span>
+</pre>
+
+<p>
+Trait <a href="@latestScaladoc/#org.scalactic.Snapshots"><code>Snapshots</code></a> offers a
+<code>snap</code> method that can help you make debug and log messages that include information about
+the values of variables:
+</p>
+
+<pre class="scala">
+<span class="reserved">val</span> a = <span class="literal">1</span>
+<span class="reserved">val</span> b = <span class="literal">'2'</span>
+<span class="reserved">val</span> c = <span class="literal">"3"</span>
+
+snap(a, b, c) <span class="lineComment">// Result: a was 1, b was '2', c was "3"</span>
+</pre>
+
     <h1>And more (but not much more)...</h1>
 
 <p>
