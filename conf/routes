@@ -9,10 +9,6 @@ GET        /user_guide                            controllers.UserGuide.userGuid
 GET        /scaladoc                              controllers.Application.scaladoc
 GET        /community                             controllers.Application.community
 GET        /about                                 controllers.Application.about
-GET        /release_notes                         controllers.ReleaseNotes.releaseNotesIndex
-
-GET        /release_notes/2.0                     controllers.ReleaseNotes.v20
-GET        /release_notes/2.1.0                   controllers.ReleaseNotes.v210
 
 GET        /user_guide/CustomEquality             controllers.UserGuide.customEquality
 GET        /user_guide/DefaultEquality            controllers.UserGuide.defaultEquality
