@@ -320,9 +320,13 @@ body.overview h1 span {
 }
  
 div.message {
-        margin: 50px auto 10px auto;
+        margin: 17px auto 15px auto;
 }
  
+div.homePageMessage {
+        margin: 27px auto 10px auto;
+}
+
 body.overview div.content {
         width: 700px;
         margin: 40px auto 0px auto;
@@ -608,10 +612,10 @@ pre.scala {
   color: #428bdd;
 }
 .literal {
-  color: #00cc00;
+  color: #a266de;
 }
 .quotedString {
-  color: #00cc00;
+  color: #a266de;
 }
 .blank-line {
   line-height: 70%;
