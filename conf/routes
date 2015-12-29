@@ -8,6 +8,7 @@ GET        /download                              controllers.Application.downlo
 GET        /user_guide                            controllers.UserGuide.userGuideIndex
 GET        /scaladoc                              controllers.Application.scaladoc
 GET        /community                             controllers.Application.community
+GET        /supersafe                             controllers.Application.supersafe
 GET        /about                                 controllers.Application.about
 
 GET        /user_guide/CustomEquality             controllers.UserGuide.customEquality

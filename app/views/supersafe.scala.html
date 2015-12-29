@@ -1,0 +1,150 @@
+@*
+ * Copyright 2010-2014 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@nonHomePage("SuperSafe") {
+<div style="text-align: left">
+
+<h1>Scalactic support in SuperSafe Community Edition</h1>
+
+<p>
+<a href="http://www.artima.com/supersafe_user_guide_rc.html">Artima SuperSafe</a> is a commercial Scala compiler plugin with a free Community Edition
+that checks Scalactic <code>===</code> expressions for correctness.
+Using SuperSafe Community Edition together with Scalactic can save you time and ensure certain
+errors do not exist in your code. (See the
+<a href="#installation">installation section</a> below for instructions
+on installing SuperSafe Community Edition.)
+</p>
+
+<p>
+Here are some examples:
+</p>
+
+<pre class="scala">
+scala&gt; <span class="reserved">import</span> org.scalactic._
+<span class="lineComment">import org.scalactic._</span>
+
+scala&gt; <span class="reserved">import</span> TripleEquals._
+<span class="lineComment">import TripleEquals._</span>
+
+scala&gt; <span class="reserved">val</span> x = <span class="type">Some</span>(<span class="literal">1</span>)
+<span class="lineComment">x: Some[Int] = Some(1)</span>
+
+scala&gt; x === <span class="literal">1</span>
+<span class="lineComment">&lt;console&gt;:18: error: [Artima SuperSafe] Values of type Some[Int] and Int may
+not be compared with the === operator. If you really want to compare them for
+equality, configure Artima SuperSafe to allow those types to be compared for
+equality.  For more information on this kind of error, see:
+http://www.artima.com/supersafe_user_guide.html#safer-equality
+       x === 1
+         ^</span>
+
+scala&gt; x !== <span class="literal">1</span>
+<span class="lineComment">&lt;console&gt;:18: error: [Artima SuperSafe] Values of type Some[Int] and Int may
+not be compared with the !== operator. If you really want to compare them for
+inequality, configure Artima SuperSafe to allow those types to be compared for
+inequality (which will also enable them to be compared for equality).  For
+more information on this kind of error, see:
+http://www.artima.com/supersafe_user_guide.html#safer-equality
+       x !== 1
+         ^</span>
+
+scala&gt; x === <span class="type">Some</span>(<span class="literal">1L</span>)
+<span class="lineComment">res4: Boolean = true</span>
+
+scala&gt; <span class="type">List</span>(<span class="literal">1</span>, <span class="literal">2</span>, <span class="literal">3</span>) === <span class="type">Vector</span>(<span class="literal">1</span>, <span class="literal">2</span>, <span class="literal">3</span>)
+<span class="lineComment">res5: Boolean = true</span>
+
+scala&gt; <span class="type">List</span>(<span class="type">1</span>, <span class="type">2</span>, <span class="type">3</span>) === <span class="type">Set</span>(<span class="literal">1</span>, <span class="literal">2</span>, <span class="literal">3</span>)
+<span class="lineComment">&lt;console&gt;:17: error: [Artima SuperSafe] Values of type List[Int] and
+scala.collection.immutable.Set[Int] may not be compared with the === operator.
+If you really want to compare them for equality, configure Artima SuperSafe to
+allow those types to be compared for equality.  For more information on this
+kind of error, see:
+http://www.artima.com/supersafe_user_guide.html#safer-equality
+       List(1, 2, 3) === Set(1, 2, 3)
+                     ^</span>
+</pre>
+
+<a name="installation"></a>
+<h2>Installation of SuperSafe Community Edition</h2>
+
+<p>
+If you are using sbt as your build tool, you can install the SuperSafe Community Edition in two easy steps.
+</p>
+
+<p>
+1. Add the <em>Artima Maven Repository</em> as a resolver in ~/.sbt/0.13/global.sbt, like this:
+</p>
+
+<pre class="stGrayback">
+resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
+</pre>
+
+<p>
+2. Add the following line to your project/plugins.sbt:
+</p>
+
+<pre class="stGrayback">
+addSbtPlugin("com.artima.supersafe" % "sbtplugin" % "1.1.0-RC4")
+</pre>
+
+<p>
+If you are using Maven as your build tool, you can install the community edition of SuperSafe in two easy steps. 
+</p>
+
+<p>
+1. Add the <em>Artima Maven Repository</em> to your <code>pom.xml</code>, like this:
+</p>
+
+<pre class="stGrayback">
+&lt;repositories&gt;
+    <b>&lt;repository&gt;
+        &lt;id&gt;artima&lt;/id&gt;
+        &lt;name&gt;Artima Maven Repository&lt;/name&gt;
+        &lt;url&gt;http://repo.artima.com/releases&lt;/url&gt;
+    &lt;/repository&gt;</b>
+&lt;/repositories&gt;
+</pre>
+
+<p>
+2. Add the compiler plugin to your <code>pom.xml</code>, like this:
+</p>
+
+<pre class="stGrayback">
+&lt;plugin&gt;
+    &lt;groupId&gt;net.alchim31.maven&lt;/groupId&gt;
+    &lt;artifactId&gt;scala-maven-plugin&lt;/artifactId&gt;
+    &lt;configuration&gt;
+        &lt;compilerPlugins&gt;
+            <b>&lt;compilerPlugin&gt;
+                &lt;groupId&gt;com.artima.supersafe&lt;/groupId&gt;
+                &lt;artifactId&gt;supersafe_2.11.7&lt;/artifactId&gt;
+                &lt;version&gt;1.1.0-RC3&lt;/version&gt;
+            &lt;/compilerPlugin&gt;</b>
+        &lt;/compilerPlugins&gt;
+    &lt;/configuration&gt;
+    &lt;executions&gt;
+        ...
+    &lt;/executions&gt;
+&lt;/plugin&gt;
+</pre>
+
+<p>
+Note: You need to use the exact Scala version in the artifactId, because compiler plugin depends on compiler API that's not binary compatible between Scala minor releases.
+</p>
+
+</div>
+}

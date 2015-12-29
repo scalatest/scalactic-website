@@ -48,7 +48,11 @@ object Application extends Controller {
   }
 
   def community = Action {
-    Ok(views.html.community())
+    Redirect(routes.Application.about.url)
+  }
+
+  def supersafe = Action {
+    Ok(views.html.supersafe())
   }
 
   def about = Action {
