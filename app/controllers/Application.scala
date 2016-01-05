@@ -44,6 +44,10 @@ object Application extends Controller {
     Redirect(routes.Application.install.url)
   }
 
+  def olderReleases = Action {
+    Ok(views.html.olderReleases())
+  }
+
   def quickStart = Action {
     Ok(views.html.quickStart())
   }
