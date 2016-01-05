@@ -1,5 +1,6 @@
+
 @*
- * Copyright 2010-2014 Artima, Inc.
+ * Copyright 2010-2016 Artima, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +15,8 @@
  * limitations under the License.
  *@
 
+@import controllers.Application.milestoneScaladoc
+
 @nonHomePage("Install") {
 
 <div style="text-align: left">
@@ -21,293 +24,247 @@
 <h1>Installing Scalactic</h1>
 
 <p>
-<strong>Scalactic 2.2.4</strong> (for Scala 2.11.0+ and 2.10.0+) is available at
-<a href="https://oss.sonatype.org/content/groups/public/org/scalactic/">Sonatype OSS</a> Maven repository (which is mirrored on the
-central Maven repository as well).
-
-<p>
-For a list of the changes in this release, see the <a href="http://www.scalatest.org/release_notes/2.2.4"><strong>release notes</strong></a>. For detailed
-documentation, see the <a href="http://scalatest.org/scaladoc/2.2.4/org.scalactic.package">Scalactic 2.2.4 Scaladoc</a>.
-</p>
-
-<p>
-Scalactic is a small library of utilities released as part of the <a href="http://www.scalatest.org/">ScalaTest</a> project that are useful in production both code and tests.
-For every release of ScalaTest, there is a corresponding release of Scalactic with the same version number.
-Thus if you use both Scalactic and ScalaTest in the same project, you should make sure the version numbers match.
-</p>
-
-<p>
-A copy of Scalactic is
-included in <a href="http://www.scalatest.org/">ScalaTest</a>'s jar file, so if you are using ScalaTest as your test framework, you need not include a copy of Scalactic
-in your test class path. If you want to use use Scalactic in your production code, or in your tests when using a test framework other
-than ScalaTest, you'll need to add it explicitly to your class path. Here is the information for including Scalactic in your project:
-</p>
+<strong>Scalactic 2.2.6</strong> (the latest release for 2.10.0+ and 2.11.0+)
 
 <ul>
-    <li>group id: org.scalactic</li>
-    <li>artifact id: scalactic_2.10 or scalactic_2.11</li>
-    <li>version: 2.2.4</li>
+<li><a href="/release_notes/2.2.6">Combined Scalactic/ScalaTest 2.2.6 Release Notes</a></li>
+<li><a href="http://doc.scalatest.org/2.2.6/index.html#org.scalactic.Or">Combined Scalactic/ScalaTest 2.2.6 Scaladoc</a></li>
 </ul>
 
-<p>Here's the code for your Maven POM (for Scala 2.11.0+):</p>
+<p>
+The <a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.11/2.2.6/">Scalactic 2.2.6 artifacts</a> are available via the Sonatype OSS Maven repository and mirrored on Maven central.
+</p>
+
+<hr /> <!-- ############################################### -->
+
+<p>
+<em>To include ScalaTest 2.2.6 in your <a href="http://www.scala-sbt.org"><strong>sbt</strong></a> project:</em>
+</p>
+
+<p>
+1. Add these lines to your build file:
+</p>
+
+<pre class="stHighlighted">
+libraryDependencies += <span class="stQuotedString">"org.scalactic"</span> %% <span class="stQuotedString">"scalactic"</span> % <span class="stQuotedString">"2.2.6"</span>
+</pre>
+
+<p>
+2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your 
+Scalactic code at compile time, by first adding this line to <code>~/.sbt/0.13/global.sbt</code>:
+</p>
+
+<pre class="stHighlighted">
+resolvers += <span class="stQuotedString">"Artima Maven Repository"</span> at <span class="stQuotedString">"http://repo.artima.com/releases"</span>
+</pre>
+
+<p>
+3. Then adding the following line to <code>project/plugins.sbt</code>:
+</p>
+
+<pre class="stHighlighted">
+addSbtPlugin(<span class="stQuotedString">"com.artima.supersafe"</span> % <span class="stQuotedString">"sbtplugin"</span> % <span class="stQuotedString">"1.1.0-RC5"</span>)
+</pre>
+
+<p>
+You are off and running! As a next step, visit the <a href="/user_guide">Getting Started</a> section of the user guide.
+</p>
+
+<hr /> <!-- ############################################### -->
+
+<p>
+<em>To include ScalaTest 2.2.6 in your <strong>Maven</strong> project</em>:
+</p>
+
+<p>
+1. Add the following dependencies to your <code>pom.xml</code>:
+</p>
 
 <pre class="stHighlighted">
 &lt;dependency&gt;
-&lt;groupId&gt;org.scalactic&lt;/groupId&gt;
-&lt;artifactId&gt;scalactic_2.11&lt;/artifactId&gt;
-&lt;version&gt;2.2.4&lt;/version&gt;
+  &lt;groupId&gt;org.scalactic&lt;/groupId&gt;
+  &lt;artifactId&gt;scalactic_2.11&lt;/artifactId&gt;
+  &lt;version&gt;2.2.6&lt;/version&gt;
 &lt;/dependency&gt;
 </pre>
 
 <p>
-And for sbt, version 0.10 or higher  (for Scala 2.11.0+):
+2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your
+Scalactic code at compile time, by adding the following lines to your <code>pom.xml</code>:
 </p>
 
-<pre class="stGrayback">
-    libraryDependencies += "org.scalactic" % "scalactic_2.11" % "2.2.4"
+<pre class="stHighlighted">
+&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;artima&lt;/id&gt;
+        &lt;name&gt;Artima Maven Repository&lt;/name&gt;
+        &lt;url&gt;http://repo.artima.com/releases&lt;/url&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;
+&lt;plugin&gt;
+    &lt;groupId&gt;net.alchim31.maven&lt;/groupId&gt;
+    &lt;artifactId&gt;scala-maven-plugin&lt;/artifactId&gt;
+    &lt;configuration&gt;
+        &lt;compilerPlugins&gt;
+            &lt;compilerPlugin&gt;
+                &lt;groupId&gt;com.artima.supersafe&lt;/groupId&gt;
+                &lt;artifactId&gt;supersafe_2.11.7&lt;/artifactId&gt;
+                &lt;version&gt;1.1.0-RC5&lt;/version&gt;
+            &lt;/compilerPlugin&gt;
+        &lt;/compilerPlugins&gt;
+    &lt;/configuration&gt;
+    &lt;executions&gt;
+        ...
+    &lt;/executions&gt;
+&lt;/plugin&gt;
 </pre>
-
 <p>
-Alternatively you can just download Jar files for the library and Scaladoc documentation by hand from Sonatype. The artifacts tagged with 2.11
-can be used with any 2.11.x release.
-Jar files are valid zip files, so to access the Scaladoc documentation just unzip the Jar file. The Scaladoc Jars
-do not contain a top-level directory, however, so you should unzip them in an empty directory.
+
+<em>Note: You need to use the exact Scala version in the artifactId, because compiler plugin depends on compiler API that's not binary compatible between Scala minor releases.</em>
 </p>
 
 <p>
-For Scala 2.11.x:
+You are off and running! As a next step, visit the <a href="/user_guide">Getting Started</a> section of the user guide.
 </p>
 
-<ul>
-    <li><a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.11/2.2.4/scalactic_2.11-2.2.4.jar">Download Scalactic 2.2.4 Jar</a></li>
-    <li><a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.11/2.2.4/scalactic_2.11-2.2.4-scaladoc.jar">Download Scalactic 2.2.4 Scaladoc documentation</a></li>
-</ul>
+<hr /> <!-- ############################################### -->
 
 <p>
 If you don't have it already, you'll also need Scala. You can use any 2.10 or 2.11 release, which you can get from here:
 </p>
 
 <ul>
-    <li><a href="http://www.scala-lang.org/downloads">Download the latest Scala release</a></li>
+<li><a href="http://www.scala-lang.org/downloads">Download the latest Scala release</a></li>
 </ul>
 
-<hr /> <!-- ################################## -->
-<p>
-<strong>Scalactic 2.2.2</strong> (for Scala 2.11.0+ and 2.10.0+) is available at
-<a href="https://oss.sonatype.org/content/groups/public/org/scalactic/">Sonatype OSS</a> Maven repository (which is mirrored on the
-central Maven repository as well).
+<hr style="height:5px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
 
+<a name="latestMilestone"></a>
 <p>
-For a list of the changes in this release, see the <a href="http://www.scalatest.org/release_notes/2.2.2"><strong>release notes</strong></a>. For detailed
-documentation, see the <a href="http://scalatest.org/scaladoc/2.2.2/org.scalactic.package">Scalactic 2.2.2 Scaladoc</a>.
-</p>
-
-<p>
-Scalactic is a small library of utilities released as part of the <a href="http://www.scalatest.org/">ScalaTest</a> project that are useful in production both code and tests.
-For every release of ScalaTest, there is a corresponding release of Scalactic with the same version number.
-Thus if you use both Scalactic and ScalaTest in the same project, you should make sure the version numbers match.
-</p>
-
-<p>
-A copy of Scalactic is
-included in <a href="http://www.scalatest.org/">ScalaTest</a>'s jar file, so if you are using ScalaTest as your test framework, you need not include a copy of Scalactic
-in your test class path. If you want to use use Scalactic in your production code, or in your tests when using a test framework other
-than ScalaTest, you'll need to add it explicitly to your class path. Here is the information for including Scalactic in your project:
-</p>
+<strong>Scalactic 3.0.0-M15</strong> (the latest <em>3.0 milestone</em> release for 2.10.0+ and 2.11.0+)
 
 <ul>
-    <li>group id: org.scalactic</li>
-    <li>artifact id: scalactic_2.10 or scalactic_2.11</li>
-    <li>version: 2.2.2</li>
+<li><a href="http://www.scalatest.org/release_notes/3.0.0">Combined Scalactic/ScalaTest 3.0.0-M15 Release Notes</a></li>
+<li><a href="http://www.artima.com/docs-scalactic-3.0.0-M15/index.html#org.scalactic.Or">Scalactic 3.0.0-M15 Scaladoc</a></li>
 </ul>
 
-<p>Here's the code for your Maven POM (for Scala 2.11.0+):</p>
+<p>
+The <a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.11/3.0.0-M15/">Scalactic 3.0.0-M15 artifacts</a> are available via the Sonatype OSS Maven repository and mirrored on Maven central.
+</p>
+
+<hr /> <!-- ############################################### -->
+
+<p>
+<em>To include ScalaTest 3.0.0-M15 in your <a href="http://www.scala-sbt.org"><strong>sbt</strong></a> project:</em>
+</p>
+
+<p>
+1. Add this line to your build file:
+</p>
+
+<pre class="stHighlighted">
+libraryDependencies += <span class="stQuotedString">"org.scalactic"</span> %% <span class="stQuotedString">"scalactic"</span> % <span class="stQuotedString">"3.0.0-M15"</span>
+</pre>
+
+<p>
+2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your 
+Scalactic code at compile time, by first adding this line to <code>~/.sbt/0.13/global.sbt</code>:
+</p>
+
+<pre class="stHighlighted">
+resolvers += <span class="stQuotedString">"Artima Maven Repository"</span> at <span class="stQuotedString">"http://repo.artima.com/releases"</span>
+</pre>
+
+<p>
+3. Then adding the following line to <code>project/plugins.sbt</code>:
+</p>
+
+<pre class="stHighlighted">
+addSbtPlugin(<span class="stQuotedString">"com.artima.supersafe"</span> % <span class="stQuotedString">"sbtplugin"</span> % <span class="stQuotedString">"1.1.0-RC5"</span>)
+</pre>
+
+<p>
+You are off and running! As a next step, visit the <a href="/user_guide">Getting Started</a> section of the user guide.
+</p>
+
+<hr /> <!-- ############################################### -->
+
+<p>
+<em>To include ScalaTest 3.0.0-M15 in your <strong>Maven</strong> project</em>:
+</p>
+
+<p>
+1. Add the following dependencies to your <code>pom.xml</code>:
+</p>
 
 <pre class="stHighlighted">
 &lt;dependency&gt;
-&lt;groupId&gt;org.scalactic&lt;/groupId&gt;
-&lt;artifactId&gt;scalactic_2.11&lt;/artifactId&gt;
-&lt;version&gt;2.2.2&lt;/version&gt;
+  &lt;groupId&gt;org.scalactic&lt;/groupId&gt;
+  &lt;artifactId&gt;scalactic_2.11&lt;/artifactId&gt;
+  &lt;version&gt;3.0.0-M15&lt;/version&gt;
 &lt;/dependency&gt;
 </pre>
 
 <p>
-And for sbt, version 0.10 or higher  (for Scala 2.11.0+):
+The dependency on <a href="http://www.scalactic.org">Scalactic</a>, ScalaTest's sister library focused on quality through types, is
+recommended but not required.
 </p>
 
-<pre class="stGrayback">
-    libraryDependencies += "org.scalactic" % "scalactic_2.11" % "2.2.2"
+<p>
+2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your ScalaTest (and
+Scalactic) code at compile time, by adding the following lines to your <code>pom.xml</code>:
+</p>
+
+<pre class="stHighlighted">
+&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;artima&lt;/id&gt;
+        &lt;name&gt;Artima Maven Repository&lt;/name&gt;
+        &lt;url&gt;http://repo.artima.com/releases&lt;/url&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;
+&lt;plugin&gt;
+    &lt;groupId&gt;net.alchim31.maven&lt;/groupId&gt;
+    &lt;artifactId&gt;scala-maven-plugin&lt;/artifactId&gt;
+    &lt;configuration&gt;
+        &lt;compilerPlugins&gt;
+            &lt;compilerPlugin&gt;
+                &lt;groupId&gt;com.artima.supersafe&lt;/groupId&gt;
+                &lt;artifactId&gt;supersafe_2.11.7&lt;/artifactId&gt;
+                &lt;version&gt;1.1.0-RC5&lt;/version&gt;
+            &lt;/compilerPlugin&gt;
+        &lt;/compilerPlugins&gt;
+    &lt;/configuration&gt;
+    &lt;executions&gt;
+        ...
+    &lt;/executions&gt;
+&lt;/plugin&gt;
 </pre>
 
 <p>
-Alternatively you can just download Jar files for the library and Scaladoc documentation by hand from Sonatype. The artifacts tagged with 2.11
-can be used with any 2.11.x release.
-Jar files are valid zip files, so to access the Scaladoc documentation just unzip the Jar file. The Scaladoc Jars
-do not contain a top-level directory, however, so you should unzip them in an empty directory.
+<em>Note: You need to use the exact Scala version in the artifactId, because compiler plugin depends on compiler API that's not binary compatible between Scala minor releases.</em>
 </p>
 
 <p>
-For Scala 2.11.x:
+You are off and running! As a next step, visit the <a href="/user_guide">Getting Started</a> section of the user guide.
 </p>
 
-<ul>
-    <li><a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.11/2.2.2/scalactic_2.11-2.2.2.jar">Download Scalactic 2.2.2 Jar</a></li>
-    <li><a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.11/2.2.2/scalactic_2.11-2.2.2-scaladoc.jar">Download Scalactic 2.2.2 Scaladoc documentation</a></li>
-</ul>
+<hr /> <!-- ############################################### -->
 
 <p>
 If you don't have it already, you'll also need Scala. You can use any 2.10 or 2.11 release, which you can get from here:
 </p>
 
 <ul>
-    <li><a href="http://www.scala-lang.org/downloads">Download the latest Scala release</a></li>
+<li><a href="http://www.scala-lang.org/downloads">Download the latest Scala release</a></li>
 </ul>
 
-<hr /> <!-- ################################## -->
-<p>
-<strong>Scalactic 2.2.1</strong> (for Scala 2.11.0+ and 2.10.0+) is available at
-<a href="https://oss.sonatype.org/content/groups/public/org/scalactic/">Sonatype OSS</a> Maven repository (which is mirrored on the
-central Maven repository as well).
+<hr style="height:5px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
 
-<p>
-For a list of the changes in this release, see the <a href="http://www.scalatest.org/release_notes/2.2.1"><strong>release notes</strong></a>. For detailed
-documentation, see the <a href="http://scalatest.org/scaladoc/2.2.1/org.scalactic.package">Scalactic 2.2.1 Scaladoc</a>.
-</p>
+<strong>Older Releases of ScalaTest and Scalactic</strong>
 
-<p>
-Scalactic is a small library of utilities released as part of the <a href="http://www.scalatest.org/">ScalaTest</a> project that are useful in production both code and tests.
-For every release of ScalaTest, there is a corresponding release of Scalactic with the same version number.
-Thus if you use both Scalactic and ScalaTest in the same project, you should make sure the version numbers match.
-</p>
-
-<p>
-A copy of Scalactic is
-included in <a href="http://www.scalatest.org/">ScalaTest</a>'s jar file, so if you are using ScalaTest as your test framework, you need not include a copy of Scalactic
-in your test class path. If you want to use use Scalactic in your production code, or in your tests when using a test framework other
-than ScalaTest, you'll need to add it explicitly to your class path. Here is the information for including Scalactic in your project:
-</p>
-
-<ul>
-    <li>group id: org.scalactic</li>
-    <li>artifact id: scalactic_2.10 or scalactic_2.11</li>
-    <li>version: 2.2.1</li>
-</ul>
-
-<p>Here's the code for your Maven POM (for Scala 2.11.0+):</p>
-
-<pre class="stHighlighted">
-&lt;dependency&gt;
-&lt;groupId&gt;org.scalactic&lt;/groupId&gt;
-&lt;artifactId&gt;scalactic_2.11&lt;/artifactId&gt;
-&lt;version&gt;2.2.1&lt;/version&gt;
-&lt;/dependency&gt;
-</pre>
-
-<p>
-And for sbt, version 0.10 or higher  (for Scala 2.11.0+):
-</p>
-
-<pre class="stGrayback">
-    libraryDependencies += "org.scalactic" % "scalactic_2.11" % "2.2.1"
-</pre>
-
-<p>
-Alternatively you can just download Jar files for the library and Scaladoc documentation by hand from Sonatype. The artifacts tagged with 2.11
-can be used with any 2.11.x release.
-Jar files are valid zip files, so to access the Scaladoc documentation just unzip the Jar file. The Scaladoc Jars
-do not contain a top-level directory, however, so you should unzip them in an empty directory.
-</p>
-
-<p>
-For Scala 2.11.x:
-</p>
-
-<ul>
-    <li><a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.11/2.2.1/scalactic_2.11-2.2.1.jar">Download Scalactic 2.2.1 Jar</a></li>
-    <li><a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.11/2.2.1/scalactic_2.11-2.2.1-scaladoc.jar">Download Scalactic 2.2.1 Scaladoc documentation</a></li>
-</ul>
-
-<p>
-If you don't have it already, you'll also need Scala. You can use any 2.10 or 2.11 release, which you can get from here:
-</p>
-
-<ul>
-    <li><a href="http://www.scala-lang.org/downloads">Download the latest Scala release</a></li>
-</ul>
-
-<hr /> <!-- ################################## -->
-
-<p>
-<strong>Scalactic 2.2.0</strong> (for Scala 2.11.0+ and 2.10.0+) is available at
-<a href="https://oss.sonatype.org/content/groups/public/org/scalactic/">Sonatype OSS</a> Maven repository (which is mirrored on the
-central Maven repository as well).
-
-<p>
-For a list of the changes in this release, see the <a href="http://www.scalatest.org/release_notes/2.2.0"><strong>release notes</strong></a>. For detailed
-documentation, see the <a href="http://scalatest.org/scaladoc/2.2.0/org.scalactic.package">Scalactic 2.2.0 Scaladoc</a>.
-</p>
-
-<p>
-Scalactic is a small library of utilities released as part of the <a href="http://www.scalatest.org/">ScalaTest</a> project that are useful in production both code and tests.
-For every release of ScalaTest, there is a corresponding release of Scalactic with the same version number.
-Thus if you use both Scalactic and ScalaTest in the same project, you should make sure the version numbers match.
-</p>
-
-<p>
-A copy of Scalactic is
-included in <a href="http://www.scalatest.org/">ScalaTest</a>'s jar file, so if you are using ScalaTest as your test framework, you need not include a copy of Scalactic
-in your test class path. If you want to use use Scalactic in your production code, or in your tests when using a test framework other
-than ScalaTest, you'll need to add it explicitly to your class path. Here is the information for including Scalactic in your project:
-</p>
-
-<ul>
-    <li>group id: org.scalactic</li>
-    <li>artifact id: scalactic_2.10 or scalactic_2.11</li>
-    <li>version: 2.2.0</li>
-</ul>
-
-<p>Here's the code for your Maven POM (for Scala 2.11.0+):</p>
-
-<pre class="stHighlighted">
-&lt;dependency&gt;
-&lt;groupId&gt;org.scalactic&lt;/groupId&gt;
-&lt;artifactId&gt;scalactic_2.11&lt;/artifactId&gt;
-&lt;version&gt;2.2.0&lt;/version&gt;
-&lt;/dependency&gt;
-</pre>
-
-<p>
-And for sbt, version 0.10 or higher  (for Scala 2.11.0+):
-</p>
-
-<pre class="stGrayback">
-    libraryDependencies += "org.scalactic" % "scalactic_2.11" % "2.2.0"
-</pre>
-
-<p>
-Alternatively you can just download Jar files for the library and Scaladoc documentation by hand from Sonatype. The artifacts tagged with 2.11
-can be used with any 2.11.x release.
-Jar files are valid zip files, so to access the Scaladoc documentation just unzip the Jar file. The Scaladoc Jars
-do not contain a top-level directory, however, so you should unzip them in an empty directory.
-</p>
-
-<p>
-For Scala 2.11.x:
-</p>
-
-<ul>
-    <li><a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.11/2.2.0/scalactic_2.11-2.2.0.jar">Download Scalactic 2.2.0 Jar</a></li>
-    <li><a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.11/2.2.0/scalactic_2.11-2.2.0-scaladoc.jar">Download Scalactic 2.2.0 Scaladoc documentation</a></li>
-</ul>
-
-<p>
-If you don't have it already, you'll also need Scala. You can use any 2.10 or 2.11 release, which you can get from here:
-</p>
-
-<ul>
-    <li><a href="http://www.scala-lang.org/downloads">Download the latest Scala release</a></li>
-</ul>
+<p>For information on older releases, please visit the <a href="/older_releases">Older Releases</a> page.</p>
 
 </div>
-}
 
+}
