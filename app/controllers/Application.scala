@@ -20,12 +20,13 @@ import play.api.mvc._
 
 object Application extends Controller {
 
-  val latestScaladoc = "http://doc.scalatest.org/2.2.1"
-  val latestVersion = "2.2.1"
-  val milestoneVersion = "2.2.1"
-  val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.10/2.2.1/scalactic_2.10-2.2.1.jar"
-  val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.10/2.2.1/scalactic_2.10-2.2.1.jar"
-  val milestoneScaladoc = "http://www.artima.com/docs-scalatest-2.2.1"
+  val latestScaladoc = "http://doc.scalatest.org/2.2.6"
+  val latestVersion = "2.2.6"
+  val latestSuperSafeVersion = "1.1.0-RC5"
+  val milestoneVersion = "3.0.0-M15"
+  val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.11/3.0.0-M15/scalactic_2.10-3.0.0-M15.jar"
+  val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.11/2.2.6/scalactic_2.10-2.2.6.jar"
+  val milestoneScaladoc = "http://www.artima.com/docs-scalatest-3.0.0-M15"
   val scaladocsLocation = "http://doc.scalatest.org"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
   val baseScalaVersion = "2.11.0"
@@ -35,8 +36,12 @@ object Application extends Controller {
     Ok(views.html.index())
   }
 
+  def install = Action {
+    Ok(views.html.install())
+  }
+
   def download = Action {
-    Ok(views.html.download())
+    Redirect(routes.Application.install.url)
   }
 
   def quickStart = Action {

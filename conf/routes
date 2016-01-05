@@ -4,6 +4,7 @@
 
 GET        /                                      controllers.Application.index
 GET        /quick_start                           controllers.Application.quickStart
+GET        /install                               controllers.Application.install
 GET        /download                              controllers.Application.download
 GET        /user_guide                            controllers.UserGuide.userGuideIndex
 GET        /scaladoc                              controllers.Application.scaladoc

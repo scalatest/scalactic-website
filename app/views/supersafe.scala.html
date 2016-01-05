@@ -1,5 +1,5 @@
 @*
- * Copyright 2010-2014 Artima, Inc.
+ * Copyright 2010-2016 Artima, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *@
+
+@import controllers.Application.latestSuperSafeVersion
 
 @nonHomePage("SuperSafe") {
 <div style="text-align: left">
@@ -98,7 +100,7 @@ resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
 </p>
 
 <pre class="stGrayback">
-addSbtPlugin("com.artima.supersafe" % "sbtplugin" % "1.1.0-RC4")
+addSbtPlugin("com.artima.supersafe" % "sbtplugin" % "@{latestSuperSafeVersion}")
 </pre>
 
 <p>
@@ -132,7 +134,7 @@ If you are using Maven as your build tool, you can install the community edition
             <b>&lt;compilerPlugin&gt;
                 &lt;groupId&gt;com.artima.supersafe&lt;/groupId&gt;
                 &lt;artifactId&gt;supersafe_2.11.7&lt;/artifactId&gt;
-                &lt;version&gt;1.1.0-RC3&lt;/version&gt;
+                &lt;version&gt;@{latestSuperSafeVersion}&lt;/version&gt;
             &lt;/compilerPlugin&gt;</b>
         &lt;/compilerPlugins&gt;
     &lt;/configuration&gt;
