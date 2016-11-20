@@ -16,6 +16,7 @@
  *@
 
 @import controllers.Application.milestoneScaladoc
+@import controllers.Application.latestVersion
 
 @nonHomePage("Install") {
 
@@ -24,21 +25,21 @@
 <h1>Installing Scalactic</h1>
 
 <p>
-<strong>Scalactic 3.0.0</strong> (the latest release for 2.10.0+, 2.11.0+, and 2.12.0-M5)
+<strong>Scalactic @{latestVersion}</strong> (the latest release for 2.10.0+, 2.11.0+, and 2.12.0-M5)
 
 <ul>
-<li><a href="http://www.scalatest.org/release_notes/3.0.0">Combined Scalactic/ScalaTest 3.0.0 Release Notes</a></li>
-<li><a href="http://doc.scalactic.org/3.0.0/index.html#org.scalactic.Or">Scalactic 3.0.0 Scaladoc</a></li>
+<li><a href="http://www.scalatest.org/release_notes/@{latestVersion}">Combined Scalactic/ScalaTest @{latestVersion} Release Notes</a></li>
+<li><a href="http://doc.scalactic.org/@{latestVersion}/index.html#org.scalactic.Or">Scalactic @{latestVersion} Scaladoc</a></li>
 </ul>
 
 <p>
-The <a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.11/3.0.0/">Scalactic 3.0.0 artifacts</a> are available via the Sonatype OSS Maven repository and mirrored on Maven central.
+The <a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.11/@{latestVersion}/">Scalactic @{latestVersion} artifacts</a> are available via the Sonatype OSS Maven repository and mirrored on Maven central.
 </p>
 
 <hr /> <!-- ############################################### -->
 
 <p>
-<em>To include Scalactic 3.0.0 in your <a href="http://www.scala-sbt.org"><strong>sbt</strong></a> project:</em>
+<em>To include Scalactic @{latestVersion} in your <a href="http://www.scala-sbt.org"><strong>sbt</strong></a> project:</em>
 </p>
 
 <p>
@@ -46,7 +47,7 @@ The <a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalac
 </p>
 
 <pre class="stHighlighted">
-libraryDependencies += <span class="stQuotedString">"org.scalactic"</span> %% <span class="stQuotedString">"scalactic"</span> % <span class="stQuotedString">"3.0.0"</span>
+libraryDependencies += <span class="stQuotedString">"org.scalactic"</span> %% <span class="stQuotedString">"scalactic"</span> % <span class="stQuotedString">"@{latestVersion}"</span>
 </pre>
 
 <p>
@@ -73,7 +74,7 @@ You are off and running! As a next step, visit the <a href="/user_guide">Getting
 <hr /> <!-- ############################################### -->
 
 <p>
-<em>To include Scalactic 3.0.0 in your <strong>Maven</strong> project</em>:
+<em>To include Scalactic @{latestVersion} in your <strong>Maven</strong> project</em>:
 </p>
 
 <p>
@@ -84,7 +85,7 @@ You are off and running! As a next step, visit the <a href="/user_guide">Getting
 &lt;dependency&gt;
   &lt;groupId&gt;org.scalactic&lt;/groupId&gt;
   &lt;artifactId&gt;scalactic_2.11&lt;/artifactId&gt;
-  &lt;version&gt;3.0.0&lt;/version&gt;
+  &lt;version&gt;@{latestVersion}&lt;/version&gt;
 &lt;/dependency&gt;
 </pre>
 
