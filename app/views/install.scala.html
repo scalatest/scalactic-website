@@ -17,6 +17,7 @@
 
 @import controllers.Application.milestoneScaladoc
 @import controllers.Application.latestVersion
+@import controllers.Application.latestSuperSafeVersion
 
 @nonHomePage("Install") {
 
@@ -65,7 +66,7 @@ resolvers += <span class="stQuotedString">"Artima Maven Repository"</span> at <s
 </p>
 
 <pre class="stHighlighted">
-addSbtPlugin(<span class="stQuotedString">"com.artima.supersafe"</span> % <span class="stQuotedString">"sbtplugin"</span> % <span class="stQuotedString">"1.1.0"</span>)
+addSbtPlugin(<span class="stQuotedString">"com.artima.supersafe"</span> % <span class="stQuotedString">"sbtplugin"</span> % <span class="stQuotedString">"@{latestSuperSafeVersion}"</span>)
 </pre>
 
 <p>
@@ -111,7 +112,7 @@ Scalactic code at compile time, by adding the following lines to your <code>pom.
             &lt;compilerPlugin&gt;
                 &lt;groupId&gt;com.artima.supersafe&lt;/groupId&gt;
                 &lt;artifactId&gt;supersafe_2.11.7&lt;/artifactId&gt;
-                &lt;version&gt;1.1.0&lt;/version&gt;
+                &lt;version&gt;@{latestSuperSafeVersion}&lt;/version&gt;
             &lt;/compilerPlugin&gt;
         &lt;/compilerPlugins&gt;
     &lt;/configuration&gt;
