@@ -18,6 +18,7 @@
 @import controllers.Application.latestVersion
 @import controllers.Application.latestJar
 @import controllers.Application.majorMinorScalaVersion
+@import controllers.Application.baseScalaVersion
 
 @nonHomePage("Quick Start") {
 
@@ -27,12 +28,12 @@
 
 <p>
 A good way to get started with Scalactic is to try out its type-checking <code>===</code> operator in the Scala interpreter.
-First start Scala 2.10, including <a href="@{latestJar}">this Scalactic Jar file</a> on the classpath:
+First start Scala @{majorMinorScalaVersion}, including <a href="@{latestJar}">this Scalactic Jar file</a> on the classpath:
 </p>
 
 <pre class="scala">
 $ scala -cp scalatest_@{majorMinorScalaVersion}-@{latestVersion}.jar
-Welcome to Scala version 2.10.3 (...).
+Welcome to Scala version @{baseScalaVersion} (...).
 Type in expressions to have them evaluated.
 Type :help for more information.
 </pre>
@@ -223,7 +224,7 @@ To include Scalactic in your Maven project, use:
 <pre class="stHighlighted">
 &lt;dependency&gt;
 &lt;groupId&gt;org.scalactic&lt;/groupId&gt;
-&lt;artifactId&gt;scalactic_2.11&lt;/artifactId&gt;
+&lt;artifactId&gt;scalactic_@{majorMinorScalaVersion}&lt;/artifactId&gt;
 &lt;version&gt;@{latestVersion}&lt;/version&gt;
 &lt;/dependency&gt;
 </pre>
