@@ -14,6 +14,11 @@
  * limitations under the License.
  *@
 
+@import controllers.Application.milestoneScaladoc
+@import controllers.Application.latestVersion
+@import controllers.Application.majorMinorScalaVersion
+@import controllers.Application.latestSuperSafeVersion
+
 @nonHomePage("Older Releases of Scalactic") {
 
 <div style="text-align: left">
@@ -22,11 +27,412 @@
 Note: This page shows how to install <strong><em>older releases</em></strong> of Scalactic. For the latest
 release, visit the <a href="/install">Installing Scalactic page</a>.
 </p>
-
+<p>&nbsp;</p>
+<div style="text-align: center">
 <h1>Older Releases of  Scalactic</h1>
+</div>
+
+
+
+
+
+
+
+
+
+
+<hr style="height:5px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
 
 <p>
-<strong>Scalactic 2.2.6</strong> (for 2.10.0+, 2.11.0+, and 2.12.0-M4)
+<strong>Scalactic 3.0.3</strong> (for Scala 2.10.0+, 2.11.0+, and 2.12.0+)
+
+<ul>
+<li><a href="http://www.scalatest.org/release_notes/3.0.3">Combined Scalactic/ScalaTest 3.0.3 Release Notes</a></li>
+<li><a href="http://doc.scalactic.org/3.0.0/index.html#org.scalactic.Or">Scalactic 3.0.0 Scaladoc</a> (Scaladoc for 3.0.3 coming soon.)</li>
+<!--<li><a href="http://doc.scalactic.org/@{latestVersion}/index.html#org.scalactic.Or">Scalactic @{latestVersion} Scaladoc</a></li>-->
+</ul>
+
+<p>
+The <a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.12/3.0.3/">Scalactic 3.0.3 artifacts</a> are available via the Sonatype OSS Maven repository and mirrored on Maven central.
+</p>
+
+<hr /> <!-- ############################################### -->
+
+<p>
+<em>To include Scalactic 3.0.3 in your <a href="http://www.scala-sbt.org"><strong>sbt</strong></a> project:</em>
+</p>
+
+<p>
+1. Add these lines to your build file:
+</p>
+
+<pre class="stHighlighted">
+libraryDependencies += <span class="stQuotedString">"org.scalactic"</span> %% <span class="stQuotedString">"scalactic"</span> % <span class="stQuotedString">"3.0.3"</span>
+</pre>
+
+<p>
+2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your
+Scalactic code at compile time, by first adding this line to <code>~/.sbt/0.13/global.sbt</code>:
+</p>
+
+<pre class="stHighlighted">
+resolvers += <span class="stQuotedString">"Artima Maven Repository"</span> at <span class="stQuotedString">"http://repo.artima.com/releases"</span>
+</pre>
+
+<p>
+3. Then adding the following line to <code>project/plugins.sbt</code>:
+</p>
+
+<pre class="stHighlighted">
+addSbtPlugin(<span class="stQuotedString">"com.artima.supersafe"</span> % <span class="stQuotedString">"sbtplugin"</span> % <span class="stQuotedString">"@{latestSuperSafeVersion}"</span>)
+</pre>
+
+<p>
+You are off and running! As a next step, visit the <a href="/user_guide">Getting Started</a> section of the user guide.
+</p>
+
+<hr /> <!-- ############################################### -->
+
+<p>
+<em>To include Scalactic 3.0.3 in your <strong>Maven</strong> project</em>:
+</p>
+
+<p>
+1. Add the following dependencies to your <code>pom.xml</code>:
+</p>
+
+<pre class="stHighlighted">
+&lt;dependency&gt;
+  &lt;groupId&gt;org.scalactic&lt;/groupId&gt;
+  &lt;artifactId&gt;scalactic_2.12&lt;/artifactId&gt;
+  &lt;version&gt;3.0.3&lt;/version&gt;
+&lt;/dependency&gt;
+</pre>
+
+<p>
+2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your
+Scalactic code at compile time, by adding the following lines to your <code>pom.xml</code>:
+</p>
+
+<pre class="stHighlighted">
+&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;artima&lt;/id&gt;
+        &lt;name&gt;Artima Maven Repository&lt;/name&gt;
+        &lt;url&gt;http://repo.artima.com/releases&lt;/url&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;
+&lt;plugin&gt;
+    &lt;groupId&gt;net.alchim31.maven&lt;/groupId&gt;
+    &lt;artifactId&gt;scala-maven-plugin&lt;/artifactId&gt;
+    &lt;configuration&gt;
+        &lt;compilerPlugins&gt;
+            &lt;compilerPlugin&gt;
+                &lt;groupId&gt;com.artima.supersafe&lt;/groupId&gt;
+                &lt;artifactId&gt;supersafe_2.11.7&lt;/artifactId&gt;
+                &lt;version&gt;@{latestSuperSafeVersion}&lt;/version&gt;
+            &lt;/compilerPlugin&gt;
+        &lt;/compilerPlugins&gt;
+    &lt;/configuration&gt;
+    &lt;executions&gt;
+        ...
+    &lt;/executions&gt;
+&lt;/plugin&gt;
+</pre>
+<p>
+
+<em>Note: You need to use the exact Scala version in the artifactId, because compiler plugin depends on compiler API that's not binary compatible between Scala minor releases.</em>
+</p>
+
+<p>
+You are off and running! As a next step, visit the <a href="/user_guide">Getting Started</a> section of the user guide.
+</p>
+
+<hr /> <!-- ############################################### -->
+
+<p>
+If you don't have it already, you'll also need Scala. You can use any 2.10, 2.11, or 2.12 release, which you can get from here:
+</p>
+
+<ul>
+<li><a href="http://www.scala-lang.org/downloads">Download the latest Scala release</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr style="height:5px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
+<p>
+<strong>Scalactic 3.0.2</strong> (for Scala 2.10.0+, 2.11.0+, and 2.12.0+)
+
+<ul>
+<li><a href="http://www.scalatest.org/release_notes/3.0.2">Combined Scalactic/ScalaTest 3.0.2 Release Notes</a></li>
+<li><a href="http://doc.scalactic.org/3.0.0/index.html#org.scalactic.Or">Scalactic 3.0.0 Scaladoc</a> (Scaladoc for 3.0.2 coming soon.)</li>
+<!--<li><a href="http://doc.scalactic.org/@{latestVersion}/index.html#org.scalactic.Or">Scalactic @{latestVersion} Scaladoc</a></li>-->
+</ul>
+
+<p>
+The <a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.12/3.0.2/">Scalactic 3.0.2 artifacts</a> are available via the Sonatype OSS Maven repository and mirrored on Maven central.
+</p>
+
+<hr /> <!-- ############################################### -->
+
+<p>
+<em>To include Scalactic 3.0.2 in your <a href="http://www.scala-sbt.org"><strong>sbt</strong></a> project:</em>
+</p>
+
+<p>
+1. Add these lines to your build file:
+</p>
+
+<pre class="stHighlighted">
+libraryDependencies += <span class="stQuotedString">"org.scalactic"</span> %% <span class="stQuotedString">"scalactic"</span> % <span class="stQuotedString">"3.0.2"</span>
+</pre>
+
+<p>
+2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your
+Scalactic code at compile time, by first adding this line to <code>~/.sbt/0.13/global.sbt</code>:
+</p>
+
+<pre class="stHighlighted">
+resolvers += <span class="stQuotedString">"Artima Maven Repository"</span> at <span class="stQuotedString">"http://repo.artima.com/releases"</span>
+</pre>
+
+<p>
+3. Then adding the following line to <code>project/plugins.sbt</code>:
+</p>
+
+<pre class="stHighlighted">
+addSbtPlugin(<span class="stQuotedString">"com.artima.supersafe"</span> % <span class="stQuotedString">"sbtplugin"</span> % <span class="stQuotedString">"@{latestSuperSafeVersion}"</span>)
+</pre>
+
+<p>
+You are off and running! As a next step, visit the <a href="/user_guide">Getting Started</a> section of the user guide.
+</p>
+
+<hr /> <!-- ############################################### -->
+
+<p>
+<em>To include Scalactic 3.0.2 in your <strong>Maven</strong> project</em>:
+</p>
+
+<p>
+1. Add the following dependencies to your <code>pom.xml</code>:
+</p>
+
+<pre class="stHighlighted">
+&lt;dependency&gt;
+  &lt;groupId&gt;org.scalactic&lt;/groupId&gt;
+  &lt;artifactId&gt;scalactic_2.12&lt;/artifactId&gt;
+  &lt;version&gt;3.0.2&lt;/version&gt;
+&lt;/dependency&gt;
+</pre>
+
+<p>
+2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your
+Scalactic code at compile time, by adding the following lines to your <code>pom.xml</code>:
+</p>
+
+<pre class="stHighlighted">
+&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;artima&lt;/id&gt;
+        &lt;name&gt;Artima Maven Repository&lt;/name&gt;
+        &lt;url&gt;http://repo.artima.com/releases&lt;/url&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;
+&lt;plugin&gt;
+    &lt;groupId&gt;net.alchim31.maven&lt;/groupId&gt;
+    &lt;artifactId&gt;scala-maven-plugin&lt;/artifactId&gt;
+    &lt;configuration&gt;
+        &lt;compilerPlugins&gt;
+            &lt;compilerPlugin&gt;
+                &lt;groupId&gt;com.artima.supersafe&lt;/groupId&gt;
+                &lt;artifactId&gt;supersafe_2.11.7&lt;/artifactId&gt;
+                &lt;version&gt;@{latestSuperSafeVersion}&lt;/version&gt;
+            &lt;/compilerPlugin&gt;
+        &lt;/compilerPlugins&gt;
+    &lt;/configuration&gt;
+    &lt;executions&gt;
+        ...
+    &lt;/executions&gt;
+&lt;/plugin&gt;
+</pre>
+<p>
+
+<em>Note: You need to use the exact Scala version in the artifactId, because compiler plugin depends on compiler API that's not binary compatible between Scala minor releases.</em>
+</p>
+
+<p>
+You are off and running! As a next step, visit the <a href="/user_guide">Getting Started</a> section of the user guide.
+</p>
+
+<hr /> <!-- ############################################### -->
+
+<p>
+If you don't have it already, you'll also need Scala. You can use any 2.10, 2.11, or 2.12 release, which you can get from here:
+</p>
+
+<ul>
+<li><a href="http://www.scala-lang.org/downloads">Download the latest Scala release</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+<hr style="height:5px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
+<p>
+<strong>Scalactic 3.0.1</strong> (for Scala 2.10.0+, 2.11.0+, and 2.12.0+)
+
+<ul>
+<li><a href="http://www.scalatest.org/release_notes/3.0.1">Combined Scalactic/ScalaTest 3.0.1 Release Notes</a></li>
+<li><a href="http://doc.scalactic.org/3.0.0/index.html#org.scalactic.Or">Scalactic 3.0.0 Scaladoc</a> (Scaladoc for 3.0.1 coming soon.)</li>
+<!--<li><a href="http://doc.scalactic.org/@{latestVersion}/index.html#org.scalactic.Or">Scalactic @{latestVersion} Scaladoc</a></li>-->
+</ul>
+
+<p>
+The <a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.12/3.0.1/">Scalactic 3.0.1 artifacts</a> are available via the Sonatype OSS Maven repository and mirrored on Maven central.
+</p>
+
+<hr /> <!-- ############################################### -->
+
+<p>
+<em>To include Scalactic 3.0.1 in your <a href="http://www.scala-sbt.org"><strong>sbt</strong></a> project:</em>
+</p>
+
+<p>
+1. Add these lines to your build file:
+</p>
+
+<pre class="stHighlighted">
+libraryDependencies += <span class="stQuotedString">"org.scalactic"</span> %% <span class="stQuotedString">"scalactic"</span> % <span class="stQuotedString">"3.0.1"</span>
+</pre>
+
+<p>
+2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your
+Scalactic code at compile time, by first adding this line to <code>~/.sbt/0.13/global.sbt</code>:
+</p>
+
+<pre class="stHighlighted">
+resolvers += <span class="stQuotedString">"Artima Maven Repository"</span> at <span class="stQuotedString">"http://repo.artima.com/releases"</span>
+</pre>
+
+<p>
+3. Then adding the following line to <code>project/plugins.sbt</code>:
+</p>
+
+<pre class="stHighlighted">
+addSbtPlugin(<span class="stQuotedString">"com.artima.supersafe"</span> % <span class="stQuotedString">"sbtplugin"</span> % <span class="stQuotedString">"@{latestSuperSafeVersion}"</span>)
+</pre>
+
+<p>
+You are off and running! As a next step, visit the <a href="/user_guide">Getting Started</a> section of the user guide.
+</p>
+
+<hr /> <!-- ############################################### -->
+
+<p>
+<em>To include Scalactic 3.0.1 in your <strong>Maven</strong> project</em>:
+</p>
+
+<p>
+1. Add the following dependencies to your <code>pom.xml</code>:
+</p>
+
+<pre class="stHighlighted">
+&lt;dependency&gt;
+  &lt;groupId&gt;org.scalactic&lt;/groupId&gt;
+  &lt;artifactId&gt;scalactic_2.12&lt;/artifactId&gt;
+  &lt;version&gt;3.0.1&lt;/version&gt;
+&lt;/dependency&gt;
+</pre>
+
+<p>
+2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your
+Scalactic code at compile time, by adding the following lines to your <code>pom.xml</code>:
+</p>
+
+<pre class="stHighlighted">
+&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;artima&lt;/id&gt;
+        &lt;name&gt;Artima Maven Repository&lt;/name&gt;
+        &lt;url&gt;http://repo.artima.com/releases&lt;/url&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;
+&lt;plugin&gt;
+    &lt;groupId&gt;net.alchim31.maven&lt;/groupId&gt;
+    &lt;artifactId&gt;scala-maven-plugin&lt;/artifactId&gt;
+    &lt;configuration&gt;
+        &lt;compilerPlugins&gt;
+            &lt;compilerPlugin&gt;
+                &lt;groupId&gt;com.artima.supersafe&lt;/groupId&gt;
+                &lt;artifactId&gt;supersafe_2.11.7&lt;/artifactId&gt;
+                &lt;version&gt;@{latestSuperSafeVersion}&lt;/version&gt;
+            &lt;/compilerPlugin&gt;
+        &lt;/compilerPlugins&gt;
+    &lt;/configuration&gt;
+    &lt;executions&gt;
+        ...
+    &lt;/executions&gt;
+&lt;/plugin&gt;
+</pre>
+<p>
+
+<em>Note: You need to use the exact Scala version in the artifactId, because compiler plugin depends on compiler API that's not binary compatible between Scala minor releases.</em>
+</p>
+
+<p>
+You are off and running! As a next step, visit the <a href="/user_guide">Getting Started</a> section of the user guide.
+</p>
+
+<hr /> <!-- ############################################### -->
+
+<p>
+If you don't have it already, you'll also need Scala. You can use any 2.10, 2.11, or 2.12 release, which you can get from here:
+</p>
+
+<ul>
+<li><a href="http://www.scala-lang.org/downloads">Download the latest Scala release</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr style="height:5px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
+<p>
+<strong>Scalactic 2.2.6</strong> (for Scala 2.10.0+, 2.11.0+, and 2.12.0+)
 
 <ul>
 <li><a href="http://www.scalatest.org/release_notes/2.2.6">Combined Scalactic/ScalaTest 2.2.6 Release Notes</a></li>
@@ -134,7 +540,15 @@ If you don't have it already, you'll also need Scala. You can use any 2.10 or 2.
 <li><a href="http://www.scala-lang.org/downloads">Download the latest Scala release</a></li>
 </ul>
 
-<hr /> <!-- ############################################### -->
+
+
+
+
+
+
+
+
+<hr style="height:5px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
 
 <p>
 <strong>Scalactic 2.2.4</strong> (for Scala 2.11.0+ and 2.10.0+) is available at
@@ -207,7 +621,16 @@ If you don't have it already, you'll also need Scala. You can use any 2.10 or 2.
     <li><a href="http://www.scala-lang.org/downloads">Download the latest Scala release</a></li>
 </ul>
 
-<hr /> <!-- ################################## -->
+
+
+
+
+
+
+
+
+<hr style="height:5px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
 <p>
 <strong>Scalactic 2.2.2</strong> (for Scala 2.11.0+ and 2.10.0+) is available at
 <a href="https://oss.sonatype.org/content/groups/public/org/scalactic/">Sonatype OSS</a> Maven repository (which is mirrored on the
@@ -279,7 +702,16 @@ If you don't have it already, you'll also need Scala. You can use any 2.10 or 2.
     <li><a href="http://www.scala-lang.org/downloads">Download the latest Scala release</a></li>
 </ul>
 
-<hr /> <!-- ################################## -->
+
+
+
+
+
+
+
+
+<hr style="height:5px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
 <p>
 <strong>Scalactic 2.2.1</strong> (for Scala 2.11.0+ and 2.10.0+) is available at
 <a href="https://oss.sonatype.org/content/groups/public/org/scalactic/">Sonatype OSS</a> Maven repository (which is mirrored on the
@@ -351,7 +783,15 @@ If you don't have it already, you'll also need Scala. You can use any 2.10 or 2.
     <li><a href="http://www.scala-lang.org/downloads">Download the latest Scala release</a></li>
 </ul>
 
-<hr /> <!-- ################################## -->
+
+
+
+
+
+
+
+
+<hr style="height:5px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
 
 <p>
 <strong>Scalactic 2.2.0</strong> (for Scala 2.11.0+ and 2.10.0+) is available at

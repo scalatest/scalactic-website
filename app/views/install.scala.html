@@ -17,6 +17,7 @@
 
 @import controllers.Application.milestoneScaladoc
 @import controllers.Application.latestVersion
+@import controllers.Application.majorMinorScalaVersion
 @import controllers.Application.latestSuperSafeVersion
 
 @nonHomePage("Install") {
@@ -26,16 +27,16 @@
 <h1>Installing Scalactic</h1>
 
 <p>
-<strong>Scalactic @{latestVersion}</strong> (the latest release for 2.10.0+, 2.11.0+, and 2.12.0-M5)
+<strong>Scalactic @{latestVersion}</strong> (the latest release for Scala 2.10.0+, 2.11.0+, and 2.12.0+)
 
 <ul>
 <li><a href="http://www.scalatest.org/release_notes/@{latestVersion}">Combined Scalactic/ScalaTest @{latestVersion} Release Notes</a></li>
-<li><a href="http://doc.scalactic.org/3.0.0/index.html#org.scalactic.Or">Scalactic 3.0.0 Scaladoc</a> (Scaladoc for 3.0.1 coming soon.)</li>
+<li><a href="http://doc.scalactic.org/3.0.0/index.html#org.scalactic.Or">Scalactic 3.0.0 Scaladoc</a> (Scaladoc for 3.0.4 coming soon.)</li>
 <!--<li><a href="http://doc.scalactic.org/@{latestVersion}/index.html#org.scalactic.Or">Scalactic @{latestVersion} Scaladoc</a></li>-->
 </ul>
 
 <p>
-The <a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.11/@{latestVersion}/">Scalactic @{latestVersion} artifacts</a> are available via the Sonatype OSS Maven repository and mirrored on Maven central.
+The <a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_@{majorMinorScalaVersion}/@{latestVersion}/">Scalactic @{latestVersion} artifacts</a> are available via the Sonatype OSS Maven repository and mirrored on Maven central.
 </p>
 
 <hr /> <!-- ############################################### -->
@@ -86,7 +87,7 @@ You are off and running! As a next step, visit the <a href="/user_guide">Getting
 <pre class="stHighlighted">
 &lt;dependency&gt;
   &lt;groupId&gt;org.scalactic&lt;/groupId&gt;
-  &lt;artifactId&gt;scalactic_2.11&lt;/artifactId&gt;
+  &lt;artifactId&gt;scalactic_@{majorMinorScalaVersion}&lt;/artifactId&gt;
   &lt;version&gt;@{latestVersion}&lt;/version&gt;
 &lt;/dependency&gt;
 </pre>
@@ -133,7 +134,7 @@ You are off and running! As a next step, visit the <a href="/user_guide">Getting
 <hr /> <!-- ############################################### -->
 
 <p>
-If you don't have it already, you'll also need Scala. You can use any 2.10 or 2.11 release, which you can get from here:
+If you don't have it already, you'll also need Scala. You can use any 2.10, 2.11, or 2.12 release, which you can get from here:
 </p>
 
 <ul>
