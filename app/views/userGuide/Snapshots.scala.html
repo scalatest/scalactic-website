@@ -15,14 +15,15 @@
 *@
 
 @import controllers.Application.latestScaladoc
+@import controllers.Application.latestScalacticScaladoc
 
 @userGuidePage("Snapshots") {
 <div style="text-align: left">
 
 <h1>Snapshots</h1>
 
-<p>The <a href="@{latestScaladoc}/#org.scalactic.Snapshots">Snapshots</a> trait provides a <code>snap</code> method that takes one or more arguments and results in a
-<a href="@{latestScaladoc}/#org.scalactic.SnapshotSeq"><code>SnapshotSeq</code></a>, whose <code>toString</code> lists the names
+<p>The <a href="@{latestScalacticScaladoc}/#org.scalactic.Snapshots">Snapshots</a> trait provides a <code>snap</code> method that takes one or more arguments and results in a
+<a href="@{latestScalacticScaladoc}/#org.scalactic.SnapshotSeq"><code>SnapshotSeq</code></a>, whose <code>toString</code> lists the names
 and values of each argument.</p><p>The intended use case of this trait is to help you write debug and log
 messages that give a &quot;snapshot&quot; of program state. Here's an example:</p><p><pre class="stREPL">
 scala&gt; import Snapshots._
