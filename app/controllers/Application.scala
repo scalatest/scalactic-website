@@ -21,6 +21,7 @@ import play.api.mvc._
 object Application extends Controller {
 
   val latestScaladoc = "http://doc.scalatest.org/3.0.1"
+  val latestScalacticScaladoc = "http://doc.scalactic.org/3.0.1"
   val latestVersion = "3.0.4"
   val latestSuperSafeVersion = "1.1.2"				// updated 170130 PL per BV request
   val milestoneVersion = "3.0.1-RC4"

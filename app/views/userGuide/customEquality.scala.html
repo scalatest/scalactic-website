@@ -15,6 +15,7 @@
  *@
 
 @import controllers.Application.latestScaladoc
+@import controllers.Application.latestScalacticScaladoc
 
 @userGuidePage("Custom equality") {
 <div style="text-align: left">
@@ -22,7 +23,7 @@
 <h1>Custom equality</h1>
 
 <p>
-Scalactic's <a href="@{latestScaladoc}/#org.scalactic.Equality"><code>Equality</code></a> typeclass enables you to define
+Scalactic's <a href="@{latestScalacticScaladoc}/#org.scalactic.Equality"><code>Equality</code></a> typeclass enables you to define
 alternate notions of equality for specified types that can be used with
 Scalactic's <code>===</code> and <code>!==</code> syntax (and <a href="@{latestScaladoc}/#org.scalatest.Matchers">ScalaTest's matcher</a>) syntax.
 </p>
@@ -54,7 +55,7 @@ res0: Boolean = false
 </pre>
 
 <p>
-Scalactic's <a href="@{latestScaladoc}/#org.scalactic.TripleEquals"><code>===</code> operator</a> looks for an implicit <code>Equality[L]</code>, where <code>L</code> is the left-hand type: in this
+Scalactic's <a href="@{latestScalacticScaladoc}/#org.scalactic.TripleEquals"><code>===</code> operator</a> looks for an implicit <code>Equality[L]</code>, where <code>L</code> is the left-hand type: in this
 case, <code>Person</code>. Because you didn't specifically provide an implicit <code>Equality[Person]</code>, <code>===</code> will fall back on
 <a href="DefaultEquality"><em>default equality</em></a>, which will call <code>Person</code>'s <code>equals</code> method. That <code>equals</code> method, provided by the Scala compiler
 because <code>Person</code> is a case class, will declare these two objects unequal because 29.001 does not exactly equal 29.0.
