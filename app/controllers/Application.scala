@@ -23,14 +23,14 @@ object Application extends Controller {
   val latestScaladoc = "http://doc.scalatest.org/3.0.1"
   val latestScalacticScaladoc = "http://doc.scalactic.org/3.0.1"
   val latestVersion = "3.0.4"
-  val latestSuperSafeVersion = "1.1.2"				// updated 170130 PL per BV request
+  val latestSuperSafeVersion = "1.1.3"				// updated 170130 PL per BV request, and updated to 1.1.3 per Chee Seng request 171115 PL
   val milestoneVersion = "3.0.1-RC4"
   val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.11/3.0.1-RC4/scalactic_2.10-3.0.1-RC4.jar"
   val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.12/3.0.4/scalactic_2.12-3.0.4.jar"
   val milestoneScaladoc = "http://www.artima.com/docs-scalatest-3.0.1-RC4"
   val scaladocsLocation = "http://doc.scalatest.org"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
-  val baseScalaVersion = "2.12.3"
+  val baseScalaVersion = "2.12.4"				// updated 171115 to 2.12.4 per Chee Seng request PL
   val majorMinorScalaVersion = "2.12"
 
   def index = Action {
