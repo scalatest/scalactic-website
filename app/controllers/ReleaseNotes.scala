@@ -18,7 +18,7 @@ package controllers
 import play.api._
 import play.api.mvc._
 
-object ReleaseNotes extends Controller {
+class ReleaseNotes extends Controller {
 
   def releaseNotesIndex = Action {
     Ok(views.html.releaseNotes.releaseNotesIndex())
