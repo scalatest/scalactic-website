@@ -16,5 +16,6 @@
 package test
 
 import org.scalatest._
+import org.scalatestplus.play._
 
-abstract class UnitSpec extends WordSpec with Matchers with OptionValues
+abstract class UnitSpec extends WordSpec with Matchers with OptionValues with OneAppPerTest

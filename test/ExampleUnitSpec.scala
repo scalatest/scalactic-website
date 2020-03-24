@@ -24,12 +24,12 @@ class ExampleUnitSpec extends UnitSpec {
   
   "Application" should {
     
-    "send 404 on a bad request" in running(FakeApplication()) {
-      route(FakeRequest(GET, "/boum")) shouldBe None
+    "send 404 on a bad request" in running(app) {
+      status(route(app, FakeRequest(GET, "/boum")).get) shouldBe NOT_FOUND
     }
     
-    "render the index page" in running(FakeApplication()) {
-      val home = route(FakeRequest(GET, "/")).get
+    "render the index page" in running(app) {
+      val home = route(app, FakeRequest(GET, "/")).get
         
       status(home) shouldBe OK
       contentType(home).value shouldBe "text/html"
