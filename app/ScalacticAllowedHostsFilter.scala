@@ -33,7 +33,7 @@ case class ScalacticAllowedHostsFilter @Inject() (env: Environment, errorHandler
       val privateIp = Try(httpGet("http://169.254.169.254/latest/meta-data/local-ipv4")).getOrElse("localhost")
       //val macAddress = httpGet("http://169.254.169.254/latest/meta-data/network/interfaces/macs/")
       //val vpcId = httpGet(s"http://169.254.169.254/latest/meta-data/network/interfaces/macs/${macAddress}/vpc-id")
-      Vector("www.scalactic.org" , privateIp + ":9000", "scalactic.com")
+      Vector("www.scalactic.org" , privateIp + ":9000", "scalactic.org")
     }
     else
       Vector("localhost:9000", "localhost:9443", "localhost:3333")

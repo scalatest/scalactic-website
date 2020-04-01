@@ -24,7 +24,7 @@ class HSTSFilter @Inject() () extends EssentialFilter {
       val accumulator: Accumulator[ByteString, Result] = nextFilter(requestHeader)
       accumulator.map { result =>
 
-        if (requestHeader.host contains "www.artima.com") {
+        if (requestHeader.host contains "www.scalactic.org") {
           // provide HTTP Strict Transport Security header with max age of 1 day (86400 seconds)
           //result.withHeaders("Strict-Transport-Security" -> "max-age=86400; includeSubDomains")  // reminder: how to add sub-domains
           result.withHeaders("Strict-Transport-Security" -> "max-age=86400")
