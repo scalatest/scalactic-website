@@ -69,7 +69,7 @@ object Application {
   val milestoneScaladoc = "http://www.artima.com/docs-scalatest-3.1.0-RC3"
   val scaladocsLocation = "http://doc.scalatest.org"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
-  val baseScalaVersion = "2.13.1"			
+  val baseScalaVersion = "2.13.2"			
   val majorMinorScalaVersion = "2.13"
 
 }
