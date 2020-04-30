@@ -3,6 +3,15 @@ scalactic-website
 
 Scalactic Official Website
 
+# Development
+
+To run the site locally: 
+
+```
+> export APP_SECRET=12345678
+> sbt run
+```
+
 # Docker
 
 Update version in build.sbt, then publish docker image locally: 
