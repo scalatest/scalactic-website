@@ -65,7 +65,7 @@ object Application {
   val latestSuperSafeVersion = "1.1.10"
   val milestoneVersion = "3.1.0-RC3"
   val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.13/3.1.0-RC3/scalactic_2.10-3.1.0-RC3.jar"
-  val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.13/3.1.1/scalactic_2.13-3.1.2.jar"
+  val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.13/3.1.2/scalactic_2.13-3.1.2.jar"
   val milestoneScaladoc = "http://www.artima.com/docs-scalatest-3.1.0-RC3"
   val scaladocsLocation = "http://doc.scalatest.org"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
