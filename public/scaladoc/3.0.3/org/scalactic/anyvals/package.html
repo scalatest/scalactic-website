@@ -1,0 +1,1226 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>anyvals - Scalactic 3.0.3 - org.scalactic.anyvals</title>
+          <meta name="description" content="anyvals - Scalactic 3.0.3 - org.scalactic.anyvals" />
+          <meta name="keywords" content="anyvals Scalactic 3.0.3 org.scalactic.anyvals" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'org.scalactic.anyvals.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+
+<!-- Top of doc.scalactic.org [javascript] -->
+
+<script type="text/javascript">
+
+var rnd = window.rnd || Math.floor(Math.random()*10e6);
+
+var pid204569 = window.pid204569 || rnd;
+
+var plc204569 = window.plc204569 || 0;
+
+var abkw = window.abkw || '';
+
+var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204569;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204569+';place='+(plc204569++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
+
+document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
+
+</script>
+
+      <div id="definition">
+        <img alt="Package" src="../../../lib/package_big.png" />
+        <p id="owner"><a href="../../package.html" class="extype" name="org">org</a>.<a href="../package.html" class="extype" name="org.scalactic">scalactic</a></p>
+        <h1>anyvals</h1><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.package" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">anyvals</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.scalactic.anyvals.CompileTimeAssertions" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="CompileTimeAssertionsextendsAnyRef"></a>
+      <a id="CompileTimeAssertions:CompileTimeAssertions"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="CompileTimeAssertions.html"><span class="name">CompileTimeAssertions</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.package@CompileTimeAssertionsextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Trait providing assertion methods that can be called at compile time from macros
+to validate literals in source code.</p><div class="fullcomment"><div class="comment cmt"><p>Trait providing assertion methods that can be called at compile time from macros
+to validate literals in source code.</p><p>The intent of <code>CompileTimeAssertions</code> is to make it easier to create
+<code>AnyVal</code>s that restrict the values of types for which Scala supports
+literals: <code>Int</code>, <code>Long</code>, <code>Float</code>, <code>Double</code>, <code>Char</code>,
+and <code>String</code>. For example, if you are using odd integers in many places
+in your code, you might have validity checks scattered throughout your code. Here's
+an example of a method that both requires an odd <code>Int</code> is passed (as a
+<em>precondition</em>, and ensures an odd * <code>Int</code> is returned (as
+a <em>postcondition</em>):</p><p><pre class="stHighlighted">
+<span class="stReserved">def</span> nextOdd(i: <span class="stType">Int</span>): <span class="stType">Int</span> = {
+  <span class="stReserved">def</span> isOdd(x: <span class="stType">Int</span>): <span class="stType">Boolean</span> = x.abs % <span class="stLiteral">2</span> == <span class="stLiteral">1</span>
+  require(isOdd(i))
+  (i + <span class="stLiteral">2</span>) ensuring (isOdd(_))
+}
+</pre></p><p>In either the precondition or postcondition check fails, an exception will
+be thrown at runtime. If you have many methods like this you may want to
+create a type to represent an odd <code>Int</code>, so that the checking
+for validity errors is isolated in just one place. By using an <code>AnyVal</code>
+you can avoid boxing the <code>Int</code>, which may be more efficient.
+This might look like:</p><p><pre class="stHighlighted">
+<span class="stReserved">final</span> <span class="stReserved">class</span> <span class="stType">OddInt</span> <span class="stReserved">private</span> (<span class="stReserved">val</span> value: <span class="stType">Int</span>) <span class="stReserved">extends</span> <span class="stType">AnyVal</span> {
+  <span class="stReserved">override</span> <span class="stReserved">def</span> toString: <span class="stType">String</span> = s<span class="stQuotedString">"OddInt($value)"</span>
+}
+<br/><span class="stReserved">object</span> <span class="stType">OddInt</span> {
+  <span class="stReserved">def</span> apply(value: <span class="stType">Int</span>): <span class="stType">OddInt</span> = {
+    require(value.abs % <span class="stLiteral">2</span> == <span class="stLiteral">1</span>)
+    <span class="stReserved">new</span> <span class="stType">OddInt</span>(value)
+  }
+}
+</pre></p><p>An <code>AnyVal</code> cannot have any constructor code, so to ensure that
+any <code>Int</code> passed to the <code>OddInt</code> constructor is actually
+odd, the constructor must be private. That way the only way to construct a
+new <code>OddInt</code> is via the <code>apply</code> factory method in the
+<code>OddInt</code> companion object, which can require that the value be
+odd. This design eliminates the need for placing <code>require</code> and
+<code>ensuring</code> clauses anywhere else that odd <code>Int</code>s are
+needed, because the type promises the constraint. The <code>nextOdd</code>
+method could, therefore, be rewritten as:</p><p><pre class="stHighlighted">
+<span class="stReserved">def</span> nextOdd(oi: <span class="stType">OddInt</span>): <span class="stType">OddInt</span> = <span class="stType">OddInt</span>(oi.value + <span class="stLiteral">2</span>)
+</pre></p><p>Using the compile-time assertions provided by this trait, you can construct
+a factory method implemented vai a macro wthat causes a compile failure
+if <code>OddInt.apply</code> is passed anything besides an odd
+<code>Int</code> literal. Class <code>OddInt</code> would look exactly the
+same as before:</p><p><pre class="stHighlighted">
+<span class="stReserved">final</span> <span class="stReserved">class</span> <span class="stType">OddInt</span> <span class="stReserved">private</span> (<span class="stReserved">val</span> value: <span class="stType">Int</span>) <span class="stReserved">extends</span> <span class="stType">AnyVal</span> {
+  <span class="stReserved">override</span> <span class="stReserved">def</span> toString: <span class="stType">String</span> = s<span class="stQuotedString">"OddInt($value)"</span>
+}
+</pre></p><p>In the companion object, however, the <code>apply</code> method would
+be implemented in terms of a macro. Because the <code>apply</code> method
+will only work with literals, you'll need a second method that can work
+an any expression of type <code>Int</code>. Although you could write
+a factory method that throws a runtime exception if a non-odd
+<code>Int</code> is passed, we recommend a <code>from</code> method
+that returns an <code>Option</code>. The returned <code>Option</code>
+can be processed to deal with the potential for non-odd values.</p><p><pre class="stHighlighted">
+<span class="stReserved">object</span> <span class="stType">OddInt</span> {
+<br/>  <span class="stLineComment">// The from factory method validates at run time</span>
+  <span class="stReserved">def</span> from(value: <span class="stType">Int</span>): <span class="stType">Option[OddInt]</span> =
+    <span class="stReserved">if</span> (OddIntMacro.isValid(value)) <span class="stType">Some</span>(<span class="stReserved">new</span> <span class="stType">OddInt</span>(value)) <span class="stReserved">else</span> <span class="stType">None</span>
+<br/>  <span class="stLineComment">// The apply factory method validates at compile time</span>
+  <span class="stReserved">import</span> scala.language.experimental.macros
+  <span class="stReserved">def</span> apply(value: <span class="stType">Int</span>): <span class="stType">OddInt</span> = macro OddIntMacro.apply
+}
+</pre></p><p>The <code>apply</code> method refers to a macro implementation method in class
+<code>PosIntMacro</code>. The macro implementation of any such method can look
+very similar to this one. The only changes you'd need to make is the
+<code>isValid</code> method implementation and the text of the error messages.</p><p><pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalactic.anyvals.CompileTimeAssertions
+<span class="stReserved">import</span> reflect.macros.Context
+<br/><span class="stReserved">object</span> <span class="stType">OddIntMacro</span> <span class="stReserved">extends</span> <span class="stType">CompileTimeAssertions</span> {
+<br/>  <span class="stLineComment">// Validation method used at both compile- and run-time</span>
+  <span class="stReserved">def</span> isValid(i: <span class="stType">Int</span>): <span class="stType">Boolean</span> = i.abs % <span class="stLiteral">2</span> == <span class="stLiteral">1</span>
+<br/>  <span class="stLineComment">// Apply macro that performs a compile-time assertion</span>
+  <span class="stReserved">def</span> apply(c: <span class="stType">Context</span>)(value: <span class="stType">c.Expr[Int]</span>): <span class="stType">c.Expr[OddInt]</span> = {
+<br/>    <span class="stLineComment">// Prepare potential compiler error messages</span>
+    <span class="stReserved">val</span> notValidMsg = <span class="stQuotedString">"OddInt.apply can only be invoked on odd Int literals, like OddInt(3)."</span>
+    <span class="stReserved">val</span> notLiteralMsg = <span class="stQuotedString">"OddInt.apply can only be invoked on Int literals, like "</span> +
+          <span class="stQuotedString">"OddInt(3). Please use OddInt.from instead."</span>
+<br/>    <span class="stLineComment">// Validate via a compile-time assertion</span>
+    ensureValidIntLiteral(c)(value, notValidMsg, notLiteralMsg)(isValid)
+<br/>    <span class="stLineComment">// Validated, so rewrite the apply call to a from call</span>
+    c.universe.reify { OddInt.from(value.splice).get }
+  }
+}
+</pre></p><p>The <code>isValid</code> method just takes the underlying type and returns <code>true</code> if it is valid,
+else <code>false</code>. This method is placed here so the same valiation code can be used both in
+the <code>from</code> method at runtime and the <code>apply</code> macro at compile time. The <code>apply</code>
+actually does just two things. It calls a <code>ensureValidIntLiteral</code>, performing a compile-time assertion
+that value passed to <code>apply</code> is an <code>Int</code> literal that is valid (in this case, odd).
+If the assertion fails, <code>ensureValidIntLiteral</code> will complete abruptly with an exception that will
+contain an appropriate error message (one of the two you passed in) and cause a compiler error with that message.
+If the assertion succeeds, <code>ensureValidIntLiteral</code> will just return normally. The next line of code
+will then execute. This line of code must construct an AST (abstract syntax tree) of code that will replace
+the <code>OddInt.apply</code> invocation. We invoke the other factory method that returns an <code>Option</code>,
+and since we've proven at compile time that that <code>Option</code> will be defined, we call <code>get</code> on it.</p><p>You may wish to use quasi-quotes instead of reify. The reason we use reify is that this also works on 2.10 without
+any additional plugin (i.e., you don't need macro paradise), and Scalactic supports 2.10.</p></div></div>
+    </li><li name="org.scalactic.anyvals.PosDouble" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PosDoubleextendsAnyVal"></a>
+      <a id="PosDouble:PosDouble"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="PosDouble.html"><span class="name">PosDouble</span></a><span class="result"> extends <span class="extype" name="scala.AnyVal">AnyVal</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.package@PosDoubleextendsAnyVal" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">An <code>AnyVal</code> for positive <code>Double</code>s.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>An <code>AnyVal</code> for positive <code>Double</code>s.</p><p>Note: a <code>PosDouble</code> may not equal 0. If you want positive
+number or 0, use <a href="PosZDouble.html" class="extype" name="org.scalactic.anyvals.PosZDouble">PosZDouble</a>.</p><p>Because <code>PosDouble</code> is an <code>AnyVal</code> it
+will usually be as efficient as an <code>Double</code>, being
+boxed only when a <code>Double</code> would have been boxed.</p><p>The <code>PosDouble.apply</code> factory method is
+implemented in terms of a macro that checks literals for
+validity at compile time. Calling
+<code>PosDouble.apply</code> with a literal
+<code>Double</code> value will either produce a valid
+<code>PosDouble</code> instance at run time or an error at
+compile time. Here's an example:</p><p><pre class="stREPL">
+scala&gt; import anyvals._
+import anyvals._
+
+scala&gt; PosDouble(1.0)
+res1: org.scalactic.anyvals.PosDouble = PosDouble(1.0)
+
+scala&gt; PosDouble(0.0)
+&lt;console&gt;:14: error: PosDouble.apply can only be invoked on a positive (i &gt; 0.0) floating point literal, like PosDouble(42.0).
+              PosDouble(0.0)
+                       ^
+</pre></p><p><code>PosDouble.apply</code> cannot be used if the value
+being passed is a variable (<em>i.e.</em>, not a literal),
+because the macro cannot determine the validity of variables
+at compile time (just literals). If you try to pass a
+variable to <code>PosDouble.apply</code>, you'll get a
+compiler error that suggests you use a different factor
+method, <code>PosDouble.from</code>, instead:</p><p><pre class="stREPL">
+scala&gt; val x = 1.0
+x: Double = 1.0
+
+scala&gt; PosDouble(x)
+&lt;console&gt;:15: error: PosDouble.apply can only be invoked on a floating point literal, like PosDouble(42.0). Please use PosDouble.from instead.
+              PosDouble(x)
+                       ^
+</pre></p><p>The <code>PosDouble.from</code> factory method will inspect
+the value at runtime and return an
+<code>Option[PosDouble]</code>. If the value is valid,
+<code>PosDouble.from</code> will return a
+<code>Some[PosDouble]</code>, else it will return a
+<code>None</code>.  Here's an example:</p><p><pre class="stREPL">
+scala&gt; PosDouble.from(x)
+res4: Option[org.scalactic.anyvals.PosDouble] = Some(PosDouble(1.0))
+
+scala&gt; val y = 0.0
+y: Double = 0.0
+
+scala&gt; PosDouble.from(y)
+res5: Option[org.scalactic.anyvals.PosDouble] = None
+</pre></p><p>The <code>PosDouble.apply</code> factory method is marked
+implicit, so that you can pass literal <code>Double</code>s
+into methods that require <code>PosDouble</code>, and get the
+same compile-time checking you get when calling
+<code>PosDouble.apply</code> explicitly. Here's an example:</p><p><pre class="stREPL">
+scala&gt; def invert(pos: PosDouble): Double = Double.MaxValue - pos
+invert: (pos: org.scalactic.anyvals.PosDouble)Double
+
+scala&gt; invert(1.1)
+res6: Double = 1.7976931348623157E308
+
+scala&gt; invert(Double.MaxValue)
+res8: Double = 0.0
+
+scala&gt; invert(0.0)
+&lt;console&gt;:15: error: PosDouble.apply can only be invoked on a positive (i &gt; 0.0) floating point literal, like PosDouble(42.0).
+              invert(0.0)
+                     ^
+
+scala&gt; invert(-1.0)
+&lt;console&gt;:15: error: PosDouble.apply can only be invoked on a positive (i &gt; 0.0) floating point literal, like PosDouble(42.0).
+              invert(-1.0)
+                      ^
+
+</pre></p><p>This example also demonstrates that the
+<code>PosDouble</code> companion object also defines implicit
+widening conversions when a similar conversion is provided in
+Scala. This makes it convenient to use a
+<code>PosDouble</code> where a <code>Double</code> is
+needed. An example is the subtraction in the body of the
+<code>invert</code> method defined above,
+<code>Double.MaxValue - pos</code>. Although
+<code>Double.MaxValue</code> is a <code>Double</code>, which
+has no <code>-</code> method that takes a
+<code>PosDouble</code> (the type of <code>pos</code>), you
+can still subtract <code>pos</code>, because the
+<code>PosDouble</code> will be implicitly widened to
+<code>Double</code>.</p></div></div>
+    </li><li name="org.scalactic.anyvals.PosFloat" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PosFloatextendsAnyVal"></a>
+      <a id="PosFloat:PosFloat"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="PosFloat.html"><span class="name">PosFloat</span></a><span class="result"> extends <span class="extype" name="scala.AnyVal">AnyVal</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.package@PosFloatextendsAnyVal" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">An <code>AnyVal</code> for positive <code>Float</code>s.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>An <code>AnyVal</code> for positive <code>Float</code>s.</p><p>Note: a <code>PosFloat</code> may not equal 0. If you want positive
+number or 0, use <a href="PosZFloat.html" class="extype" name="org.scalactic.anyvals.PosZFloat">PosZFloat</a>.</p><p>Because <code>PosFloat</code> is an <code>AnyVal</code> it
+will usually be as efficient as an <code>Float</code>, being
+boxed only when an <code>Float</code> would have been boxed.</p><p>The <code>PosFloat.apply</code> factory method is implemented
+in terms of a macro that checks literals for validity at
+compile time. Calling <code>PosFloat.apply</code> with a
+literal <code>Float</code> value will either produce a valid
+<code>PosFloat</code> instance at run time or an error at
+compile time. Here's an example:</p><p><pre class="stREPL">
+scala&gt; import anyvals._
+import anyvals._
+
+scala&gt; PosFloat(1.0F)
+res0: org.scalactic.anyvals.PosFloat = PosFloat(1.0)
+
+scala&gt; PosFloat(0.0F)
+&lt;console&gt;:14: error: PosFloat.apply can only be invoked on a positive (i &gt; 0.0F) floating point literal, like PosFloat(42.0F).
+              PosFloat(0.0F)
+                      ^
+</pre></p><p><code>PosFloat.apply</code> cannot be used if the value being
+passed is a variable (<em>i.e.</em>, not a literal), because
+the macro cannot determine the validity of variables at
+compile time (just literals). If you try to pass a variable
+to <code>PosFloat.apply</code>, you'll get a compiler error
+that suggests you use a different factor method,
+<code>PosFloat.from</code>, instead:</p><p><pre class="stREPL">
+scala&gt; val x = 1.0F
+x: Float = 1.0
+
+scala&gt; PosFloat(x)
+&lt;console&gt;:15: error: PosFloat.apply can only be invoked on a floating point literal, like PosFloat(42.0F). Please use PosFloat.from instead.
+              PosFloat(x)
+                      ^
+</pre></p><p>The <code>PosFloat.from</code> factory method will inspect
+the value at runtime and return an
+<code>Option[PosFloat]</code>. If the value is valid,
+<code>PosFloat.from</code> will return a
+<code>Some[PosFloat]</code>, else it will return a
+<code>None</code>.  Here's an example:</p><p><pre class="stREPL">
+scala&gt; PosFloat.from(x)
+res3: Option[org.scalactic.anyvals.PosFloat] = Some(PosFloat(1.0))
+
+scala&gt; val y = 0.0F
+y: Float = 0.0
+
+scala&gt; PosFloat.from(y)
+res4: Option[org.scalactic.anyvals.PosFloat] = None
+</pre></p><p>The <code>PosFloat.apply</code> factory method is marked
+implicit, so that you can pass literal <code>Float</code>s
+into methods that require <code>PosFloat</code>, and get the
+same compile-time checking you get when calling
+<code>PosFloat.apply</code> explicitly. Here's an example:</p><p><pre class="stREPL">
+scala&gt; def invert(pos: PosFloat): Float = Float.MaxValue - pos
+invert: (pos: org.scalactic.anyvals.PosFloat)Float
+
+scala&gt; invert(1.1F)
+res5: Float = 3.4028235E38
+
+scala&gt; invert(Float.MaxValue)
+res6: Float = 0.0
+
+scala&gt; invert(0.0F)
+&lt;console&gt;:15: error: PosFloat.apply can only be invoked on a positive (i &gt; 0.0F) floating point literal, like PosFloat(42.0F).
+              invert(0.0F)
+                     ^
+
+scala&gt; invert(-1.1F)
+&lt;console&gt;:15: error: PosFloat.apply can only be invoked on a positive (i &gt; 0.0F) floating point literal, like PosFloat(42.0F).
+              invert(-1.1F)
+                      ^
+
+</pre></p><p>This example also demonstrates that the <code>PosFloat</code>
+companion object also defines implicit widening conversions
+when no loss of precision will occur. This makes it convenient to use a
+<code>PosFloat</code> where a <code>Float</code> or wider
+type is needed. An example is the subtraction in the body of
+the <code>invert</code> method defined above,
+<code>Float.MaxValue - pos</code>. Although
+<code>Float.MaxValue</code> is a <code>Float</code>, which
+has no <code>-</code> method that takes a
+<code>PosFloat</code> (the type of <code>pos</code>), you can
+still subtract <code>pos</code>, because the
+<code>PosFloat</code> will be implicitly widened to
+<code>Float</code>.</p></div></div>
+    </li><li name="org.scalactic.anyvals.PosInt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PosIntextendsAnyVal"></a>
+      <a id="PosInt:PosInt"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="PosInt.html"><span class="name">PosInt</span></a><span class="result"> extends <span class="extype" name="scala.AnyVal">AnyVal</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.package@PosIntextendsAnyVal" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">An <code>AnyVal</code> for positive <code>Int</code>s.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>An <code>AnyVal</code> for positive <code>Int</code>s.</p><p>Note: a <code>PosInt</code> may not equal 0. If you want positive
+number or 0, use <a href="PosZInt.html" class="extype" name="org.scalactic.anyvals.PosZInt">PosZInt</a>.</p><p>Because <code>PosInt</code> is an <code>AnyVal</code> it will usually be
+as efficient as an <code>Int</code>, being boxed only when an <code>Int</code>
+would have been boxed.</p><p>The <code>PosInt.apply</code> factory method is implemented in terms of a macro that
+checks literals for validity at compile time. Calling <code>PosInt.apply</code> with
+a literal <code>Int</code> value will either produce a valid <code>PosInt</code> instance
+at run time or an error at compile time. Here's an example:</p><p><pre class="stREPL">
+scala&gt; import anyvals._
+import anyvals._
+
+scala&gt; PosInt(1)
+res0: org.scalactic.anyvals.PosInt = PosInt(1)
+
+scala&gt; PosInt(0)
+&lt;console&gt;:14: error: PosInt.apply can only be invoked on a positive (i &gt; 0) integer literal, like PosInt(42).
+              PosInt(0)
+                    ^
+</pre></p><p><code>PosInt.apply</code> cannot be used if the value being passed is a variable (<em>i.e.</em>, not a literal), because
+the macro cannot determine the validity of variables at compile time (just literals). If you try to pass a variable
+to <code>PosInt.apply</code>, you'll get a compiler error that suggests you use a different factor method,
+<code>PosInt.from</code>, instead:</p><p><pre class="stREPL">
+scala&gt; val x = 1
+x: Int = 1
+
+scala&gt; PosInt(x)
+&lt;console&gt;:15: error: PosInt.apply can only be invoked on an integer literal, like PosInt(42). Please use PosInt.from instead.
+              PosInt(x)
+                    ^
+</pre></p><p>The <code>PosInt.from</code> factory method will inspect the value at runtime and return an <code>Option[PosInt]</code>. If
+the value is valid, <code>PosInt.from</code> will return a <code>Some[PosInt]</code>, else it will return a <code>None</code>.
+Here's an example:</p><p><pre class="stREPL">
+scala&gt; PosInt.from(x)
+res3: Option[org.scalactic.anyvals.PosInt] = Some(PosInt(1))
+
+scala&gt; val y = 0
+y: Int = 0
+
+scala&gt; PosInt.from(y)
+res4: Option[org.scalactic.anyvals.PosInt] = None
+</pre></p><p>The <code>PosInt.apply</code> factory method is marked implicit, so that you can pass literal <code>Int</code>s
+into methods that require <code>PosInt</code>, and get the same compile-time checking you get when calling
+<code>PosInt.apply</code> explicitly. Here's an example:</p><p><pre class="stREPL">
+scala&gt; def invert(pos: PosInt): Int = Int.MaxValue - pos
+invert: (pos: org.scalactic.anyvals.PosInt)Int
+
+scala&gt; invert(1)
+res0: Int = 2147483646
+
+scala&gt; invert(Int.MaxValue)
+res1: Int = 0
+
+scala&gt; invert(0)
+&lt;console&gt;:15: error: PosInt.apply can only be invoked on a positive (i &gt; 0) integer literal, like PosInt(42).
+              invert(0)
+                     ^
+
+scala&gt; invert(-1)
+&lt;console&gt;:15: error: PosInt.apply can only be invoked on a positive (i &gt; 0) integer literal, like PosInt(42).
+              invert(-1)
+                      ^
+
+</pre></p><p>This example also demonstrates that the <code>PosInt</code> companion object also defines implicit widening conversions
+when either no loss of precision will occur or a similar conversion is provided in Scala. (For example, the implicit
+conversion from <code>Int</code> to </code>Float</code> in Scala can lose precision.) This makes it convenient to
+use a <code>PosInt</code> where an <code>Int</code> or wider type is needed. An example is the subtraction in the body
+of the <code>invert</code> method defined above, <code>Int.MaxValue - pos</code>. Although <code>Int.MaxValue</code> is
+an <code>Int</code>, which has no <code>-</code> method that takes a <code>PosInt</code> (the type of <code>pos</code>),
+you can still subtract <code>pos</code>, because the <code>PosInt</code> will be implicitly widened to <code>Int</code>.</p></div></div>
+    </li><li name="org.scalactic.anyvals.PosLong" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PosLongextendsAnyVal"></a>
+      <a id="PosLong:PosLong"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="PosLong.html"><span class="name">PosLong</span></a><span class="result"> extends <span class="extype" name="scala.AnyVal">AnyVal</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.package@PosLongextendsAnyVal" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">An <code>AnyVal</code> for positive <code>Long</code>s.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>An <code>AnyVal</code> for positive <code>Long</code>s.</p><p>Note: a <code>PosLong</code> may not equal 0. If you want positive
+number or 0, use <a href="PosZLong.html" class="extype" name="org.scalactic.anyvals.PosZLong">PosZLong</a>.</p><p>Because <code>PosLong</code> is an <code>AnyVal</code> it
+will usually be as efficient as an <code>Long</code>, being
+boxed only when an <code>Long</code> would have been boxed.</p><p>The <code>PosLong.apply</code> factory method is implemented
+in terms of a macro that checks literals for validity at
+compile time. Calling <code>PosLong.apply</code> with a
+literal <code>Long</code> value will either produce a valid
+<code>PosLong</code> instance at run time or an error at
+compile time. Here's an example:</p><p><pre class="stREPL">
+scala&gt; import anyvals._
+import anyvals._
+
+scala&gt; PosLong(1L)
+res0: org.scalactic.anyvals.PosLong = PosLong(1)
+
+scala&gt; PosLong(0L)
+&lt;console&gt;:14: error: PosLong.apply can only be invoked on a positive (i &gt; 0L) integer literal, like PosLong(42L).
+              PosLong(0L)
+                     ^
+</pre></p><p><code>PosLong.apply</code> cannot be used if the value being
+passed is a variable (<em>i.e.</em>, not a literal), because
+the macro cannot determine the validity of variables at
+compile time (just literals). If you try to pass a variable
+to <code>PosLong.apply</code>, you'll get a compiler error
+that suggests you use a different factor method,
+<code>PosLong.from</code>, instead:</p><p><pre class="stREPL">
+scala&gt; val x = 1L
+x: Long = 1
+
+scala&gt; PosLong(x)
+&lt;console&gt;:15: error: PosLong.apply can only be invoked on an integer literal, like PosLong(42L). Please use PosLong.from instead.
+              PosLong(x)
+                     ^
+</pre></p><p>The <code>PosLong.from</code> factory method will inspect the
+value at runtime and return an
+<code>Option[PosLong]</code>. If the value is valid,
+<code>PosLong.from</code> will return a
+<code>Some[PosLong]</code>, else it will return a
+<code>None</code>.  Here's an example:</p><p><pre class="stREPL">
+scala&gt; PosLong.from(x)
+res3: Option[org.scalactic.anyvals.PosLong] = Some(PosLong(1))
+
+scala&gt; val y = 0L
+y: Long = 0
+
+scala&gt; PosLong.from(y)
+res4: Option[org.scalactic.anyvals.PosLong] = None
+</pre></p><p>The <code>PosLong.apply</code> factory method is marked
+implicit, so that you can pass literal <code>Long</code>s
+into methods that require <code>PosLong</code>, and get the
+same compile-time checking you get when calling
+<code>PosLong.apply</code> explicitly. Here's an example:</p><p><pre class="stREPL">
+scala&gt; def invert(pos: PosLong): Long = Long.MaxValue - pos
+invert: (pos: org.scalactic.anyvals.PosLong)Long
+
+scala&gt; invert(1L)
+res5: Long = 9223372036854775806
+
+scala&gt; invert(Long.MaxValue)
+res6: Long = 0
+
+scala&gt; invert(0L)
+&lt;console&gt;:15: error: PosLong.apply can only be invoked on a positive (i &gt; 0L) integer literal, like PosLong(42L).
+              invert(0L)
+                     ^
+
+scala&gt; invert(-1L)
+&lt;console&gt;:15: error: PosLong.apply can only be invoked on a positive (i &gt; 0L) integer literal, like PosLong(42L).
+              invert(-1L)
+                      ^
+
+</pre></p><p>This example also demonstrates that the <code>PosLong</code>
+companion object also defines implicit widening conversions
+when either no loss of precision will occur or a similar
+conversion is provided in Scala. (For example, the implicit
+conversion from <code>Long</code> to </code>Double</code> in
+Scala can lose precision.) This makes it convenient to use a
+<code>PosLong</code> where a <code>Long</code> or wider type
+is needed. An example is the subtraction in the body of the
+<code>invert</code> method defined above, <code>Long.MaxValue
+- pos</code>. Although <code>Long.MaxValue</code> is a
+<code>Long</code>, which has no <code>-</code> method that
+takes a <code>PosLong</code> (the type of <code>pos</code>),
+you can still subtract <code>pos</code>, because the
+<code>PosLong</code> will be implicitly widened to
+<code>Long</code>.</p></div></div>
+    </li><li name="org.scalactic.anyvals.PosZDouble" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PosZDoubleextendsAnyVal"></a>
+      <a id="PosZDouble:PosZDouble"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="PosZDouble.html"><span class="name">PosZDouble</span></a><span class="result"> extends <span class="extype" name="scala.AnyVal">AnyVal</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.package@PosZDoubleextendsAnyVal" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">An <code>AnyVal</code> for non-negative <code>Double</code>s.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>An <code>AnyVal</code> for non-negative <code>Double</code>s.</p><p>Because <code>PosZDouble</code> is an <code>AnyVal</code> it will usually be
+as efficient as an <code>Double</code>, being boxed only when a
+<code>Double</code> would have been boxed.</p><p>The <code>PosZDouble.apply</code> factory method is
+implemented in terms of a macro that checks literals for
+validity at compile time. Calling
+<code>PosZDouble.apply</code> with a literal
+<code>Double</code> value will either produce a valid
+<code>PosZDouble</code> instance at run time or an error at
+compile time. Here's an example:</p><p><pre class="stREPL">
+scala&gt; import anyvals._
+import anyvals._
+
+scala&gt; PosZDouble(1.1)
+res0: org.scalactic.anyvals.PosZDouble = PosZDouble(1.1)
+
+scala&gt; PosZDouble(0.0)
+res1: org.scalactic.anyvals.PosZDouble = PosZDouble(0.0)
+
+scala&gt; PosZDouble(-1.1)
+&lt;console&gt;:14: error: PosZDouble.apply can only be invoked on a non-negative (i &gt;= 0.0) floating point literal, like PosZDouble(42.0).
+              PosZDouble(-1.1)
+                        ^
+</pre></p><p><code>PosZDouble.apply</code> cannot be used if the value
+being passed is a variable (<em>i.e.</em>, not a literal),
+because the macro cannot determine the validity of variables
+at compile time (just literals). If you try to pass a
+variable to <code>PosZDouble.apply</code>, you'll get a
+compiler error that suggests you use a different factor
+method, <code>PosZDouble.from</code>, instead:</p><p><pre class="stREPL">
+scala&gt; val x = 1.1
+x: Double = 1.1
+
+scala&gt; PosZDouble(x)
+&lt;console&gt;:15: error: PosZDouble.apply can only be invoked on a floating point literal, like PosZDouble(42.0). Please use PosZDouble.from instead.
+              PosZDouble(x)
+                        ^
+</pre></p><p>The <code>PosZDouble.from</code> factory method will inspect
+the value at runtime and return an
+<code>Option[PosZDouble]</code>. If the value is valid,
+<code>PosZDouble.from</code> will return a
+<code>Some[PosZDouble]</code>, else it will return a
+<code>None</code>.  Here's an example:</p><p><pre class="stREPL">
+scala&gt; PosZDouble.from(x)
+res4: Option[org.scalactic.anyvals.PosZDouble] = Some(PosZDouble(1.1))
+
+scala&gt; val y = -1.1
+y: Double = -1.1
+
+scala&gt; PosZDouble.from(y)
+res5: Option[org.scalactic.anyvals.PosZDouble] = None
+</pre></p><p>The <code>PosZDouble.apply</code> factory method is marked implicit, so that
+you can pass literal <code>Double</code>s into methods that require
+<code>PosZDouble</code>, and get the same compile-time checking you get when
+calling <code>PosZDouble.apply</code> explicitly. Here's an example:</p><p><pre class="stREPL">
+scala&gt; def invert(pos: PosZDouble): Double = Double.MaxValue - pos
+invert: (pos: org.scalactic.anyvals.PosZDouble)Double
+
+scala&gt; invert(0.0)
+res6: Double = 1.7976931348623157E308
+
+scala&gt; invert(Double.MaxValue)
+res7: Double = 0.0
+
+scala&gt; invert(-1.1)
+&lt;console&gt;:15: error: PosZDouble.apply can only be invoked on a non-negative (i &gt;= 0.0) floating point literal, like PosZDouble(42.0).
+              invert(-1.1)
+                      ^
+</pre></p><p>This example also demonstrates that the
+<code>PosZDouble</code> companion object also defines
+implicit widening conversions when a similar conversion is
+provided in Scala. This makes it convenient to use a
+<code>PosZDouble</code> where a <code>Double</code> or wider
+type is needed. An example is the subtraction in the body of
+the <code>invert</code> method defined above,
+<code>Double.MaxValue - pos</code>. Although
+<code>Double.MaxValue</code> is a <code>Double</code>, which
+has no <code>-</code> method that takes a
+<code>PosZDouble</code> (the type of <code>pos</code>), you
+can still subtract <code>pos</code>, because the
+<code>PosZDouble</code> will be implicitly widened to
+<code>Double</code>.</p></div></div>
+    </li><li name="org.scalactic.anyvals.PosZFloat" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PosZFloatextendsAnyVal"></a>
+      <a id="PosZFloat:PosZFloat"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="PosZFloat.html"><span class="name">PosZFloat</span></a><span class="result"> extends <span class="extype" name="scala.AnyVal">AnyVal</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.package@PosZFloatextendsAnyVal" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">An <code>AnyVal</code> for non-negative <code>Float</code>s.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>An <code>AnyVal</code> for non-negative <code>Float</code>s.</p><p>Because <code>PosZFloat</code> is an <code>AnyVal</code> it will usually be
+as efficient as an <code>Float</code>, being boxed only when a
+<code>Float</code> would have been boxed.</p><p>The <code>PosZFloat.apply</code> factory method is
+implemented in terms of a macro that checks literals for
+validity at compile time. Calling
+<code>PosZFloat.apply</code> with a literal
+<code>Float</code> value will either produce a valid
+<code>PosZFloat</code> instance at run time or an error at
+compile time. Here's an example:</p><p><pre class="stREPL">
+scala&gt; import anyvals._
+import anyvals._
+
+scala&gt; PosZFloat(1.1F)
+res0: org.scalactic.anyvals.PosZFloat = PosZFloat(1.1)
+
+scala&gt; PosZFloat(0.0F)
+res1: org.scalactic.anyvals.PosZFloat = PosZFloat(0.0)
+
+scala&gt; PosZFloat(-1.1F)
+&lt;console&gt;:14: error: PosZFloat.apply can only be invoked on a non-negative (i &gt;= 0.0F) floating point literal, like PosZFloat(42.0F).
+              PosZFloat(-1.1F)
+                       ^
+</pre></p><p><code>PosZFloat.apply</code> cannot be used if the value
+being passed is a variable (<em>i.e.</em>, not a literal),
+because the macro cannot determine the validity of variables
+at compile time (just literals). If you try to pass a
+variable to <code>PosZFloat.apply</code>, you'll get a
+compiler error that suggests you use a different factor
+method, <code>PosZFloat.from</code>, instead:</p><p><pre class="stREPL">
+scala&gt; val x = 1.1F
+x: Float = 1.1
+
+scala&gt; PosZFloat(x)
+&lt;console&gt;:15: error: PosZFloat.apply can only be invoked on a floating point literal, like PosZFloat(42.0F). Please use PosZFloat.from instead.
+              PosZFloat(x)
+                       ^
+</pre></p><p>The <code>PosZFloat.from</code> factory method will inspect
+the value at runtime and return an
+<code>Option[PosZFloat]</code>. If the value is valid,
+<code>PosZFloat.from</code> will return a
+<code>Some[PosZFloat]</code>, else it will return a
+<code>None</code>.  Here's an example:</p><p><pre class="stREPL">
+scala&gt; PosZFloat.from(x)
+res4: Option[org.scalactic.anyvals.PosZFloat] = Some(PosZFloat(1.1))
+
+scala&gt; val y = -1.1F
+y: Float = -1.1
+
+scala&gt; PosZFloat.from(y)
+res5: Option[org.scalactic.anyvals.PosZFloat] = None
+</pre></p><p>The <code>PosZFloat.apply</code> factory method is marked implicit, so that
+you can pass literal <code>Float</code>s into methods that require
+<code>PosZFloat</code>, and get the same compile-time checking you get when
+calling <code>PosZFloat.apply</code> explicitly. Here's an example:</p><p><pre class="stREPL">
+scala&gt; def invert(pos: PosZFloat): Float = Float.MaxValue - pos
+invert: (pos: org.scalactic.anyvals.PosZFloat)Float
+
+scala&gt; invert(0.0F)
+res6: Float = 3.4028235E38
+
+scala&gt; invert(Float.MaxValue)
+res7: Float = 0.0
+
+scala&gt; invert(-1.1F)
+&lt;console&gt;:15: error: PosZFloat.apply can only be invoked on a non-negative (i &gt;= 0.0F) floating point literal, like PosZFloat(42.0F).
+            invert(-1.1F)
+                    ^
+</pre></p><p>This example also demonstrates that the
+<code>PosZFloat</code> companion object also defines
+implicit widening conversions when a similar conversion is
+provided in Scala. This makes it convenient to use a
+<code>PosZFloat</code> where a <code>Float</code> or wider
+type is needed. An example is the subtraction in the body of
+the <code>invert</code> method defined above,
+<code>Float.MaxValue - pos</code>. Although
+<code>Float.MaxValue</code> is an <code>Float</code>, which
+has no <code>-</code> method that takes a
+<code>PosZFloat</code> (the type of <code>pos</code>), you
+can still subtract <code>pos</code>, because the
+<code>PosZFloat</code> will be implicitly widened to
+<code>Float</code>.</p></div></div>
+    </li><li name="org.scalactic.anyvals.PosZInt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PosZIntextendsAnyVal"></a>
+      <a id="PosZInt:PosZInt"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="PosZInt.html"><span class="name">PosZInt</span></a><span class="result"> extends <span class="extype" name="scala.AnyVal">AnyVal</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.package@PosZIntextendsAnyVal" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">An <code>AnyVal</code> for non-negative <code>Int</code>s.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>An <code>AnyVal</code> for non-negative <code>Int</code>s.</p><p>Because <code>PosZInt</code> is an <code>AnyVal</code> it will usually be
+as efficient as an <code>Int</code>, being boxed only when an
+<code>Int</code> would have been boxed.</p><p>The <code>PosZInt.apply</code> factory method is implemented in terms of a
+macro that checks literals for validity at compile time. Calling
+<code>PosZInt.apply</code> with a literal <code>Int</code> value will either
+produce a valid <code>PosZInt</code> instance at run time or an error at
+compile time. Here's an example:</p><p><pre class="stREPL">
+scala&gt; import anyvals._
+import anyvals._
+
+scala&gt; PosZInt(1)
+res0: org.scalactic.anyvals.PosZInt = PosZInt(1)
+
+scala&gt; PosZInt(0)
+res1: org.scalactic.anyvals.PosZInt = PosZInt(0)
+
+scala&gt; PosZInt(-1)
+&lt;console&gt;:14: error: PosZInt.apply can only be invoked on a non-negative (i &gt;= 0) integer literal, like PosZInt(42).
+              PosZInt(-1)
+                     ^
+</pre></p><p><code>PosZInt.apply</code> cannot be used if the value being passed is a
+variable (<em>i.e.</em>, not a literal), because the macro cannot determine
+the validity of variables at compile time (just literals). If you try to
+pass a variable to <code>PosZInt.apply</code>, you'll get a compiler error
+that suggests you use a different factor method, <code>PosZInt.from</code>,
+instead:</p><p><pre class="stREPL">
+scala&gt; val x = 1
+x: Int = 1
+
+scala&gt; PosZInt(x)
+&lt;console&gt;:15: error: PosZInt.apply can only be invoked on an integer literal, like PosZInt(42). Please use PosZInt.from instead.
+              PosZInt(x)
+                     ^
+</pre></p><p>The <code>PosZInt.from</code> factory method will inspect the value at runtime and return an <code>Option[PosZInt]</code>. If
+the value is valid, <code>PosZInt.from</code> will return a <code>Some[PosZInt]</code>, else it will return a <code>None</code>.
+Here's an example:</p><p><pre class="stREPL">
+scala&gt; PosZInt.from(x)
+res4: Option[org.scalactic.anyvals.PosZInt] = Some(PosZInt(1))
+
+scala&gt; val y = -1
+y: Int = -1
+
+scala&gt; PosZInt.from(y)
+res5: Option[org.scalactic.anyvals.PosZInt] = None
+</pre></p><p>The <code>PosZInt.apply</code> factory method is marked implicit, so that
+you can pass literal <code>Int</code>s into methods that require
+<code>PosZInt</code>, and get the same compile-time checking you get when
+calling <code>PosZInt.apply</code> explicitly. Here's an example:</p><p><pre class="stREPL">
+scala&gt; def invert(pos: PosZInt): Int = Int.MaxValue - pos
+invert: (pos: org.scalactic.anyvals.PosZInt)Int
+
+scala&gt; invert(0)
+res7: Int = 2147483647
+
+scala&gt; invert(Int.MaxValue)
+res8: Int = 0
+
+scala&gt; invert(-1)
+&lt;console&gt;:15: error: PosZInt.apply can only be invoked on a non-negative (i &gt;= 0) integer literal, like PosZInt(42).
+              invert(-1)
+                      ^
+</pre></p><p>This example also demonstrates that the <code>PosZInt</code>
+companion object also defines implicit widening conversions
+when either no loss of precision will occur or a similar
+conversion is provided in Scala. (For example, the implicit
+conversion from <code>Int</code> to </code>Float</code> in
+Scala can lose precision.) This makes it convenient to use a
+<code>PosZInt</code> where an <code>Int</code> or wider type
+is needed. An example is the subtraction in the body of the
+<code>invert</code> method defined above, <code>Int.MaxValue
+- pos</code>. Although <code>Int.MaxValue</code> is an
+<code>Int</code>, which has no <code>-</code> method that
+takes a <code>PosZInt</code> (the type of <code>pos</code>),
+you can still subtract <code>pos</code>, because the
+<code>PosZInt</code> will be implicitly widened to
+<code>Int</code>.</p></div></div>
+    </li><li name="org.scalactic.anyvals.PosZLong" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PosZLongextendsAnyVal"></a>
+      <a id="PosZLong:PosZLong"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="PosZLong.html"><span class="name">PosZLong</span></a><span class="result"> extends <span class="extype" name="scala.AnyVal">AnyVal</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.package@PosZLongextendsAnyVal" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">An <code>AnyVal</code> for non-negative <code>Long</code>s.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>An <code>AnyVal</code> for non-negative <code>Long</code>s.</p><p>Because <code>PosZLong</code> is an <code>AnyVal</code> it will usually be
+as efficient as an <code>Long</code>, being boxed only when an
+<code>Long</code> would have been boxed.</p><p>The <code>PosZLong.apply</code> factory method is implemented in terms of a
+macro that checks literals for validity at compile time. Calling
+<code>PosZLong.apply</code> with a literal <code>Long</code> value will
+either produce a valid <code>PosZLong</code> instance at run time or an
+error at compile time. Here's an example:</p><p><pre class="stREPL">
+scala&gt; import anyvals._
+import anyvals._
+
+scala&gt; PosZLong(1L)
+res0: org.scalactic.anyvals.PosZLong = PosZLong(1)
+
+scala&gt; PosZLong(0L)
+res1: org.scalactic.anyvals.PosZLong = PosZLong(0)
+
+scala&gt; PosZLong(-1L)
+&lt;console&gt;:14: error: PosZLong.apply can only be invoked on a non-negative (i &gt;= 0L) integer literal, like PosZLong(42L).
+              PosZLong(-1L)
+                      ^
+</pre></p><p><code>PosZLong.apply</code> cannot be used if the value being passed is a
+variable (<em>i.e.</em>, not a literal), because the macro cannot determine
+the validity of variables at compile time (just literals). If you try to
+pass a variable to <code>PosZLong.apply</code>, you'll get a compiler error
+that suggests you use a different factor method, <code>PosZLong.from</code>,
+instead:</p><p><pre class="stREPL">
+scala&gt; val x = 1L
+x: Long = 1
+
+scala&gt; PosZLong(x)
+&lt;console&gt;:15: error: PosZLong.apply can only be invoked on an integer literal, like PosZLong(42L). Please use PosZLong.from instead.
+              PosZLong(x)
+                      ^
+</pre></p><p>The <code>PosZLong.from</code> factory method will inspect the value at runtime and return an <code>Option[PosZLong]</code>. If
+the value is valid, <code>PosZLong.from</code> will return a <code>Some[PosZLong]</code>, else it will return a <code>None</code>.
+Here's an example:</p><p><pre class="stREPL">
+scala&gt; PosZLong.from(x)
+res4: Option[org.scalactic.anyvals.PosZLong] = Some(PosZLong(1))
+
+scala&gt; val y = -1L
+y: Long = -1
+
+scala&gt; PosZLong.from(y)
+res5: Option[org.scalactic.anyvals.PosZLong] = None
+</pre></p><p>The <code>PosZLong.apply</code> factory method is marked implicit, so that
+you can pass literal <code>Long</code>s into methods that require
+<code>PosZLong</code>, and get the same compile-time checking you get when
+calling <code>PosZLong.apply</code> explicitly. Here's an example:</p><p><pre class="stREPL">
+scala&gt; def invert(pos: PosZLong): Long = Long.MaxValue - pos
+invert: (pos: org.scalactic.anyvals.PosZLong)Long
+
+scala&gt; invert(0L)
+res6: Long = 9223372036854775807
+
+scala&gt; invert(Long.MaxValue)
+res7: Long = 0
+
+scala&gt; invert(-1L)
+&lt;console&gt;:15: error: PosZLong.apply can only be invoked on a non-negative (i &gt;= 0L) integer literal, like PosZLong(42L).
+              invert(-1L)
+                      ^
+</pre></p><p>This example also demonstrates that the <code>PosZLong</code>
+companion object also defines implicit widening conversions
+when either no loss of precision will occur or a similar
+conversion is provided in Scala. (For example, the implicit
+conversion from <code>Long</code> to </code>Double</code> in
+Scala can lose precision.) This makes it convenient to use a
+<code>PosZLong</code> where a <code>Long</code> or wider type
+is needed. An example is the subtraction in the body of the
+<code>invert</code> method defined above, <code>Long.MaxValue
+- pos</code>. Although <code>Long.MaxValue</code> is a
+<code>Long</code>, which has no <code>-</code> method that
+takes a <code>PosZLong</code> (the type of <code>pos</code>),
+you can still subtract <code>pos</code>, because the
+<code>PosZLong</code> will be implicitly widened to
+<code>Long</code>.</p></div></div>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="org.scalactic.anyvals.CompileTimeAssertions" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="CompileTimeAssertions"></a>
+      <a id="CompileTimeAssertions:CompileTimeAssertions"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CompileTimeAssertions$.html"><span class="name">CompileTimeAssertions</span></a><span class="result"> extends <a href="CompileTimeAssertions.html" class="extype" name="org.scalactic.anyvals.CompileTimeAssertions">CompileTimeAssertions</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.package@CompileTimeAssertions" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Companion object that facilitates the importing of <code>CompileTimeAssertions</code> members as
+an alternative to mixing in the trait.</code></p><div class="fullcomment"><div class="comment cmt"><p>Companion object that facilitates the importing of <code>CompileTimeAssertions</code> members as
+an alternative to mixing in the trait.
+</p></div></div>
+    </li><li name="org.scalactic.anyvals.PosDouble" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PosDouble"></a>
+      <a id="PosDouble:PosDouble"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="PosDouble$.html"><span class="name">PosDouble</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.package@PosDouble" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The companion object for <code>PosDouble</code> that offers
+factory methods that produce <code>PosDouble</code>s,
+implicit widening conversions from <code>PosDouble</code> to
+other numeric types, and maximum and minimum constant values
+for <code>PosDouble</code>.</code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>The companion object for <code>PosDouble</code> that offers
+factory methods that produce <code>PosDouble</code>s,
+implicit widening conversions from <code>PosDouble</code> to
+other numeric types, and maximum and minimum constant values
+for <code>PosDouble</code>.
+</p></div></div>
+    </li><li name="org.scalactic.anyvals.PosFloat" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PosFloat"></a>
+      <a id="PosFloat:PosFloat"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="PosFloat$.html"><span class="name">PosFloat</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.package@PosFloat" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The companion object for <code>PosFloat</code> that offers
+factory methods that produce <code>PosFloat</code>s,
+implicit widening conversions from <code>PosFloat</code> to
+other numeric types, and maximum and minimum constant values
+for <code>PosFloat</code>.</code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>The companion object for <code>PosFloat</code> that offers
+factory methods that produce <code>PosFloat</code>s,
+implicit widening conversions from <code>PosFloat</code> to
+other numeric types, and maximum and minimum constant values
+for <code>PosFloat</code>.
+</p></div></div>
+    </li><li name="org.scalactic.anyvals.PosInt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PosInt"></a>
+      <a id="PosInt:PosInt"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="PosInt$.html"><span class="name">PosInt</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.package@PosInt" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The companion object for <code>PosInt</code> that offers factory methods that
+produce <code>PosInt</code>s, implicit widening conversions from <code>PosInt</code>
+to other numeric types, and maximum and minimum constant values for <code>PosInt</code>.</code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>The companion object for <code>PosInt</code> that offers factory methods that
+produce <code>PosInt</code>s, implicit widening conversions from <code>PosInt</code>
+to other numeric types, and maximum and minimum constant values for <code>PosInt</code>.
+</p></div></div>
+    </li><li name="org.scalactic.anyvals.PosLong" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PosLong"></a>
+      <a id="PosLong:PosLong"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="PosLong$.html"><span class="name">PosLong</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.package@PosLong" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The companion object for <code>PosLong</code> that offers
+factory methods that produce <code>PosLong</code>s, implicit
+widening conversions from <code>PosLong</code> to other
+numeric types, and maximum and minimum constant values for
+<code>PosLong</code>.</code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>The companion object for <code>PosLong</code> that offers
+factory methods that produce <code>PosLong</code>s, implicit
+widening conversions from <code>PosLong</code> to other
+numeric types, and maximum and minimum constant values for
+<code>PosLong</code>.
+</p></div></div>
+    </li><li name="org.scalactic.anyvals.PosZDouble" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PosZDouble"></a>
+      <a id="PosZDouble:PosZDouble"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="PosZDouble$.html"><span class="name">PosZDouble</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.package@PosZDouble" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The companion object for <code>PosZDouble</code> that offers
+factory methods that produce <code>PosZDouble</code>s, implicit
+widening conversions from <code>PosZDouble</code> to other
+numeric types, and maximum and minimum constant values for
+<code>PosZDouble</code>.</code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>The companion object for <code>PosZDouble</code> that offers
+factory methods that produce <code>PosZDouble</code>s, implicit
+widening conversions from <code>PosZDouble</code> to other
+numeric types, and maximum and minimum constant values for
+<code>PosZDouble</code>.
+</p></div></div>
+    </li><li name="org.scalactic.anyvals.PosZFloat" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PosZFloat"></a>
+      <a id="PosZFloat:PosZFloat"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="PosZFloat$.html"><span class="name">PosZFloat</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.package@PosZFloat" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The companion object for <code>PosZFloat</code> that offers
+factory methods that produce <code>PosZFloat</code>s, implicit
+widening conversions from <code>PosZFloat</code> to other
+numeric types, and maximum and minimum constant values for
+<code>PosZFloat</code>.</code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>The companion object for <code>PosZFloat</code> that offers
+factory methods that produce <code>PosZFloat</code>s, implicit
+widening conversions from <code>PosZFloat</code> to other
+numeric types, and maximum and minimum constant values for
+<code>PosZFloat</code>.
+</p></div></div>
+    </li><li name="org.scalactic.anyvals.PosZInt" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PosZInt"></a>
+      <a id="PosZInt:PosZInt"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="PosZInt$.html"><span class="name">PosZInt</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.package@PosZInt" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The companion object for <code>PosZInt</code> that offers
+factory methods that produce <code>PosZInt</code>s, implicit
+widening conversions from <code>PosZInt</code> to other
+numeric types, and maximum and minimum constant values for
+<code>PosZInt</code>.</code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>The companion object for <code>PosZInt</code> that offers
+factory methods that produce <code>PosZInt</code>s, implicit
+widening conversions from <code>PosZInt</code> to other
+numeric types, and maximum and minimum constant values for
+<code>PosZInt</code>.
+</p></div></div>
+    </li><li name="org.scalactic.anyvals.PosZLong" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PosZLong"></a>
+      <a id="PosZLong:PosZLong"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="PosZLong$.html"><span class="name">PosZLong</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.package@PosZLong" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The companion object for <code>PosZLong</code> that offers
+factory methods that produce <code>PosZLong</code>s, implicit
+widening conversions from <code>PosZLong</code> to other
+numeric types, and maximum and minimum constant values for
+<code>PosZLong</code>.</code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>The companion object for <code>PosZLong</code> that offers
+factory methods that produce <code>PosZLong</code>s, implicit
+widening conversions from <code>PosZLong</code> to other
+numeric types, and maximum and minimum constant values for
+<code>PosZLong</code>.
+</p></div></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

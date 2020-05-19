@@ -1,0 +1,639 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>CompileTimeAssertions - Scalactic 3.0.3 - org.scalactic.anyvals.CompileTimeAssertions</title>
+          <meta name="description" content="CompileTimeAssertions - Scalactic 3.0.3 - org.scalactic.anyvals.CompileTimeAssertions" />
+          <meta name="keywords" content="CompileTimeAssertions Scalactic 3.0.3 org.scalactic.anyvals.CompileTimeAssertions" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'org.scalactic.anyvals.CompileTimeAssertions$';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+
+<!-- Top of doc.scalactic.org [javascript] -->
+
+<script type="text/javascript">
+
+var rnd = window.rnd || Math.floor(Math.random()*10e6);
+
+var pid204569 = window.pid204569 || rnd;
+
+var plc204569 = window.plc204569 || 0;
+
+var abkw = window.abkw || '';
+
+var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204569;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204569+';place='+(plc204569++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
+
+document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
+
+</script>
+
+      <div id="definition">
+        <a href="CompileTimeAssertions.html" title="See companion trait"><img alt="Object/Trait" src="../../../lib/object_to_trait_big.png" /></a>
+        <p id="owner"><a href="../../package.html" class="extype" name="org">org</a>.<a href="../package.html" class="extype" name="org.scalactic">scalactic</a>.<a href="package.html" class="extype" name="org.scalactic.anyvals">anyvals</a></p>
+        <h1><a href="CompileTimeAssertions.html" title="See companion trait">CompileTimeAssertions</a></h1><h3><span class="morelinks"><div>
+            Related Docs:
+            <a href="CompileTimeAssertions.html" title="See companion trait">trait CompileTimeAssertions</a>
+            | <a href="package.html" class="extype" name="org.scalactic.anyvals">package anyvals</a>
+          </div></span></h3><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CompileTimeAssertions</span><span class="result"> extends <a href="CompileTimeAssertions.html" class="extype" name="org.scalactic.anyvals.CompileTimeAssertions">CompileTimeAssertions</a></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Companion object that facilitates the importing of <code>CompileTimeAssertions</code> members as
+an alternative to mixing in the trait.
+</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/scalatest/scalatest/tree/release-3.0.3/scalactic//scalactic-macro/src/main/scala/org/scalactic/anyvals/CompileTimeAssertions.scala" target="_blank">CompileTimeAssertions.scala</a></dd></dl><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="CompileTimeAssertions.html" class="extype" name="org.scalactic.anyvals.CompileTimeAssertions">CompileTimeAssertions</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="org.scalactic.anyvals.CompileTimeAssertions"><span>CompileTimeAssertions</span></li><li class="in" name="org.scalactic.anyvals.CompileTimeAssertions"><span>CompileTimeAssertions</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@##():Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@clone():Object" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scalactic.anyvals.CompileTimeAssertions#ensureValidCharLiteral" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensureValidCharLiteral(c:reflect.macros.Context)(value:c.Expr[Char],notValidMsg:String,notLiteralMsg:String)(isValid:Char=&gt;Boolean):Unit"></a>
+      <a id="ensureValidCharLiteral(Context)(scala.reflect.macros.whitebox.Context.Expr[Char],String,String)((Char)⇒Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ensureValidCharLiteral</span><span class="params">(<span name="c">c: <span class="extype" name="scala.reflect.macros.Context">Context</span></span>)</span><span class="params">(<span name="value">value: <span class="extype" name="scala.reflect.macros.Aliases.Expr">scala.reflect.macros.whitebox.Context.Expr</span>[<span class="extype" name="scala.Char">Char</span>]</span>, <span name="notValidMsg">notValidMsg: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="notLiteralMsg">notLiteralMsg: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span name="isValid">isValid: (<span class="extype" name="scala.Char">Char</span>) ⇒ <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@ensureValidCharLiteral(c:reflect.macros.Context)(value:c.Expr[Char],notValidMsg:String,notLiteralMsg:String)(isValid:Char=&gt;Boolean):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ensures a given expression of type <code>Char</code> is a literal with a valid value according to a given validation function.</code></p><div class="fullcomment"><div class="comment cmt"><p>Ensures a given expression of type <code>Char</code> is a literal with a valid value according to a given validation function.</p><p>If the given <code>Char</code> expression is a literal whose value satisfies the given validation function, this method will
+return normally. Otherwise, if the given <code>Char</code> expression is not a literal, this method will complete abruptly with
+an exception whose detail message includes the <code>String</code> passed as <code>notLiteralMsg</code>. Otherwise, the
+given <code>Char</code> expression is a literal that does <em>not</em> satisfy the given validation function, so this method will
+complete abruptly with an exception whose detail message includes the <code>String</code> passed as <code>notValidMsg</code>.</p><p>This method is intended to be invoked at compile time from macros. When called from a macro, exceptions thrown by this method
+will result in compiler errors. The detail message of the thrown exception will appear as the compiler error message.</p></div><dl class="paramcmts block"><dt class="param">c</dt><dd class="cmt"><p>the compiler context for this assertion</p></dd><dt class="param">value</dt><dd class="cmt"><p>the <code>Char</code> expression to validate</p></dd><dt class="param">notValidMsg</dt><dd class="cmt"><p>a <code>String</code> message to include in the exception thrown if the expression is a literal, but not valid</p></dd><dt class="param">notLiteralMsg</dt><dd class="cmt"><p>a <code>String</code> message to include in the exception thrown if the expression is not a literal</p></dd><dt class="param">isValid</dt><dd class="cmt"><p>a function used to validate a literal value parsed from the given expression</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CompileTimeAssertions.html" class="extype" name="org.scalactic.anyvals.CompileTimeAssertions">CompileTimeAssertions</a></dd></dl></div>
+    </li><li name="org.scalactic.anyvals.CompileTimeAssertions#ensureValidDoubleLiteral" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensureValidDoubleLiteral(c:reflect.macros.Context)(value:c.Expr[Double],notValidMsg:String,notLiteralMsg:String)(isValid:Double=&gt;Boolean):Unit"></a>
+      <a id="ensureValidDoubleLiteral(Context)(scala.reflect.macros.whitebox.Context.Expr[Double],String,String)((Double)⇒Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ensureValidDoubleLiteral</span><span class="params">(<span name="c">c: <span class="extype" name="scala.reflect.macros.Context">Context</span></span>)</span><span class="params">(<span name="value">value: <span class="extype" name="scala.reflect.macros.Aliases.Expr">scala.reflect.macros.whitebox.Context.Expr</span>[<span class="extype" name="scala.Double">Double</span>]</span>, <span name="notValidMsg">notValidMsg: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="notLiteralMsg">notLiteralMsg: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span name="isValid">isValid: (<span class="extype" name="scala.Double">Double</span>) ⇒ <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@ensureValidDoubleLiteral(c:reflect.macros.Context)(value:c.Expr[Double],notValidMsg:String,notLiteralMsg:String)(isValid:Double=&gt;Boolean):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ensures a given expression of type <code>Double</code> is a literal with a valid value according to a given validation function.</code></p><div class="fullcomment"><div class="comment cmt"><p>Ensures a given expression of type <code>Double</code> is a literal with a valid value according to a given validation function.</p><p>If the given <code>Double</code> expression is a literal whose value satisfies the given validation function, this method will
+return normally. Otherwise, if the given <code>Double</code> expression is not a literal, this method will complete abruptly with
+an exception whose detail message includes the <code>String</code> passed as <code>notLiteralMsg</code>. Otherwise, the
+given <code>Double</code> expression is a literal that does <em>not</em> satisfy the given validation function, so this method will
+complete abruptly with an exception whose detail message includes the <code>String</code> passed as <code>notValidMsg</code>.</p><p>This method is intended to be invoked at compile time from macros. When called from a macro, exceptions thrown by this method
+will result in compiler errors. The detail message of the thrown exception will appear as the compiler error message.</p></div><dl class="paramcmts block"><dt class="param">c</dt><dd class="cmt"><p>the compiler context for this assertion</p></dd><dt class="param">value</dt><dd class="cmt"><p>the <code>Double</code> expression to validate</p></dd><dt class="param">notValidMsg</dt><dd class="cmt"><p>a <code>String</code> message to include in the exception thrown if the expression is a literal, but not valid</p></dd><dt class="param">notLiteralMsg</dt><dd class="cmt"><p>a <code>String</code> message to include in the exception thrown if the expression is not a literal</p></dd><dt class="param">isValid</dt><dd class="cmt"><p>a function used to validate a literal value parsed from the given expression</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CompileTimeAssertions.html" class="extype" name="org.scalactic.anyvals.CompileTimeAssertions">CompileTimeAssertions</a></dd></dl></div>
+    </li><li name="org.scalactic.anyvals.CompileTimeAssertions#ensureValidFloatLiteral" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensureValidFloatLiteral(c:reflect.macros.Context)(value:c.Expr[Float],notValidMsg:String,notLiteralMsg:String)(isValid:Float=&gt;Boolean):Unit"></a>
+      <a id="ensureValidFloatLiteral(Context)(scala.reflect.macros.whitebox.Context.Expr[Float],String,String)((Float)⇒Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ensureValidFloatLiteral</span><span class="params">(<span name="c">c: <span class="extype" name="scala.reflect.macros.Context">Context</span></span>)</span><span class="params">(<span name="value">value: <span class="extype" name="scala.reflect.macros.Aliases.Expr">scala.reflect.macros.whitebox.Context.Expr</span>[<span class="extype" name="scala.Float">Float</span>]</span>, <span name="notValidMsg">notValidMsg: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="notLiteralMsg">notLiteralMsg: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span name="isValid">isValid: (<span class="extype" name="scala.Float">Float</span>) ⇒ <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@ensureValidFloatLiteral(c:reflect.macros.Context)(value:c.Expr[Float],notValidMsg:String,notLiteralMsg:String)(isValid:Float=&gt;Boolean):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ensures a given expression of type <code>Float</code> is a literal with a valid value according to a given validation function.</code></p><div class="fullcomment"><div class="comment cmt"><p>Ensures a given expression of type <code>Float</code> is a literal with a valid value according to a given validation function.</p><p>If the given <code>Float</code> expression is a literal whose value satisfies the given validation function, this method will
+return normally. Otherwise, if the given <code>Float</code> expression is not a literal, this method will complete abruptly with
+an exception whose detail message includes the <code>String</code> passed as <code>notLiteralMsg</code>. Otherwise, the
+given <code>Float</code> expression is a literal that does <em>not</em> satisfy the given validation function, so this method will
+complete abruptly with an exception whose detail message includes the <code>String</code> passed as <code>notValidMsg</code>.</p><p>This method is intended to be invoked at compile time from macros. When called from a macro, exceptions thrown by this method
+will result in compiler errors. The detail message of the thrown exception will appear as the compiler error message.</p></div><dl class="paramcmts block"><dt class="param">c</dt><dd class="cmt"><p>the compiler context for this assertion</p></dd><dt class="param">value</dt><dd class="cmt"><p>the <code>Float</code> expression to validate</p></dd><dt class="param">notValidMsg</dt><dd class="cmt"><p>a <code>String</code> message to include in the exception thrown if the expression is a literal, but not valid</p></dd><dt class="param">notLiteralMsg</dt><dd class="cmt"><p>a <code>String</code> message to include in the exception thrown if the expression is not a literal</p></dd><dt class="param">isValid</dt><dd class="cmt"><p>a function used to validate a literal value parsed from the given expression</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CompileTimeAssertions.html" class="extype" name="org.scalactic.anyvals.CompileTimeAssertions">CompileTimeAssertions</a></dd></dl></div>
+    </li><li name="org.scalactic.anyvals.CompileTimeAssertions#ensureValidIntLiteral" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensureValidIntLiteral(c:reflect.macros.Context)(value:c.Expr[Int],notValidMsg:String,notLiteralMsg:String)(isValid:Int=&gt;Boolean):Unit"></a>
+      <a id="ensureValidIntLiteral(Context)(scala.reflect.macros.whitebox.Context.Expr[Int],String,String)((Int)⇒Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ensureValidIntLiteral</span><span class="params">(<span name="c">c: <span class="extype" name="scala.reflect.macros.Context">Context</span></span>)</span><span class="params">(<span name="value">value: <span class="extype" name="scala.reflect.macros.Aliases.Expr">scala.reflect.macros.whitebox.Context.Expr</span>[<span class="extype" name="scala.Int">Int</span>]</span>, <span name="notValidMsg">notValidMsg: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="notLiteralMsg">notLiteralMsg: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span name="isValid">isValid: (<span class="extype" name="scala.Int">Int</span>) ⇒ <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@ensureValidIntLiteral(c:reflect.macros.Context)(value:c.Expr[Int],notValidMsg:String,notLiteralMsg:String)(isValid:Int=&gt;Boolean):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ensures a given expression of type <code>Int</code> is a literal with a valid value according to a given validation function.</code></p><div class="fullcomment"><div class="comment cmt"><p>Ensures a given expression of type <code>Int</code> is a literal with a valid value according to a given validation function.</p><p>If the given <code>Int</code> expression is a literal whose value satisfies the given validation function, this method will
+return normally. Otherwise, if the given <code>Int</code> expression is not a literal, this method will complete abruptly with
+an exception whose detail message includes the <code>String</code> passed as <code>notLiteralMsg</code>. Otherwise, the
+given <code>Int</code> expression is a literal that does <em>not</em> satisfy the given validation function, so this method will
+complete abruptly with an exception whose detail message includes the <code>String</code> passed as <code>notValidMsg</code>.</p><p>This method is intended to be invoked at compile time from macros. When called from a macro, exceptions thrown by this method
+will result in compiler errors. The detail message of the thrown exception will appear as the compiler error message.</p></div><dl class="paramcmts block"><dt class="param">c</dt><dd class="cmt"><p>the compiler context for this assertion</p></dd><dt class="param">value</dt><dd class="cmt"><p>the <code>Int</code> expression to validate</p></dd><dt class="param">notValidMsg</dt><dd class="cmt"><p>a <code>String</code> message to include in the exception thrown if the expression is a literal, but not valid</p></dd><dt class="param">notLiteralMsg</dt><dd class="cmt"><p>a <code>String</code> message to include in the exception thrown if the expression is not a literal</p></dd><dt class="param">isValid</dt><dd class="cmt"><p>a function used to validate a literal value parsed from the given expression</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CompileTimeAssertions.html" class="extype" name="org.scalactic.anyvals.CompileTimeAssertions">CompileTimeAssertions</a></dd></dl></div>
+    </li><li name="org.scalactic.anyvals.CompileTimeAssertions#ensureValidLongLiteral" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensureValidLongLiteral(c:reflect.macros.Context)(value:c.Expr[Long],notValidMsg:String,notLiteralMsg:String)(isValid:Long=&gt;Boolean):Unit"></a>
+      <a id="ensureValidLongLiteral(Context)(scala.reflect.macros.whitebox.Context.Expr[Long],String,String)((Long)⇒Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ensureValidLongLiteral</span><span class="params">(<span name="c">c: <span class="extype" name="scala.reflect.macros.Context">Context</span></span>)</span><span class="params">(<span name="value">value: <span class="extype" name="scala.reflect.macros.Aliases.Expr">scala.reflect.macros.whitebox.Context.Expr</span>[<span class="extype" name="scala.Long">Long</span>]</span>, <span name="notValidMsg">notValidMsg: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="notLiteralMsg">notLiteralMsg: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span name="isValid">isValid: (<span class="extype" name="scala.Long">Long</span>) ⇒ <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@ensureValidLongLiteral(c:reflect.macros.Context)(value:c.Expr[Long],notValidMsg:String,notLiteralMsg:String)(isValid:Long=&gt;Boolean):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ensures a given expression of type <code>Long</code> is a literal with a valid value according to a given validation function.</code></p><div class="fullcomment"><div class="comment cmt"><p>Ensures a given expression of type <code>Long</code> is a literal with a valid value according to a given validation function.</p><p>If the given <code>Long</code> expression is a literal whose value satisfies the given validation function, this method will
+return normally. Otherwise, if the given <code>Long</code> expression is not a literal, this method will complete abruptly with
+an exception whose detail message includes the <code>String</code> passed as <code>notLiteralMsg</code>. Otherwise, the
+given <code>Long</code> expression is a literal that does <em>not</em> satisfy the given validation function, so this method will
+complete abruptly with an exception whose detail message includes the <code>String</code> passed as <code>notValidMsg</code>.</p><p>This method is intended to be invoked at compile time from macros. When called from a macro, exceptions thrown by this method
+will result in compiler errors. The detail message of the thrown exception will appear as the compiler error message.</p></div><dl class="paramcmts block"><dt class="param">c</dt><dd class="cmt"><p>the compiler context for this assertion</p></dd><dt class="param">value</dt><dd class="cmt"><p>the <code>Long</code> expression to validate</p></dd><dt class="param">notValidMsg</dt><dd class="cmt"><p>a <code>String</code> message to include in the exception thrown if the expression is a literal, but not valid</p></dd><dt class="param">notLiteralMsg</dt><dd class="cmt"><p>a <code>String</code> message to include in the exception thrown if the expression is not a literal</p></dd><dt class="param">isValid</dt><dd class="cmt"><p>a function used to validate a literal value parsed from the given expression</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CompileTimeAssertions.html" class="extype" name="org.scalactic.anyvals.CompileTimeAssertions">CompileTimeAssertions</a></dd></dl></div>
+    </li><li name="org.scalactic.anyvals.CompileTimeAssertions#ensureValidStringLiteral" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensureValidStringLiteral(c:reflect.macros.Context)(value:c.Expr[String],notValidMsg:String,notLiteralMsg:String)(isValid:String=&gt;Boolean):Unit"></a>
+      <a id="ensureValidStringLiteral(Context)(scala.reflect.macros.whitebox.Context.Expr[String],String,String)((String)⇒Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ensureValidStringLiteral</span><span class="params">(<span name="c">c: <span class="extype" name="scala.reflect.macros.Context">Context</span></span>)</span><span class="params">(<span name="value">value: <span class="extype" name="scala.reflect.macros.Aliases.Expr">scala.reflect.macros.whitebox.Context.Expr</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="notValidMsg">notValidMsg: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="notLiteralMsg">notLiteralMsg: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span name="isValid">isValid: (<span class="extype" name="scala.Predef.String">String</span>) ⇒ <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@ensureValidStringLiteral(c:reflect.macros.Context)(value:c.Expr[String],notValidMsg:String,notLiteralMsg:String)(isValid:String=&gt;Boolean):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ensures a given expression of type <code>String</code> is a literal with a valid value according to a given validation function.</code></p><div class="fullcomment"><div class="comment cmt"><p>Ensures a given expression of type <code>String</code> is a literal with a valid value according to a given validation function.</p><p>If the given <code>String</code> expression is a literal whose value satisfies the given validation function, this method will
+return normally. Otherwise, if the given <code>String</code> expression is not a literal, this method will complete abruptly with
+an exception whose detail message includes the <code>String</code> passed as <code>notLiteralMsg</code>. Otherwise, the
+given <code>String</code> expression is a literal that does <em>not</em> satisfy the given validation function, so this method will
+complete abruptly with an exception whose detail message includes the <code>String</code> passed as <code>notValidMsg</code>.</p><p>This method is intended to be invoked at compile time from macros. When called from a macro, exceptions thrown by this method
+will result in compiler errors. The detail message of the thrown exception will appear as the compiler error message.</p></div><dl class="paramcmts block"><dt class="param">c</dt><dd class="cmt"><p>the compiler context for this assertion</p></dd><dt class="param">value</dt><dd class="cmt"><p>the <code>String</code> expression to validate</p></dd><dt class="param">notValidMsg</dt><dd class="cmt"><p>a <code>String</code> message to include in the exception thrown if the expression is a literal, but not valid</p></dd><dt class="param">notLiteralMsg</dt><dd class="cmt"><p>a <code>String</code> message to include in the exception thrown if the expression is not a literal</p></dd><dt class="param">isValid</dt><dd class="cmt"><p>a function used to validate a literal value parsed from the given expression</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CompileTimeAssertions.html" class="extype" name="org.scalactic.anyvals.CompileTimeAssertions">CompileTimeAssertions</a></dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@equals(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@finalize():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@getClass():Class[_]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@hashCode():Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@notify():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@notifyAll():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@toString():String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@wait():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalactic.anyvals.CompileTimeAssertions$@wait(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="org.scalactic.anyvals.CompileTimeAssertions">
+              <h3>Inherited from <a href="CompileTimeAssertions.html" class="extype" name="org.scalactic.anyvals.CompileTimeAssertions">CompileTimeAssertions</a></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

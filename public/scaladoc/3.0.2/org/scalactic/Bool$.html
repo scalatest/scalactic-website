@@ -1,0 +1,720 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>Bool - Scalactic 3.0.2 - org.scalactic.Bool</title>
+          <meta name="description" content="Bool - Scalactic 3.0.2 - org.scalactic.Bool" />
+          <meta name="keywords" content="Bool Scalactic 3.0.2 org.scalactic.Bool" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../lib/template.js"></script>
+      <script type="text/javascript" src="../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../index.html';
+            var hash = 'org.scalactic.Bool$';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+
+<!-- Top of doc.scalactic.org [javascript] -->
+
+<script type="text/javascript">
+
+var rnd = window.rnd || Math.floor(Math.random()*10e6);
+
+var pid204569 = window.pid204569 || rnd;
+
+var plc204569 = window.plc204569 || 0;
+
+var abkw = window.abkw || '';
+
+var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204569;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204569+';place='+(plc204569++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
+
+document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
+
+</script>
+
+      <div id="definition">
+        <a href="Bool.html" title="See companion trait"><img alt="Object/Trait" src="../../lib/object_to_trait_big.png" /></a>
+        <p id="owner"><a href="../package.html" class="extype" name="org">org</a>.<a href="package.html" class="extype" name="org.scalactic">scalactic</a></p>
+        <h1><a href="Bool.html" title="See companion trait">Bool</a></h1><h3><span class="morelinks"><div>
+            Related Docs:
+            <a href="Bool.html" title="See companion trait">trait Bool</a>
+            | <a href="package.html" class="extype" name="org.scalactic">package scalactic</a>
+          </div></span></h3><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Bool</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p><code>Bool</code> companion object that provides factory methods to create different sub types of <code>Bool</code></p><p><code>Bool</code> is used by code generated from <code>BooleanMacro</code> (which <code>AssertionsMacro</code> and <code>RequirementsMacro</code> uses),
+it needs to be public so that the generated code can be compiled.  It is expected that ScalaTest users would ever need to use <code>Bool</code> directly.
+</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/scalatest/scalatest/tree/release-3.0.2/scalactic//src/main/scala/org/scalactic/Bool.scala" target="_blank">Bool.scala</a></dd></dl><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="org.scalactic.Bool"><span>Bool</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@##():Int" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.scalactic.Bool#binaryMacroBool" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="binaryMacroBool(left:Any,operator:String,right:Any,bool:org.scalactic.Bool,prettifier:org.scalactic.Prettifier):org.scalactic.Bool"></a>
+      <a id="binaryMacroBool(Any,String,Any,Bool,Prettifier):Bool"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">binaryMacroBool</span><span class="params">(<span name="left">left: <span class="extype" name="scala.Any">Any</span></span>, <span name="operator">operator: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="right">right: <span class="extype" name="scala.Any">Any</span></span>, <span name="bool">bool: <a href="Bool.html" class="extype" name="org.scalactic.Bool">Bool</a></span>, <span name="prettifier">prettifier: <a href="Prettifier.html" class="extype" name="org.scalactic.Prettifier">Prettifier</a></span>)</span><span class="result">: <a href="Bool.html" class="extype" name="org.scalactic.Bool">Bool</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@binaryMacroBool(left:Any,operator:String,right:Any,bool:org.scalactic.Bool,prettifier:org.scalactic.Prettifier):org.scalactic.Bool" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Overloaded method that takes a <code>Bool</code> in place of <code>Boolean</code> expression to create a new binary macro <code>Bool</code>.</code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Overloaded method that takes a <code>Bool</code> in place of <code>Boolean</code> expression to create a new binary macro <code>Bool</code>.
+</p></div><dl class="paramcmts block"><dt class="param">left</dt><dd class="cmt"><p>the left-hand-side (LHS) of the <code>Boolean</code> expression</p></dd><dt class="param">operator</dt><dd class="cmt"><p>the operator (method name) of the <code>Boolean</code> expression</p></dd><dt class="param">right</dt><dd class="cmt"><p>the right-hand-side (RHS) of the <code>Boolean</code> expression</p></dd><dt class="param">bool</dt><dd class="cmt"><p>the <code>Bool</code> that will provide the <code>Boolean</code> expression value with <code>bool.value</code></p></dd><dt class="param">prettifier</dt><dd class="cmt"><p>the <code>Prettifier</code> used for prettifying messages, this need to be implicit to let the compiler resolve it implicitly, it will be too tricky for our macro to resolve it and pass it over explicitly.</p></dd><dt>returns</dt><dd class="cmt"><p>a binary macro <code>Bool</code></p></dd></dl></div>
+    </li><li name="org.scalactic.Bool#binaryMacroBool" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="binaryMacroBool(left:Any,operator:String,right:Any,expression:Boolean,prettifier:org.scalactic.Prettifier):org.scalactic.Bool"></a>
+      <a id="binaryMacroBool(Any,String,Any,Boolean,Prettifier):Bool"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">binaryMacroBool</span><span class="params">(<span name="left">left: <span class="extype" name="scala.Any">Any</span></span>, <span name="operator">operator: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="right">right: <span class="extype" name="scala.Any">Any</span></span>, <span name="expression">expression: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="prettifier">prettifier: <a href="Prettifier.html" class="extype" name="org.scalactic.Prettifier">Prettifier</a></span>)</span><span class="result">: <a href="Bool.html" class="extype" name="org.scalactic.Bool">Bool</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@binaryMacroBool(left:Any,operator:String,right:Any,expression:Boolean,prettifier:org.scalactic.Prettifier):org.scalactic.Bool" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Create binary macro <code>Bool</code> that is used by <code>BooleanMacro</code> to wrap a recognized <code>Boolean</code> expression, which includes <code>Boolean</code> expression that
+uses <code>==</code>, <code>===</code>, <code>!=</code>, <code>!==</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&&</code>,
+<code>&</code>, <code>||</code> and <code>|</code>.</code></code></code></code></code></code></code></code></code></code></code></code></code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Create binary macro <code>Bool</code> that is used by <code>BooleanMacro</code> to wrap a recognized <code>Boolean</code> expression, which includes <code>Boolean</code> expression that
+uses <code>==</code>, <code>===</code>, <code>!=</code>, <code>!==</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&&</code>,
+<code>&</code>, <code>||</code> and <code>|</code>.
+</p></div><dl class="paramcmts block"><dt class="param">left</dt><dd class="cmt"><p>the left-hand-side (LHS) of the <code>Boolean</code> expression</p></dd><dt class="param">operator</dt><dd class="cmt"><p>the operator (method name) of the <code>Boolean</code> expression</p></dd><dt class="param">right</dt><dd class="cmt"><p>the right-hand-side (RHS) of the <code>Boolean</code> expression</p></dd><dt class="param">expression</dt><dd class="cmt"><p>the <code>Boolean</code> expression</p></dd><dt class="param">prettifier</dt><dd class="cmt"><p>the <code>Prettifier</code> used for prettifying messages, this need to be implicit to let the compiler resolve it implicitly, it will be too tricky for our macro to resolve it and pass it over explicitly.</p></dd><dt>returns</dt><dd class="cmt"><p>a binary macro <code>Bool</code></p></dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@clone():Object" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@equals(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.scalactic.Bool#existsMacroBool" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="existsMacroBool(left:Any,right:Any,expression:Boolean,prettifier:org.scalactic.Prettifier):org.scalactic.Bool"></a>
+      <a id="existsMacroBool(Any,Any,Boolean,Prettifier):Bool"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">existsMacroBool</span><span class="params">(<span name="left">left: <span class="extype" name="scala.Any">Any</span></span>, <span name="right">right: <span class="extype" name="scala.Any">Any</span></span>, <span name="expression">expression: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="prettifier">prettifier: <a href="Prettifier.html" class="extype" name="org.scalactic.Prettifier">Prettifier</a></span>)</span><span class="result">: <a href="Bool.html" class="extype" name="org.scalactic.Bool">Bool</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@existsMacroBool(left:Any,right:Any,expression:Boolean,prettifier:org.scalactic.Prettifier):org.scalactic.Bool" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Create exists macro <code>Bool</code> that is used by <code>BooleanMacro</code> to wrap a recognized <code>Boolean</code> expression
+represented by <code>exists</code> method call.</code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Create exists macro <code>Bool</code> that is used by <code>BooleanMacro</code> to wrap a recognized <code>Boolean</code> expression
+represented by <code>exists</code> method call.
+</p></div><dl class="paramcmts block"><dt class="param">left</dt><dd class="cmt"><p>the left-hand-side (LHS) of the <code>Boolean</code> expression</p></dd><dt class="param">right</dt><dd class="cmt"><p>the right-hand-side (RHS) of the <code>Boolean</code> expression</p></dd><dt class="param">expression</dt><dd class="cmt"><p>the <code>Boolean</code> expression</p></dd><dt class="param">prettifier</dt><dd class="cmt"><p>the <code>Prettifier</code> used for prettifying messages, this need to be implicit to let the compiler resolve it implicitly, it will be too tricky for our macro to resolve it and pass it over explicitly.</p></dd><dt>returns</dt><dd class="cmt"><p>a exists macro <code>Bool</code></p></dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@finalize():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@getClass():Class[_]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@hashCode():Int" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.scalactic.Bool#isInstanceOfMacroBool" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOfMacroBool(left:Any,operator:String,className:String,bool:org.scalactic.Bool,prettifier:org.scalactic.Prettifier):org.scalactic.Bool"></a>
+      <a id="isInstanceOfMacroBool(Any,String,String,Bool,Prettifier):Bool"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOfMacroBool</span><span class="params">(<span name="left">left: <span class="extype" name="scala.Any">Any</span></span>, <span name="operator">operator: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="className">className: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="bool">bool: <a href="Bool.html" class="extype" name="org.scalactic.Bool">Bool</a></span>, <span name="prettifier">prettifier: <a href="Prettifier.html" class="extype" name="org.scalactic.Prettifier">Prettifier</a></span>)</span><span class="result">: <a href="Bool.html" class="extype" name="org.scalactic.Bool">Bool</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@isInstanceOfMacroBool(left:Any,operator:String,className:String,bool:org.scalactic.Bool,prettifier:org.scalactic.Prettifier):org.scalactic.Bool" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Overloaded method that takes a <code>Bool</code> in place of <code>Boolean</code> expression to create a new <code>isInstanceOf</code>
+macro <code>Bool</code>.</code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Overloaded method that takes a <code>Bool</code> in place of <code>Boolean</code> expression to create a new <code>isInstanceOf</code>
+macro <code>Bool</code>.
+</p></div><dl class="paramcmts block"><dt class="param">left</dt><dd class="cmt"><p>the left-hand-side (LHS) of the <code>Boolean</code> expression</p></dd><dt class="param">operator</dt><dd class="cmt"><p>the operator (method name) of the <code>Boolean</code> expression</p></dd><dt class="param">className</dt><dd class="cmt"><p>the class name passed to <code>isInstanceOf</code> method call</p></dd><dt class="param">bool</dt><dd class="cmt"><p>the <code>Bool</code> that will provide the <code>Boolean</code> expression value with <code>bool.value</code></p></dd><dt class="param">prettifier</dt><dd class="cmt"><p>the <code>Prettifier</code> used for prettifying messages, this need to be implicit to let the compiler resolve it implicitly, it will be too tricky for our macro to resolve it and pass it over explicitly.</p></dd><dt>returns</dt><dd class="cmt"><p>a <code>Bool</code> instance that represents a <code>isInstanceOf</code> method call</p></dd></dl></div>
+    </li><li name="org.scalactic.Bool#isInstanceOfMacroBool" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOfMacroBool(left:Any,operator:String,className:String,expression:Boolean,prettifier:org.scalactic.Prettifier):org.scalactic.Bool"></a>
+      <a id="isInstanceOfMacroBool(Any,String,String,Boolean,Prettifier):Bool"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOfMacroBool</span><span class="params">(<span name="left">left: <span class="extype" name="scala.Any">Any</span></span>, <span name="operator">operator: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="className">className: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="expression">expression: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="prettifier">prettifier: <a href="Prettifier.html" class="extype" name="org.scalactic.Prettifier">Prettifier</a></span>)</span><span class="result">: <a href="Bool.html" class="extype" name="org.scalactic.Bool">Bool</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@isInstanceOfMacroBool(left:Any,operator:String,className:String,expression:Boolean,prettifier:org.scalactic.Prettifier):org.scalactic.Bool" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Create macro <code>Bool</code> that is used by <code>BooleanMacro</code> to wrap a recognized <code>Boolean</code> expression
+represented by a <code>isInstanceOf</code> method call,
+</code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Create macro <code>Bool</code> that is used by <code>BooleanMacro</code> to wrap a recognized <code>Boolean</code> expression
+represented by a <code>isInstanceOf</code> method call,
+</p></div><dl class="paramcmts block"><dt class="param">left</dt><dd class="cmt"><p>the left-hand-side (LHS) of the <code>Boolean</code> expression</p></dd><dt class="param">operator</dt><dd class="cmt"><p>the operator (method name) of the <code>Boolean</code> expression</p></dd><dt class="param">className</dt><dd class="cmt"><p>the class name passed to <code>isInstanceOf</code> method call</p></dd><dt class="param">expression</dt><dd class="cmt"><p>the <code>Boolean</code> expression</p></dd><dt class="param">prettifier</dt><dd class="cmt"><p>the <code>Prettifier</code> used for prettifying messages, this need to be implicit to let the compiler resolve it implicitly, it will be too tricky for our macro to resolve it and pass it over explicitly.</p></dd><dt>returns</dt><dd class="cmt"><p>a <code>Bool</code> instance that represents a <code>isInstanceOf</code> method call</p></dd></dl></div>
+    </li><li name="org.scalactic.Bool#isSimpleWithoutExpressionText" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isSimpleWithoutExpressionText(bool:org.scalactic.Bool):Boolean"></a>
+      <a id="isSimpleWithoutExpressionText(Bool):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isSimpleWithoutExpressionText</span><span class="params">(<span name="bool">bool: <a href="Bool.html" class="extype" name="org.scalactic.Bool">Bool</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@isSimpleWithoutExpressionText(bool:org.scalactic.Bool):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A helper method to check is the given <code>Bool</code> is a simple macro <code>Bool</code> and contains empty expression text.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>A helper method to check is the given <code>Bool</code> is a simple macro <code>Bool</code> and contains empty expression text.
+</p></div><dl class="paramcmts block"><dt class="param">bool</dt><dd class="cmt"><p>the <code>Bool</code> to check</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the given <code>Bool</code> is a simple macro <code>Bool</code> and contains empty expression text, <code>false</code> otherwise.</p></dd></dl></div>
+    </li><li name="org.scalactic.Bool#lengthSizeMacroBool" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="lengthSizeMacroBool(left:Any,operator:String,actual:Any,expected:Any,prettifier:org.scalactic.Prettifier):org.scalactic.Bool"></a>
+      <a id="lengthSizeMacroBool(Any,String,Any,Any,Prettifier):Bool"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">lengthSizeMacroBool</span><span class="params">(<span name="left">left: <span class="extype" name="scala.Any">Any</span></span>, <span name="operator">operator: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="actual">actual: <span class="extype" name="scala.Any">Any</span></span>, <span name="expected">expected: <span class="extype" name="scala.Any">Any</span></span>, <span name="prettifier">prettifier: <a href="Prettifier.html" class="extype" name="org.scalactic.Prettifier">Prettifier</a></span>)</span><span class="result">: <a href="Bool.html" class="extype" name="org.scalactic.Bool">Bool</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@lengthSizeMacroBool(left:Any,operator:String,actual:Any,expected:Any,prettifier:org.scalactic.Prettifier):org.scalactic.Bool" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Create macro <code>Bool</code> that is used by <code>BooleanMacro</code> to wrap a recognized <code>Boolean</code> expression
+represented by <code>length</code> and <code>size</code> method call,
+</code></code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Create macro <code>Bool</code> that is used by <code>BooleanMacro</code> to wrap a recognized <code>Boolean</code> expression
+represented by <code>length</code> and <code>size</code> method call,
+</p></div><dl class="paramcmts block"><dt class="param">left</dt><dd class="cmt"><p>the left-hand-side (LHS) of the <code>Boolean</code> expression</p></dd><dt class="param">operator</dt><dd class="cmt"><p>the operator (method name) of the <code>Boolean</code> expression</p></dd><dt class="param">actual</dt><dd class="cmt"><p>the actual value returned from <code>length</code> or <code>size</code> method call</p></dd><dt class="param">expected</dt><dd class="cmt"><p>the expected value returned from <code>length</code> or <code>size</code> method call</p></dd><dt class="param">prettifier</dt><dd class="cmt"><p>the <code>Prettifier</code> used for prettifying messages, this need to be implicit to let the compiler resolve it implicitly, it will be too tricky for our macro to resolve it and pass it over explicitly.</p></dd><dt>returns</dt><dd class="cmt"><p>a <code>Bool</code> instance that represents a <code>length</code> or <code>size</code> method call</p></dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.scalactic.Bool#notBool" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notBool(bool:org.scalactic.Bool,prettifier:org.scalactic.Prettifier):org.scalactic.Bool"></a>
+      <a id="notBool(Bool,Prettifier):Bool"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notBool</span><span class="params">(<span name="bool">bool: <a href="Bool.html" class="extype" name="org.scalactic.Bool">Bool</a></span>, <span name="prettifier">prettifier: <a href="Prettifier.html" class="extype" name="org.scalactic.Prettifier">Prettifier</a></span>)</span><span class="result">: <a href="Bool.html" class="extype" name="org.scalactic.Bool">Bool</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@notBool(bool:org.scalactic.Bool,prettifier:org.scalactic.Prettifier):org.scalactic.Bool" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Create a negated version of the given <code>Bool</code>
+</code></p><div class="fullcomment"><div class="comment cmt"><p>Create a negated version of the given <code>Bool</code>
+</p></div><dl class="paramcmts block"><dt class="param">bool</dt><dd class="cmt"><p>the given <code>Bool</code></p></dd><dt class="param">prettifier</dt><dd class="cmt"><p>the <code>Prettifier</code> used for prettifying messages, this need to be implicit to let the compiler resolve it implicitly, it will be too tricky for our macro to resolve it and pass it over explicitly.</p></dd><dt>returns</dt><dd class="cmt"><p>a negated version of the given <code>Bool</code></p></dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@notify():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@notifyAll():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.scalactic.Bool#simpleMacroBool" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="simpleMacroBool(expression:Boolean,expressionText:String,prettifier:org.scalactic.Prettifier):org.scalactic.Bool"></a>
+      <a id="simpleMacroBool(Boolean,String,Prettifier):Bool"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">simpleMacroBool</span><span class="params">(<span name="expression">expression: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="expressionText">expressionText: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="prettifier">prettifier: <a href="Prettifier.html" class="extype" name="org.scalactic.Prettifier">Prettifier</a></span>)</span><span class="result">: <a href="Bool.html" class="extype" name="org.scalactic.Bool">Bool</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@simpleMacroBool(expression:Boolean,expressionText:String,prettifier:org.scalactic.Prettifier):org.scalactic.Bool" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Create simple macro <code>Bool</code> that is used by <code>BooleanMacro</code> to wrap an unrecognized <code>Boolean</code> expression.</code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Create simple macro <code>Bool</code> that is used by <code>BooleanMacro</code> to wrap an unrecognized <code>Boolean</code> expression.
+</p></div><dl class="paramcmts block"><dt class="param">expression</dt><dd class="cmt"><p>the <code>Boolean</code> expression</p></dd><dt class="param">expressionText</dt><dd class="cmt"><p>the original expression text (source code)</p></dd><dt class="param">prettifier</dt><dd class="cmt"><p>the <code>Prettifier</code> used for prettifying messages, this need to be implicit to let the compiler resolve it implicitly, it will be too tricky for our macro to resolve it and pass it over explicitly.</p></dd><dt>returns</dt><dd class="cmt"><p>a simple macro <code>Bool</code></p></dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@toString():String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.scalactic.Bool#unaryMacroBool" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="unaryMacroBool(left:Any,operator:String,bool:org.scalactic.Bool,prettifier:org.scalactic.Prettifier):org.scalactic.Bool"></a>
+      <a id="unaryMacroBool(Any,String,Bool,Prettifier):Bool"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">unaryMacroBool</span><span class="params">(<span name="left">left: <span class="extype" name="scala.Any">Any</span></span>, <span name="operator">operator: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="bool">bool: <a href="Bool.html" class="extype" name="org.scalactic.Bool">Bool</a></span>, <span name="prettifier">prettifier: <a href="Prettifier.html" class="extype" name="org.scalactic.Prettifier">Prettifier</a></span>)</span><span class="result">: <a href="Bool.html" class="extype" name="org.scalactic.Bool">Bool</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@unaryMacroBool(left:Any,operator:String,bool:org.scalactic.Bool,prettifier:org.scalactic.Prettifier):org.scalactic.Bool" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Overloaded method that takes a <code>Bool</code> in place of <code>Boolean</code> expression to create a new unary macro <code>Bool</code>.</code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Overloaded method that takes a <code>Bool</code> in place of <code>Boolean</code> expression to create a new unary macro <code>Bool</code>.
+</p></div><dl class="paramcmts block"><dt class="param">left</dt><dd class="cmt"><p>the left-hand-side (LHS) of the <code>Boolean</code> expression</p></dd><dt class="param">operator</dt><dd class="cmt"><p>the operator (method name) of the <code>Boolean</code> expression</p></dd><dt class="param">bool</dt><dd class="cmt"><p>the <code>Bool</code> that will provide the <code>Boolean</code> expression value with <code>bool.value</code></p></dd><dt class="param">prettifier</dt><dd class="cmt"><p>the <code>Prettifier</code> used for prettifying messages, this need to be implicit to let the compiler resolve it implicitly, it will be too tricky for our macro to resolve it and pass it over explicitly.</p></dd><dt>returns</dt><dd class="cmt"><p>a binary macro <code>Bool</code></p></dd></dl></div>
+    </li><li name="org.scalactic.Bool#unaryMacroBool" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="unaryMacroBool(left:Any,operator:String,expression:Boolean,prettifier:org.scalactic.Prettifier):org.scalactic.Bool"></a>
+      <a id="unaryMacroBool(Any,String,Boolean,Prettifier):Bool"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">unaryMacroBool</span><span class="params">(<span name="left">left: <span class="extype" name="scala.Any">Any</span></span>, <span name="operator">operator: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="expression">expression: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="prettifier">prettifier: <a href="Prettifier.html" class="extype" name="org.scalactic.Prettifier">Prettifier</a></span>)</span><span class="result">: <a href="Bool.html" class="extype" name="org.scalactic.Bool">Bool</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@unaryMacroBool(left:Any,operator:String,expression:Boolean,prettifier:org.scalactic.Prettifier):org.scalactic.Bool" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Create unary macro <code>Bool</code> that is used by <code>BooleanMacro</code> to wrap a recognized <code>Boolean</code> expression represented by a unary method call,
+which includes <code>Boolean</code> expression that uses <code>isEmpty</code>.</code></code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Create unary macro <code>Bool</code> that is used by <code>BooleanMacro</code> to wrap a recognized <code>Boolean</code> expression represented by a unary method call,
+which includes <code>Boolean</code> expression that uses <code>isEmpty</code>.
+</p></div><dl class="paramcmts block"><dt class="param">left</dt><dd class="cmt"><p>the left-hand-side (LHS) of the <code>Boolean</code> expression</p></dd><dt class="param">operator</dt><dd class="cmt"><p>the operator (method name) of the <code>Boolean</code> expression</p></dd><dt class="param">expression</dt><dd class="cmt"><p>the <code>Boolean</code> expression</p></dd><dt class="param">prettifier</dt><dd class="cmt"><p>the <code>Prettifier</code> used for prettifying messages, this need to be implicit to let the compiler resolve it implicitly, it will be too tricky for our macro to resolve it and pass it over explicitly.</p></dd><dt>returns</dt><dd class="cmt"><p>a unary macro <code>Bool</code></p></dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@wait():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalactic.Bool$@wait(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>
