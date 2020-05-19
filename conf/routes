@@ -28,5 +28,6 @@ GET        /user_guide/timesOnInt                 controllers.UserGuide.timesOnI
 
 # Map static resources from the /public folder to the /assets and
 # /scaladoc URL paths
+GET        /scaladoc/*file                        controllers.Assets.at(path="/public/scaladoc", file)
 GET        /assets/*file                          controllers.Assets.at(path="/public", file)
 
