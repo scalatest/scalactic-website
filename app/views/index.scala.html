@@ -16,7 +16,7 @@
 
 @import controllers.Application.majorMinorScalaVersion
 @import controllers.Application.latestScaladoc
-@import controllers.Application.latestScalacticScaladoc
+@import controllers.Application.scaladocsPageUrl
 
 @homePage("Home") {
 
@@ -43,7 +43,7 @@
 
     <p>
     For example, you can compare strings for equality after being normalized by forcing them to lowercase by customizing
-    <a href="@latestScalacticScaladoc/#org.scalactic.Equality"><code>Equality</code></a> explicitly, like this:
+    <a href='@scaladocsPageUrl("org.scalactic.Equality")'><code>Equality</code></a> explicitly, like this:
     </p>
 
     <pre class="scala">
@@ -56,7 +56,7 @@
     </pre>
 
     <p>
-    You can also define implicit <a href="@latestScalacticScaladoc/#org.scalactic.Normalization"><code>Normalization</code></a> strategies for types and access
+    You can also define implicit <a href='@scaladocsPageUrl("org.scalactic.Normalization")'><code>Normalization</code></a> strategies for types and access
     them by invoking <code>norm</code> methods:
     </p>
 
@@ -71,7 +71,7 @@
 
     <p>
     The &ldquo;<code>after being lowerCased</code>&rdquo; syntax shown previously is provided by Scalactic'
-    <a href="@latestScalacticScaladoc/#org.scalactic.Explicitly"><code>Explicitly</code></a> DSL, which allows you to specify <code>Equality</code>
+    <a href='@scaladocsPageUrl("org.scalactic.Explicitly")'><code>Explicitly</code></a> DSL, which allows you to specify <code>Equality</code>
     explicitly. You can also define custom <code>Equality</code>s implicitly:
     </p>
 
@@ -84,7 +84,7 @@
     </pre>
 
     <p>
-    You can compare numeric values for equality with a <a href="@latestScalacticScaladoc/#org.scalactic.Tolerance"><code>Tolerance</code></a>, like this:
+    You can compare numeric values for equality with a <a href='@scaladocsPageUrl("org.scalactic.Tolerance")'><code>Tolerance</code></a>, like this:
     </p>
 
     <pre class="scala">
@@ -94,7 +94,7 @@
     </pre>
 
     <p>
-    Or you could use <a href="@latestScalacticScaladoc/#org.scalactic.TolerantNumerics"><code>TolerantNumerics</code></a> define an implicit <code>Equality[Double]</code> that
+    Or you could use <a href='@scaladocsPageUrl("org.scalactic.TolerantNumerics")'><code>TolerantNumerics</code></a> define an implicit <code>Equality[Double]</code> that
     compares <code>Double</code>s with a tolerance:
     </p>
 
@@ -124,13 +124,13 @@
     <h1><code>Or</code> and <code>Every</code></h1>
 
     <p>
-      Scalactic provides an &ldquo;<code>Either</code> with attitude&rdquo; named <a href="@latestScalacticScaladoc/#org.scalactic.Or"><code>Or</code></a>, designed for
+      Scalactic provides an &ldquo;<code>Either</code> with attitude&rdquo; named <a href='@scaladocsPageUrl("org.scalactic.Or")'><code>Or</code></a>, designed for
       functional error handling. <code>Or</code> gives you
       more convenient chaining of <code>map</code> and <code>flatMap</code> calls (and <code>for</code> expressions) than <code>Either</code> and, when, combined
-      with <a href="@latestScalacticScaladoc/#org.scalactic.Every"><code>Every</code></a>, enables you to accumulate errors. <code>Every</code> is an ordered
-      collection of one or more elements. An <code>Or</code> is either <a href="@latestScalacticScaladoc/#org.scalactic.Good"><code>Good</code></a> or
-      <a href="@latestScalacticScaladoc/#org.scalactic.Bad"><code>Bad</code></a>. An <code>Every</code> is either
-      <a href="@latestScalacticScaladoc/#org.scalactic.One"><code>One</code></a> or <a href="@latestScalacticScaladoc/#org.scalactic.Many"><code>Many</code></a>. Here's an
+      with <a href='@scaladocsPageUrl("org.scalactic.Every")'><code>Every</code></a>, enables you to accumulate errors. <code>Every</code> is an ordered
+      collection of one or more elements. An <code>Or</code> is either <a href='@scaladocsPageUrl("org.scalactic.Good")'><code>Good</code></a> or
+      <a href='@scaladocsPageUrl("org.scalactic.Bad")'><code>Bad</code></a>. An <code>Every</code> is either
+      <a href='@scaladocsPageUrl("org.scalactic.One")'<code>One</code></a> or <a href='@scaladocsPageUrl("org.scalactic.Many")'><code>Many</code></a>. Here's an
       example of accumulating errors with <code>Or</code> and <code>Every</code>:
     </p>
 
@@ -186,13 +186,13 @@ parsePerson(<span class="quotedString">&quot;Bridget Jones&quot;</span>, <span c
 
 <p>
 <code>Or</code> offers several other ways to accumulate errors besides the <code>withGood</code> methods shown in the example above. See the
-<a href="@latestScalacticScaladoc/#org.scalactic.Or">documentation for <code>Or</code></a> for more information.
+<a href='@scaladocsPageUrl("org.scalactic.Or")'>documentation for <code>Or</code></a> for more information.
 </p>
 
     <h1><code>Requirements</code> and <code>Snapshots</code></h1>
 
 <p>
-Scalactic includes a <a href="@latestScalacticScaladoc/#org.scalactic.Requirements"><code>Requirements</code></a> trait that offers
+Scalactic includes a <a href='@scaladocsPageUrl("org.scalactic.Requirements")'><code>Requirements</code></a> trait that offers
 <code>require</code>, <code>requireState</code>, and <code>requireNonNull</code> methods for checking pre-conditions
 that give descriptive error messages extracted via a macro. Here are some examples:</p>
 </p>
@@ -213,7 +213,7 @@ requireNonNull(a, b)
 </pre>
 
 <p>
-Trait <a href="@latestScalacticScaladoc/#org.scalactic.Snapshots"><code>Snapshots</code></a> offers a
+Trait <a href='@scaladocsPageUrl("org.scalactic.Snapshots")'><code>Snapshots</code></a> offers a
 <code>snap</code> method that can help you make debug and log messages that include information about
 the values of variables:
 </p>
@@ -229,7 +229,7 @@ snap(a, b, c) <span class="lineComment">// Result: a was 1, b was '2', c was "3"
     <h1>And more (but not much more)...</h1>
 
 <p>
-Scalactic also includes a <a href="@latestScalacticScaladoc/#org.scalactic.TimesOnInt"><code>TimesOnInt</code></a> trait that allows you to perform
+Scalactic also includes a <a href='@scaladocsPageUrl("org.scalactic.TimesOnInt")'><code>TimesOnInt</code></a> trait that allows you to perform
 side-effecting loops a specified number of times, like this:
 </p>
 
@@ -240,8 +240,8 @@ import TimesOnInt._
 </pre>
 
 <p>
-You can also define an alternate <code>String</code> forms for types using <a href="@latestScalacticScaladoc/#org.scalactic.Prettifier"><code>Prettifier</code></a>s
-and create extractors for <code>Throwable</code>s via the <a href="@latestScalacticScaladoc/#org.scalactic.Catcher"><code>Catcher</code></a> factory.
+You can also define an alternate <code>String</code> forms for types using <a href='@scaladocsPageUrl("org.scalactic.Prettifier")'><code>Prettifier</code></a>s
+and create extractors for <code>Throwable</code>s via the <a href='@scaladocsPageUrl("org.scalactic.Catcher")'><code>Catcher</code></a> factory.
 </p>
 
 <p>

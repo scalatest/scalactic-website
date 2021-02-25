@@ -16,7 +16,7 @@
 
 @import controllers.Application.milestoneScaladoc
 @import controllers.Application.latestScaladoc
-@import controllers.Application.latestScalacticScaladoc
+@import controllers.Application.scaladocsPageUrl
 
 @userGuidePage("TimesOnInt") {
 <div style="text-align: left">
@@ -24,7 +24,7 @@
 <h1>TimesOnInt</h1>
 
 <p>
-The <a href="@{latestScalacticScaladoc}/#org.scalactic.TimesOnInt"><code>TimesOnInt</code></a> trait providing an implicit conversion that adds
+The <a href='@scaladocsPageUrl("org.scalactic.TimesOnInt")'><code>TimesOnInt</code></a> trait providing an implicit conversion that adds
 a <code>times</code> method to <code>Int</code>s that will repeat a given side-effecting operation multiple times.
 </p>
 

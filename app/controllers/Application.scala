@@ -60,7 +60,6 @@ class Application extends Controller {
 object Application {
 
   val latestScaladoc = "http://doc.scalatest.org/3.2.5"
-  val latestScalacticScaladoc = "http://doc.scalactic.org/3.2.5"
   val latestVersion = "3.2.5"
   val latestSuperSafeVersion = "1.1.11"
   val milestoneVersion = "3.1.0-RC3"
