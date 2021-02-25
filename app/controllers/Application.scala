@@ -59,7 +59,6 @@ class Application extends Controller {
 
 object Application {
 
-  val latestScaladoc = "http://doc.scalatest.org/3.2.5"
   val latestVersion = "3.2.5"
   val latestSuperSafeVersion = "1.1.11"
   val milestoneVersion = "3.1.0-RC3"
@@ -80,5 +79,16 @@ object Application {
       else s"$version/${file.replaceAll("\\.", "/")}.html"
 
     routes.Assets.at("/public/scaladoc", filePath).toString
+  }
+
+  def scalatestScaladocsPageUrl(file: String, version: String = latestVersion): String = {
+    val oldScaladocStyle30Releases = List("3.0.0", "3.0.1", "3.0.2", "3.0.3", "3.0.4")
+    val filePath =
+      if (version.startsWith("1.") || version.startsWith("2.") || oldScaladocStyle30Releases.contains(version)) {
+        s"$version/index.html#$file"
+      }
+      else s"$version/${file.replaceAll("\\.", "/")}.html"
+
+    s"https://www.scalatest.org/scaladoc/$filePath"
   }
 }

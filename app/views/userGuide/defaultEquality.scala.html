@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application.scalatestScaladocsPageUrl
 @import controllers.Application.scaladocsPageUrl
 
 @userGuidePage("Default equality") {
@@ -108,14 +108,14 @@ Here's the <code>areEqual</code> method implementation from the earlier <code>Eq
 </pre>
 
 <p>
-<code>Equality</code> is used by <a href="@{latestScaladoc}/#org.scalactic.TripleEquals" target="_blank"><code>TripleEquals</code></a>,
+<code>Equality</code> is used by <a href='@scalatestScaladocsPageUrl("org.scalactic.TripleEquals")' target="_blank")'><code>TripleEquals</code></a>,
 which enforces no type constraint between the left and right values, and the <code>equal</code>, <code>be</code>, and <code>contain</code> syntax of ScalaTest Matchers.
 </p>
 
 <p>
-By contrast, <a href="@{latestScaladoc}/#org.scalactic.TypeCheckedTripleEquals" target="_blank"><code>TypeCheckedTripleEquals</code></a>
-and <a href="@{latestScaladoc}/#org.scalactic.ConversionCheckedTripleEquals" target="_blank"><code>ConversionCheckedTripleEquals</code></a>
-use an <a href="@{latestScaladoc}/#org.scalactic.Equivalence" target="_blank"><code>Equivalence</code></a>.
+By contrast, <a href='@scalatestScaladocsPageUrl("org.scalactic.TypeCheckedTripleEquals")' target="_blank")'><code>TypeCheckedTripleEquals</code></a>
+and <a href='@scalatestScaladocsPageUrl("org.scalactic.ConversionCheckedTripleEquals")' target="_blank")'><code>ConversionCheckedTripleEquals</code></a>
+use an <a href='@scalatestScaladocsPageUrl("org.scalactic.Equivalence")' target="_blank")'><code>Equivalence</code></a>.
 <code>Equivalence</code> differs from <code>Equality</code> in that both the left and right values are of the same type. <code>Equivalence</code> works for
 <code>TypeCheckedTripleEquals</code> because the type constraint enforces that the left type is a subtype or supertype of (or the same type as) the right
 type, and it <em>widens</em> the subtype to the supertype. So ultimately, both left and right sides are of the supertype type. Similarly, <code>Equivalence</code>
@@ -135,7 +135,7 @@ method might look:
 <p>
 Scalactic provides both <code>Equality</code> and <code>Equivalence</code> because the <code>Any</code> in
 <code>Equality</code> can sometimes make things painful. For example, in trait
-<a href="@{latestScaladoc}/#org.scalactic.TolerantNumerics" target="_blank"><code>TolerantNumerics</code></a>,
+<a href='@scalatestScaladocsPageUrl("org.scalactic.TolerantNumerics")' target="_blank")'><code>TolerantNumerics</code></a>,
 a single generic factory method can produce <code>Equivalence</code>s for any <code>Numeric</code> type,
 but because of the <code>Any</code>, a separate factory method must be defined to produce an <code>Equality</code>
 for each <code>Numeric</code> type.

@@ -14,7 +14,7 @@
 * limitations under the License.
 *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application.scalatestScaladocsPageUrl
 @import controllers.Application.scaladocsPageUrl
 
 @userGuidePage("Normalization") {
@@ -111,7 +111,7 @@ Given this definition you could use it with the <a href='@scaladocsPageUrl("org.
 </pre>
 
 <p>
-If you make the <code>truncated</code> <code>val</code> implicit and import or mix in the members of <a href="@{latestScaladoc}/#org.scalactic.NormMethods"><code>NormMethods</code></a>,
+If you make the <code>truncated</code> <code>val</code> implicit and import or mix in the members of <a href='@scalatestScaladocsPageUrl("org.scalactic.NormMethods")'><code>NormMethods</code></a>,
 you can access the behavior by invoking <code>.norm</code> on <code>Double</code>s.
 </p>
 
