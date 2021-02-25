@@ -20,6 +20,7 @@
 @import controllers.Application.majorMinorScalaVersion
 @import controllers.Application.latestSuperSafeVersion
 @import controllers.Application.baseScalaVersion
+@import controllers.Application.scaladocsPageUrl
 
 @nonHomePage("Install") {
 
@@ -32,7 +33,8 @@
 
 <ul>
 <li><a href="http://www.scalatest.org/release_notes/@{latestVersion}">Combined Scalactic/ScalaTest @{latestVersion} Release Notes</a></li>
-<li><a href="http://doc.scalactic.org/@{latestVersion}/index.html#org.scalactic.Or">Scalactic @{latestVersion} Scaladoc</a></li>
+<li><a href='@scaladocsPageUrl("org.scalactic.Or")'>Scalactic @{latestVersion} Scaladoc</a></li>
+
 </ul>
 
 <p>
