@@ -14,8 +14,8 @@
 * limitations under the License.
 *@
 
-@import controllers.Application.latestScaladoc
-@import controllers.Application.latestScalacticScaladoc
+@import controllers.Application.scalatestScaladocsPageUrl
+@import controllers.Application.scaladocsPageUrl
 
 @userGuidePage("The Explicitly DSL") {
 <div style="text-align: left">
@@ -23,15 +23,15 @@
 <h1>The Explicitly DSL</h1>
 
 <p>
-Scalactic's <a href="@{latestScalacticScaladoc}/#org.scalactic.Explicitly"><code>Explicitly</code></a> trait provides the &ldquo;explicitly DSL,&rdquo; which facilitates the
-explicit specification of an <a href="@{latestScalacticScaladoc}/#org.scalactic.Equality"><code>Equality[T]</code></a> or a
-<a href="@{latestScalacticScaladoc}/#org.scalactic.Uniformity"><code>Uniformity[T]</code></a> where <code>Equality[T]</code> is taken implicitly.
+Scalactic's <a href='@scaladocsPageUrl("org.scalactic.Explicitly")'><code>Explicitly</code></a> trait provides the &ldquo;explicitly DSL,&rdquo; which facilitates the
+explicit specification of an <a href='@scaladocsPageUrl("org.scalactic.Equality")'><code>Equality[T]</code></a> or a
+<a href='@scaladocsPageUrl("org.scalactic.Uniformity")'><code>Uniformity[T]</code></a> where <code>Equality[T]</code> is taken implicitly.
 </p>
 
 <p>
 The Explicitly DSL can be used with the <code>===</code> and <code>!==</code> operators of Scalactic
 as well as the <code>should</code> <code>equal</code>, <code>be</code>, <code>contain</code>, and
-<code>===</code> syntax of <a href="@{latestScaladoc}/#org.scalatest.Matchers">ScalaTest matchers</a>.
+<code>===</code> syntax of <a href='@scalatestScaladocsPageUrl("org.scalatest.Matchers")'>ScalaTest matchers</a>.
 </p>
 
 <p>
@@ -54,7 +54,7 @@ result should equal ("hello") (decided by defaultEquality)
 
 <p>
 The explicitly DSL also provides support for specifying a one-off equality that is based on a normalization. For
-example, Scalactic offers a <a href="@{latestScalacticScaladoc}/#org.scalactic.StringNormalizations"><code>StringNormalizations</code></a>
+example, Scalactic offers a <a href='@scaladocsPageUrl("org.scalactic.StringNormalizations")'><code>StringNormalizations</code></a>
 trait that provides methods such as <code>trimmed</code> and <code>lowerCased</code> that return <code>Uniformity[String]</code>
 instances that normalize by trimming and lower-casing, respectively. If you bring those into scope by mixing in or importing the
 members of <code>StringNormalizations</code>, you could use the explicitly DSL like this:

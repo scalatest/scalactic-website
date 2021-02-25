@@ -14,8 +14,8 @@
 * limitations under the License.
 *@
 
-@import controllers.Application.latestScaladoc
-@import controllers.Application.latestScalacticScaladoc
+@import controllers.Application.scalatestScaladocsPageUrl
+@import controllers.Application.scaladocsPageUrl
 
 @userGuidePage("Or and Every") {
 <div style="text-align: left">
@@ -23,13 +23,13 @@
 <h1>Or and Every</h1>
 
 <p>
-The <a href="@{latestScalacticScaladoc}/#org.scalactic.Or"><code>Or</code></a> and <a href="@{latestScalacticScaladoc}/#org.scalactic.Every"><code>Every</code></a>
+The <a href='@scaladocsPageUrl("org.scalactic.Or")'><code>Or</code></a> and <a href='@scaladocsPageUrl("org.scalactic.Every")'><code>Every</code></a>
 types of Scalactic allow you to represent errors as an &ldquo;alternate return
 value&rdquo; (like <code>Either</code>) and to optionally accumulate errors.
 <code>Or</code> represents a value that is one of two possible types, with one type being &ldquo;good&rdquo;
-(a value wrapped in an instance of <a href="@{latestScalacticScaladoc}/#org.scalactic.Good"><code>Good</code></a>)
+(a value wrapped in an instance of <a href='@scaladocsPageUrl("org.scalactic.Good")'><code>Good</code></a>)
 and the other &ldquo;bad&rdquo;
-(a value wrapped in an instance of <a href="@{latestScalacticScaladoc}/#org.scalactic.Bad"><code>Bad</code></a>).
+(a value wrapped in an instance of <a href='@scaladocsPageUrl("org.scalactic.Bad")'><code>Bad</code></a>).
 </p>
 
 <h2>The motivation for <code>Or</code></h2>
@@ -283,11 +283,11 @@ parsePerson("", "")
 
 <p>
 Another difference between <code>Or</code> and <code>Either</code> is that <code>Or</code> enables
-you to accumulate errors if the <code>Bad</code> type is an <a href="@{latestScalacticScaladoc}/#org.scalactic.Every"><code>Every</code></a>.
+you to accumulate errors if the <code>Bad</code> type is an <a href='@scaladocsPageUrl("org.scalactic.Every")'><code>Every</code></a>.
 An <code>Every</code> is similar to a <code>Seq</code> in that it contains ordered elements, but
 different from <code>Seq</code> in that it cannot be empty. An <code>Every</code> is
-either a <a href="@{latestScalacticScaladoc}/#org.scalactic.One"><code>One</code></a>,
-which contains one and only one element, or a <a href="@{latestScalacticScaladoc}/#org.scalactic.Many"><code>Many</code></a>, which contains two or
+either a <a href='@scaladocsPageUrl("org.scalactic.One")'><code>One</code></a>,
+which contains one and only one element, or a <a href='@scaladocsPageUrl("org.scalactic.Many")'><code>Many</code></a>, which contains two or
 more elements.
 </p>
 
@@ -329,7 +329,7 @@ Because <code>parseName</code> will either return a valid name <code>String</cod
 <p>
 Because a <code>for</code> expression short-circuits on the first <code>Bad</code> encountered, you'll
 need to use a different approach to write the <code>parsePerson</code> method. In this example, the
-<code>withGood</code> method from trait <a href="@{latestScalacticScaladoc}/#org.scalactic.Accumulation"><code>Accumulation</code></a>
+<code>withGood</code> method from trait <a href='@scaladocsPageUrl("org.scalactic.Accumulation")'><code>Accumulation</code></a>
 will do the trick:
 </p>
 

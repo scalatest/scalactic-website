@@ -14,8 +14,8 @@
 * limitations under the License.
 *@
 
-@import controllers.Application.latestScaladoc
-@import controllers.Application.latestScalacticScaladoc
+@import controllers.Application.scalatestScaladocsPageUrl
+@import controllers.Application.scaladocsPageUrl
 
 @userGuidePage("Normalization") {
 <div style="text-align: left">
@@ -23,7 +23,7 @@
 <h1>Normalization</h1>
 
 <p>
-The Scalactic <a href="@{latestScalacticScaladoc}/#org.scalactic.Normalization"><code>Normalization</code></a> trait allows you to define a custom ways normalize objects based on their type.
+The Scalactic <a href='@scaladocsPageUrl("org.scalactic.Normalization")'><code>Normalization</code></a> trait allows you to define a custom ways normalize objects based on their type.
 </p>
 
 <p>
@@ -54,15 +54,15 @@ Given this definition you could use it with the <a href="@routes.UserGuide.expli
 
 <p>
 Note that to use a <code>Normalization</code> with the <code>Explicitly</code> DSL, you'll need to be using either
-<a href="@{latestScalacticScaladoc}/#org.scalactic.TypeCheckedTripleEquals"><code>TypeCheckedTripleEquals</code></a> or
-<a href="@{latestScalacticScaladoc}/#org.scalactic.ConversionCheckedTripleEquals"><code>ConversionCheckedTripleEquals</code></a>.
-If you're just using plain-old <a href="@{latestScalacticScaladoc}/#org.scalactic.TripleEquals"><code>TripleEquals</code></a>,
-you'll need a <a href="@{latestScalacticScaladoc}/#org.scalactic.Uniformity"><code>Uniformity</code></a> (described below), a <code>Normalization</code> subtrait.
+<a href='@scaladocsPageUrl("org.scalactic.TypeCheckedTripleEquals")'><code>TypeCheckedTripleEquals</code></a> or
+<a href='@scaladocsPageUrl("org.scalactic.ConversionCheckedTripleEquals")'><code>ConversionCheckedTripleEquals</code></a>.
+If you're just using plain-old <a href='@scaladocsPageUrl("org.scalactic.TripleEquals")'><code>TripleEquals</code></a>,
+you'll need a <a href='@scaladocsPageUrl("org.scalactic.Uniformity")'><code>Uniformity</code></a> (described below), a <code>Normalization</code> subtrait.
 </p>
 
 <p>
 If you make the <code>truncated</code> <code>val</code> implicit and import or mix in the members of
-<a href="@{latestScalacticScaladoc}/#org.scalactic.NormMethods"><code>NormMethods</code></a>,
+<a href='@scaladocsPageUrl("org.scalactic.NormMethods")'><code>NormMethods</code></a>,
 you can access the behavior by invoking <code>.norm</code> on <code>Double</code>s.
 </p>
 
@@ -77,7 +77,7 @@ d.norm // returns 2.0
 <h1>Uniformity</h1>
 
 <p>
-An important subtype of <code>Normalization</code> is <a href="@{latestScalacticScaladoc}/#org.scalactic.Uniformity"><code>Uniformity</code></a>, which
+An important subtype of <code>Normalization</code> is <a href='@scaladocsPageUrl("org.scalactic.Uniformity")'><code>Uniformity</code></a>, which
 defines a custom way to normalize instances of a type that can also handle normalization of that type when passed as <code>Any</code>.
 </p>
 
@@ -101,7 +101,7 @@ you might write:
 </pre>
 
 <p>
-Given this definition you could use it with the <a href="@{latestScalacticScaladoc}/#org.scalactic.Explicitly"><code>Explicitly</code></a> DSL like this:
+Given this definition you could use it with the <a href='@scaladocsPageUrl("org.scalactic.Explicitly")'><code>Explicitly</code></a> DSL like this:
 </p>
 
 <pre class="stHighlighted">
@@ -111,7 +111,7 @@ Given this definition you could use it with the <a href="@{latestScalacticScalad
 </pre>
 
 <p>
-If you make the <code>truncated</code> <code>val</code> implicit and import or mix in the members of <a href="@{latestScaladoc}/#org.scalactic.NormMethods"><code>NormMethods</code></a>,
+If you make the <code>truncated</code> <code>val</code> implicit and import or mix in the members of <a href='@scalatestScaladocsPageUrl("org.scalactic.NormMethods")'><code>NormMethods</code></a>,
 you can access the behavior by invoking <code>.norm</code> on <code>Double</code>s.
 </p>
 
@@ -123,11 +123,11 @@ d.norm <span class="stLineComment">// returns 2.0</span>
 </pre>
 
 <p>
-As mentioned previously, by creating a <code>Uniformity</code> rather than just an instance of its supertype, <a href="@{latestScalacticScaladoc}/#org.scalactic.Normalization"><code>Normalization</code></a>,
+As mentioned previously, by creating a <code>Uniformity</code> rather than just an instance of its supertype, <a href='@scaladocsPageUrl("org.scalactic.Normalization")'><code>Normalization</code></a>,
 it can be used more generally. For example, <code>Uniformity</code>s allow you to the <code>Explicitly</code> DSL with
-<a href="@{latestScalacticScaladoc}/#org.scalactic.TripleEquals"><code>TripleEquals</code></a>, whereas <code>Normalization</code>s require
-<a href="@{latestScalacticScaladoc}/#org.scalactic.TypeCheckedTripleEquals"><code>TypeCheckedTripleEquals</code></a> or
-<a href="@{latestScalacticScaladoc}/#org.scalactic.ConversionCheckedTripleEquals"><code>ConversionCheckedTripleEquals</code></a>.
+<a href='@scaladocsPageUrl("org.scalactic.TripleEquals")'><code>TripleEquals</code></a>, whereas <code>Normalization</code>s require
+<a href='@scaladocsPageUrl("org.scalactic.TypeCheckedTripleEquals")'><code>TypeCheckedTripleEquals</code></a> or
+<a href='@scaladocsPageUrl("org.scalactic.ConversionCheckedTripleEquals")'><code>ConversionCheckedTripleEquals</code></a>.
 <code>Uniformity</code>s also enable you to use the <code>Explicitly</code> DSL with ScalaTest's <code>should</code> <code>===</code>, <code>equal</code>,
 and <code>contain</code> matcher syntax, whereas a plain <code>Normalization</code> can only be used with <code>should</code> <code>===</code>, and only
 under either <code>TypeCheckedTripleEquals</code> or <code>ConversionCheckedTripleEquals</code>.

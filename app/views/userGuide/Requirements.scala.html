@@ -14,15 +14,15 @@
 * limitations under the License.
 *@
 
-@import controllers.Application.latestScaladoc
-@import controllers.Application.latestScalacticScaladoc
+@import controllers.Application.scalatestScaladocsPageUrl
+@import controllers.Application.scaladocsPageUrl
 
 @userGuidePage("Requirements") {
 <div style="text-align: left">
 
 <h1>Requirements</h1>
 
-<p>The <a href="@{latestScalacticScaladoc}/#org.scalactic.Requirements">Requirements</a> trait that contains <code>require</code>, and <code>requireState</code>, and <code>requireNonNull</code> methods for checking pre-conditions
+<p>The <a href='@scaladocsPageUrl("org.scalactic.Requirements")'>Requirements</a> trait that contains <code>require</code>, and <code>requireState</code>, and <code>requireNonNull</code> methods for checking pre-conditions
 that give descriptive error messages extracted via a macro.</p><p>These methods of trait <code>Requirements</code> aim to improve error messages provided when a pre-condition check fails at runtime in
 production code. Although it is recommended practice to supply helpful error messages when doing pre-condition checks, often people
 don't. Instead of this:</p>

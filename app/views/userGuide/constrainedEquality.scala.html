@@ -14,8 +14,8 @@
 * limitations under the License.
 *@
 
-@import controllers.Application.latestScaladoc
-@import controllers.Application.latestScalacticScaladoc
+@import controllers.Application.scalatestScaladocsPageUrl
+@import controllers.Application.scaladocsPageUrl
 
 @userGuidePage("Constrained Equality") {
 <div style="text-align: left">
@@ -24,7 +24,7 @@
 
 <p>
 Scalactic provides a way to get a compile-time type error if two types being compared with <code>===</code> violate a tunable type
-<a href="@{latestScalacticScaladoc}/#org.scalactic.Constraint"><code>Constraint</code></a>. The basic <a href="@{latestScalacticScaladoc}/#org.scalactic.TripleEquals"><code>TripleEquals</code></a> trait allows you to compare any
+<a href='@scaladocsPageUrl("org.scalactic.Constraint")'><code>Constraint</code></a>. The basic <a href='@scaladocsPageUrl("org.scalactic.TripleEquals")'><code>TripleEquals</code></a> trait allows you to compare any
 type for equality with any other type:
 </p>
 
@@ -43,7 +43,7 @@ res1: Boolean = true
 </pre>
 
 <p>
-<a href="@{latestScalacticScaladoc}/#org.scalactic.TypeCheckedTripleEquals"><code>TypeCheckedTripleEquals</code></a> will compile only if the left and right sides are in a subtype/supertype relationship (including
+<a href='@scaladocsPageUrl("org.scalactic.TypeCheckedTripleEquals")'><code>TypeCheckedTripleEquals</code></a> will compile only if the left and right sides are in a subtype/supertype relationship (including
 when the left and right sides are exactly the same type):
 </p>
 
@@ -85,7 +85,7 @@ Since every type is a subtype of <code>Any</code>, you can always solve an over-
 </p>
 <p>
 Another way to address this type error, since an implicit conversion exists between the two types, is to use
-<a href="@{latestScalacticScaladoc}/#org.scalactic.ConversionCheckedTripleEquals"><code>ConversionCheckedTripleEquals</code></a>.
+<a href='@scaladocsPageUrl("org.scalactic.ConversionCheckedTripleEquals")'><code>ConversionCheckedTripleEquals</code></a>.
 <code>ConversionCheckedTripleEquals</code> will compile if the left and right sides are
 in a subtype/supertype relationship <em>or</em> an implicit conversion exists between the left and right sides:
 </p>

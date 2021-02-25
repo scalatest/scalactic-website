@@ -15,8 +15,8 @@
 *@
 
 @import controllers.Application.milestoneScaladoc
-@import controllers.Application.latestScaladoc
-@import controllers.Application.latestScalacticScaladoc
+@import controllers.Application.scalatestScaladocsPageUrl
+@import controllers.Application.scaladocsPageUrl
 
 @userGuidePage("Tolerance") {
 <div style="text-align: left">
@@ -24,7 +24,7 @@
 <h1>Tolerance</h1>
 
 <p>
-The <a href="@{latestScalacticScaladoc}/#org.scalactic.Tolerance"><code>Tolerance</code></a> trait contains an implicit conversion that adds
+The <a href='@scaladocsPageUrl("org.scalactic.Tolerance")'><code>Tolerance</code></a> trait contains an implicit conversion that adds
 a <code>+-</code> method to <code>Numeric</code> types, which, combined with one of the <code>TripleEquals</code> traits,  enables
 you to determine whether the numeric value is with a tolerance.
 </p>
