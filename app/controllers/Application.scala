@@ -59,11 +59,11 @@ class Application extends Controller {
 
 object Application {
 
-  val latestVersion = "3.2.5"
+  val latestVersion = "3.2.6"
   val latestSuperSafeVersion = "1.1.12"
   val milestoneVersion = "3.1.0-RC3"
   val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.13/3.1.0-RC3/scalactic_2.10-3.1.0-RC3.jar"
-  val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.13/3.2.0/scalactic_2.13-3.2.0.jar"
+  val latestJar = s"https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.13/$latestVersion/scalactic_2.13-$latestVersion.jar"
   val milestoneScaladoc = "http://www.artima.com/docs-scalatest-3.1.0-RC3"
   val scaladocsLocation = "http://doc.scalatest.org"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
