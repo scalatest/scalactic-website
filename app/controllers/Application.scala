@@ -30,7 +30,7 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
   }
 
   def download = Action {
-    Redirect(routes.Application.install().url)
+    Redirect(routes.Application.install.url)
   }
 
   def olderReleases = Action {
@@ -46,7 +46,7 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
   }
 
   def community = Action {
-    Redirect(routes.Application.about().url)
+    Redirect(routes.Application.about.url)
   }
 
   def supersafe = Action {

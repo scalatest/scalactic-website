@@ -19,8 +19,8 @@ case class ScalacticAllowedHostsFilter @Inject() (env: Environment, errorHandler
   private val logger = Logger(this.getClass)
 
   // Java API
-  def this(env: Environment, errorHandler: play.http.HttpErrorHandler, contextComponents: JavaContextComponents) = {
-    this(env, new JavaHttpErrorHandlerAdapter(errorHandler, contextComponents))
+  def this(env: Environment, errorHandler: play.http.HttpErrorHandler) = {
+    this(env, new JavaHttpErrorHandlerAdapter(errorHandler))
   }
 
   def httpGet(targetUrl: String): String = {
