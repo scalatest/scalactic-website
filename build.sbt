@@ -6,11 +6,11 @@ lazy val root = (project in file(".")).settings(
     "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.3"
   ),
   fork := false, 
-  packageName in Docker := "artima/scalactic-website", 
-  maintainer in Docker := "Artima Inc.", 
+  Docker / packageName := "artima/scalactic-website", 
+  Docker / maintainer := "Artima Inc.", 
   dockerExposedPorts ++= Seq(9000), 
   dockerUpdateLatest := true, 
-  javaOptions in Universal ++= Seq(
+  Universal / javaOptions ++= Seq(
     // -J params will be added as jvm parameters
     "-J-Xmx256m",
     "-J-Xms128m"
