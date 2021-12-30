@@ -26,6 +26,11 @@ GET        /user_guide/Catcher                    controllers.UserGuide.catcher
 GET        /user_guide/Prettifier                 controllers.UserGuide.prettifier()
 GET        /user_guide/timesOnInt                 controllers.UserGuide.timesOnInt()
 
+GET        /release_notes                         controllers.ReleaseNotes.releaseNotesIndex()
+GET        /release-notes/2.0                     controllers.ReleaseNotes.v20()
+GET        /release-notes/2.1.0                   controllers.ReleaseNotes.v210()
+GET        /release-notes/:version                controllers.ReleaseNotes.v(version: String)
+
 # Map static resources from the /public folder to the /assets and
 # /scaladoc URL paths
 GET        /scaladoc/*file                        controllers.Assets.at(path="/public/scaladoc", file)
