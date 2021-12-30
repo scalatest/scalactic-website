@@ -17,8 +17,9 @@ package controllers
 
 import play.api._
 import play.api.mvc._
+import javax.inject.Inject
 
-class ReleaseNotes extends Controller {
+class ReleaseNotes @Inject() (cc: ControllerComponents) extends AbstractController(cc) {
 
   def releaseNotesIndex = Action {
     Ok(views.html.releaseNotes.releaseNotesIndex())

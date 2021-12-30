@@ -13,18 +13,18 @@ GET        /community                             controllers.Application.commun
 GET        /supersafe                             controllers.Application.supersafe
 GET        /about                                 controllers.Application.about
 
-GET        /user_guide/CustomEquality             controllers.UserGuide.customEquality
-GET        /user_guide/DefaultEquality            controllers.UserGuide.defaultEquality
-GET        /user_guide/ConstrainedEquality        controllers.UserGuide.constrainedEquality
-GET        /user_guide/Tolerance                  controllers.UserGuide.tolerance
-GET        /user_guide/Normalization              controllers.UserGuide.normalization
-GET        /user_guide/Explicitly                 controllers.UserGuide.explicitly
-GET        /user_guide/Requirements               controllers.UserGuide.requirements
-GET        /user_guide/Snapshots                  controllers.UserGuide.snapshots
-GET        /user_guide/OrAndEvery                 controllers.UserGuide.orAndEvery
+GET        /user_guide/CustomEquality             controllers.UserGuide.customEquality()
+GET        /user_guide/DefaultEquality            controllers.UserGuide.defaultEquality()
+GET        /user_guide/ConstrainedEquality        controllers.UserGuide.constrainedEquality()
+GET        /user_guide/Tolerance                  controllers.UserGuide.tolerance()
+GET        /user_guide/Normalization              controllers.UserGuide.normalization()
+GET        /user_guide/Explicitly                 controllers.UserGuide.explicitly()
+GET        /user_guide/Requirements               controllers.UserGuide.requirements()
+GET        /user_guide/Snapshots                  controllers.UserGuide.snapshots()
+GET        /user_guide/OrAndEvery                 controllers.UserGuide.orAndEvery()
 GET        /user_guide/Catcher                    controllers.UserGuide.catcher
-GET        /user_guide/Prettifier                 controllers.UserGuide.prettifier
-GET        /user_guide/timesOnInt                 controllers.UserGuide.timesOnInt
+GET        /user_guide/Prettifier                 controllers.UserGuide.prettifier()
+GET        /user_guide/timesOnInt                 controllers.UserGuide.timesOnInt()
 
 # Map static resources from the /public folder to the /assets and
 # /scaladoc URL paths
