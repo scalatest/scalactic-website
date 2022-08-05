@@ -27,6 +27,7 @@ GET        /user_guide/Prettifier                 controllers.UserGuide.prettifi
 GET        /user_guide/timesOnInt                 controllers.UserGuide.timesOnInt
 
 # Map static resources from the /public folder to the /assets and
+GET        /favicon.ico                           controllers.Assets.at(path="/public/images", file="favicon.ico")
 # /scaladoc URL paths
 GET        /scaladoc/*file                        controllers.Assets.at(path="/public/scaladoc", file)
 GET        /assets/*file                          controllers.Assets.at(path="/public", file)
