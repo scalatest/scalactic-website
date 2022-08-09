@@ -1,4 +1,4 @@
-/**
+@*
  * Copyright 2010-2013 Artima, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,28 +12,25 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-package controllers
+ *@
 
-import play.api._
-import play.api.mvc._
-import javax.inject.Inject
+@(version: String)
 
-class ReleaseNotes @Inject() (cc: ControllerComponents) extends AbstractController(cc) {
+@import controllers.Application.scaladocsPageUrl
 
-  def releaseNotesIndex = Action {
-    Ok(views.html.releaseNotes.releaseNotesIndex())
-  }
+@releaseNotesPage("Scalactic " + version + " Release Notes") {
+<div style="text-align: left">
 
-  def v20 = Action {
-    Ok(views.html.releaseNotes.v20())
-  }
+<h1>Scalactic @version Release Notes</h1>
 
-  def v210 = Action {
-    Ok(views.html.releaseNotes.v210())
-  }
+<p>
+Scalactic @version accompanies
+the ScalaTest @version release.
+For more information, see the
+<a href="https://www.scalatest.org/release_notes/@version">release notes
+for ScalaTest @version</a>.
+For information on how to include Scalactic in your project, see the <a href="/download">download page</a>.
+</p>
 
-  def v(version: String) = Action {
-    Ok(views.html.releaseNotes.v(version))
-  }
+</div>
 }
