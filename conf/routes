@@ -32,6 +32,7 @@ GET        /release-notes/2.1.0                   controllers.ReleaseNotes.v210(
 GET        /release-notes/:version                controllers.ReleaseNotes.v(version: String)
 
 # Map static resources from the /public folder to the /assets and
+GET        /favicon.ico                           controllers.Assets.at(path="/public/images", file="favicon.ico")
 # /scaladoc URL paths
 GET        /scaladoc/*file                        controllers.Assets.at(path="/public/scaladoc", file)
 GET        /assets/*file                          controllers.Assets.at(path="/public", file)
