@@ -3,7 +3,8 @@ lazy val root = (project in file(".")).settings(
   version := "scalactic-220929-ecr",
   scalaVersion := "2.13.9",
   libraryDependencies ++= Seq(
-    "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.3"
+    guice,
+    "org.scalatestplus.play" %% "scalatestplus-play" % "5.0.0" % Test
   ),
   fork := false, 
   Docker / packageName := "artima/scalactic-website", 

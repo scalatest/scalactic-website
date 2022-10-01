@@ -16,6 +16,6 @@
 package test
 
 import org.scalatest._
-import selenium.HtmlUnit
+import org.scalatestplus.selenium.HtmlUnit
 
 abstract class IntegrationSpec extends WordSpec with Matchers with OptionValues with HtmlUnit
