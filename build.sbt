@@ -1,6 +1,6 @@
 lazy val root = (project in file(".")).settings(
   name := "scalactic",
-  version := "scalactic-221021-ecr",
+  version := "scalactic-230112-ecr",
   scalaVersion := "2.13.10",
   libraryDependencies ++= Seq(
     guice,
