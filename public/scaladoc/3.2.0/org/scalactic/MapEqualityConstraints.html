@@ -20,21 +20,7 @@ gtag('config', 'UA-71294502-2');
 
 <!-- Top of doc.scalactic.org [javascript] -->
 
-<script type="text/javascript">
-
-var rnd = window.rnd || Math.floor(Math.random()*10e6);
-
-var pid204569 = window.pid204569 || rnd;
-
-var plc204569 = window.plc204569 || 0;
-
-var abkw = window.abkw || '';
-
-var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204569;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204569+';place='+(plc204569++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
-
-document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
-
-</script>
+<script id="adsArtimaScript" type="text/javascript" src="https://www.artima.com/assets/javascripts/93e949ccc290e6cbda3fecc57b6fbb66-ads.js?product=Scalactic"></script>
 <div id="definition"><a href="MapEqualityConstraints$.html" title="See companion object"><div class="big-circle trait-companion-object">t</div></a><p id="owner"><a href="../index.html" name="org" id="org" class="extype">org</a>.<a href="index.html" name="org.scalactic" id="org.scalactic" class="extype">scalactic</a></p><h1><a href="MapEqualityConstraints$.html" title="See companion object">MapEqualityConstraints</a><span class="permalink"><a href="../../org/scalactic/MapEqualityConstraints.html" title="Permalink"><i class="material-icons"></i></a></span></h1><h3><span class="morelinks"><div>Companion <a href="MapEqualityConstraints$.html" title="See companion object">object MapEqualityConstraints</a></div></span></h3></div><h4 id="signature" class="signature"><span class="modifier_kind"><span class="modifier"></span> <span class="kind">trait</span></span> <span class="symbol"><span class="name">MapEqualityConstraints</span><span class="result"> extends <span name="scala.AnyRef" class="extype">AnyRef</span></span></span></h4><div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Provides an implicit method that loosens the equality constraint defined by <code>TypeCheckedTripleEquals</code> or <code>ConversionCheckedTripleEquals</code>
 for Scala <code>Map</code>s to one that more closely matches Scala's approach to <code>Map</code> equality.</p><p>Scala's approach to <code>Map</code> equality is that if both objects being compared are <code>Map</code>s, the elements are compared to determine equality.
 This means you could compare an immutable <code>TreeMap</code> and a mutable <code>HashMap</code> for equality, for instance, and get true so long as the two maps
