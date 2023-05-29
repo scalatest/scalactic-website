@@ -20,21 +20,7 @@ gtag('config', 'UA-71294502-2');
 
 <!-- Top of doc.scalactic.org [javascript] -->
 
-<script type="text/javascript">
-
-var rnd = window.rnd || Math.floor(Math.random()*10e6);
-
-var pid204569 = window.pid204569 || rnd;
-
-var plc204569 = window.plc204569 || 0;
-
-var abkw = window.abkw || '';
-
-var absrc = 'https://servedbyadbutler.com/adserve/;ID=167933;size=468x60;setID=204569;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204569+';place='+(plc204569++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
-
-document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
-
-</script>
+<script id="adsArtimaScript" type="text/javascript" src="https://www.artima.com/assets/javascripts/93e949ccc290e6cbda3fecc57b6fbb66-ads.js?product=Scalactic"></script>
 <div id="definition"><a href="NonEmptyVector$.html" title="See companion object"><div class="big-circle class-companion-object">c</div></a><p id="owner"><a href="../../index.html" name="org" id="org" class="extype">org</a>.<a href="../index.html" name="org.scalactic" id="org.scalactic" class="extype">scalactic</a>.<a href="index.html" name="org.scalactic.anyvals" id="org.scalactic.anyvals" class="extype">anyvals</a></p><h1><a href="NonEmptyVector$.html" title="See companion object">NonEmptyVector</a><span class="permalink"><a href="../../../org/scalactic/anyvals/NonEmptyVector.html" title="Permalink"><i class="material-icons"></i></a></span></h1><h3><span class="morelinks"><div>Companion <a href="NonEmptyVector$.html" title="See companion object">object NonEmptyVector</a></div></span></h3></div><h4 id="signature" class="signature"><span class="modifier_kind"><span class="modifier">final </span> <span class="kind">class</span></span> <span class="symbol"><span class="name">NonEmptyVector</span><span class="tparams">[<span name="T">+T</span>]</span><span class="result"> extends <span name="scala.AnyVal" class="extype">AnyVal</span></span></span></h4><div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A non-empty list: an ordered, immutable, non-empty collection of elements with <code>LinearSeq</code> performance characteristics.</p><p>The purpose of <code>NonEmptyVector</code> is to allow you to express in a type that a <code>Vector</code> is non-empty, thereby eliminating the
 need for (and potential exception from) a run-time check for non-emptiness. For a non-empty sequence with <code>IndexedSeq</code>
 performance, see <a href="Every.html"><code>Every</code></a>.</p><h4> Constructing <code>NonEmptyVector</code>s </h4><p>You can construct a <code>NonEmptyVector</code> by passing one or more elements to the <code>NonEmptyVector.apply</code> factory method:</p><p><pre class="stHighlighted">
