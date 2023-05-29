@@ -17,7 +17,7 @@
 @(pagename: String, topImage: Html, containerStyle: String ="Container")(body: => Html)
 
 @import helpers.CalendarHelper.currentYear
-
+@import helpers.ArtimaHostHelper.host
 
 <!DOCTYPE html>
 <html>
@@ -36,14 +36,7 @@
 <body>
   <div class="@containerStyle">
 <!-- Top of scalactic.org 660 x 60 [async] -->
-<script type="text/javascript">if (!window.AdButler){(function(){var s = document.createElement("script"); s.async = true; s.type = "text/javascript";s.src = 'https://servedbyadbutler.com/app.js';var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(s, n);}());}</script>
-<script type="text/javascript">
-var AdButler = AdButler || {}; AdButler.ads = AdButler.ads || [];
-var abkw = window.abkw || '';
-var plc206080 = window.plc206080 || 0;
-document.write('<'+'div id="placement_206080_'+plc206080+'"></'+'div>');
-AdButler.ads.push({handler: function(opt){ AdButler.register(167933, 206080, [660,60], 'placement_206080_'+opt.place, opt); }, opt: { place: plc206080++, keywords: abkw, domain: 'servedbyadbutler.com', click:'CLICK_MACRO_PLACEHOLDER' }});
-</script>
+    <script id="adsArtimaScript" type="text/javascript" src="https://@{host}/assets/javascripts/93e949ccc290e6cbda3fecc57b6fbb66-ads.js?product=Scalactic"></script>
     <div id="Header">
 
       @topnav(pagename)
