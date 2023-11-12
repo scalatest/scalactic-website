@@ -18,4 +18,4 @@ package test
 import org.scalatest._
 import org.scalatestplus.selenium.HtmlUnit
 
-abstract class IntegrationSpec extends WordSpec with Matchers with OptionValues with HtmlUnit
+abstract class IntegrationSpec extends wordspec.AnyWordSpec with matchers.should.Matchers with OptionValues with HtmlUnit

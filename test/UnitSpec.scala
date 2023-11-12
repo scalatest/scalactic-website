@@ -18,4 +18,4 @@ package test
 import org.scalatest._
 import org.scalatestplus.play.guice._
 
-abstract class UnitSpec extends WordSpec with Matchers with OptionValues with GuiceOneAppPerTest
+abstract class UnitSpec extends wordspec.AnyWordSpec with matchers.should.Matchers with OptionValues with GuiceOneAppPerTest
