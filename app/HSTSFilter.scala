@@ -1,7 +1,7 @@
 import javax.inject.{Singleton}
 import play.api.mvc.{EssentialAction, EssentialFilter, RequestHeader, Result}
 import javax.inject.Inject
-import akka.util.ByteString
+import org.apache.pekko.util.ByteString
 import play.api.libs.streams.Accumulator
 import scala.concurrent.ExecutionContext.Implicits.global
 

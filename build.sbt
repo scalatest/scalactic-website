@@ -1,16 +1,17 @@
 lazy val root = (project in file(".")).settings(
   name := "scalactic",
-  version := "scalactic-230909_2-ecr",
-  scalaVersion := "2.13.10",
+  version := "231111",
+  scalaVersion := "3.3.1",
   libraryDependencies ++= Seq(
     guice,
-    "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test
+    "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.0" % Test
   ),
   fork := false, 
   Docker / packageName := "artima/scalactic-website", 
   Docker / maintainer := "Artima Inc.", 
   dockerExposedPorts ++= Seq(9000), 
-  dockerUpdateLatest := true, 
+  dockerUpdateLatest := true,
+  dockerBaseImage := "eclipse-temurin:17",
   Universal / javaOptions ++= Seq(
     // -J params will be added as jvm parameters
     "-J-Xmx128m",

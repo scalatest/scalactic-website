@@ -1,7 +1,7 @@
 
 import java.net.URL
 
-import akka.util.ByteString
+import org.apache.pekko.util.ByteString
 import javax.inject.Inject
 import play.api.http.{HttpErrorHandler, Status}
 import play.core.j.{JavaContextComponents, JavaHttpErrorHandlerAdapter}
