@@ -30,8 +30,8 @@ To tag and push built image to GitHub Package:
 
 ```
 > ECR_IMAGE_VERSION=<replace_version_here>
-> docker tag artima/scalactic-website:$ECR_IMAGE_VERSION ghcr.io/scalatest/scalactic-website:$ECR_IMAGE_VERSION
-> docker tag artima/scalactic-website:latest ghcr.io/scalatest/scalactic-website:latest
-> docker push ghcr.io/scalatest/scalactic-website:$ECR_IMAGE_VERSION
-> docker push ghcr.io/scalatest/scalactic-website:latest
+> docker tag artima/scalactic-website:$ECR_IMAGE_VERSION ghcr.io/artimahub/scalactic-website:$ECR_IMAGE_VERSION
+> docker tag artima/scalactic-website:latest ghcr.io/artimahub/scalactic-website:latest
+> docker push ghcr.io/artimahub/scalactic-website:$ECR_IMAGE_VERSION
+> docker push ghcr.io/artimahub/scalactic-website:latest
 ```
