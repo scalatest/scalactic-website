@@ -60,12 +60,12 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
 
 object Application {
 
-  val latestVersion = "3.2.18"
+  val latestVersion = "3.2.19"
   val latestSuperSafeVersion = "1.1.12"
   val supersafeScalaVersion = "2.13.14"
   val milestoneVersion = "3.1.0-RC3"
   val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.13/3.1.0-RC3/scalactic_2.10-3.1.0-RC3.jar"
-  val latestJar = s"https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.13/$latestVersion/scalactic_2.13-$latestVersion.jar"
+  val latestJar = s"https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_3/$latestVersion/scalactic_3-$latestVersion.jar"
   val milestoneScaladoc = "http://www.artima.com/docs-scalatest-3.1.0-RC3"
   val scaladocsLocation = "http://doc.scalatest.org"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
