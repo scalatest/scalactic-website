@@ -62,14 +62,15 @@ object Application {
 
   val latestVersion = "3.2.18"
   val latestSuperSafeVersion = "1.1.12"
+  val supersafeScalaVersion = "2.13.14"
   val milestoneVersion = "3.1.0-RC3"
   val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.13/3.1.0-RC3/scalactic_2.10-3.1.0-RC3.jar"
   val latestJar = s"https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.13/$latestVersion/scalactic_2.13-$latestVersion.jar"
   val milestoneScaladoc = "http://www.artima.com/docs-scalatest-3.1.0-RC3"
   val scaladocsLocation = "http://doc.scalatest.org"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
-  val baseScalaVersion = "2.13.14"
-  val majorMinorScalaVersion = "2.13"
+  val baseScalaVersion = "3.3.3"
+  val majorMinorScalaVersion = "3"
 
   def scaladocsPageUrl(file: String, version: String = latestVersion): String = {
     val oldScaladocStyle30Releases = List("3.0.0", "3.0.1", "3.0.2", "3.0.3", "3.0.4")

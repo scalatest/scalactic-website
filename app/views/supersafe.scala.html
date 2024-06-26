@@ -16,7 +16,7 @@
 
 @import controllers.Application.latestSuperSafeVersion
 @import controllers.Application.scaladocsPageUrl
-@import controllers.Application.baseScalaVersion
+@import controllers.Application.supersafeScalaVersion
 
 @nonHomePage("SuperSafe") {
 <div style="text-align: left">
@@ -105,7 +105,7 @@ If you are using Maven as your build tool, you can install the community edition
         &lt;compilerPlugins&gt;
             <b>&lt;compilerPlugin&gt;
                 &lt;groupId&gt;com.artima.supersafe&lt;/groupId&gt;
-                &lt;artifactId&gt;supersafe_@{baseScalaVersion}&lt;/artifactId&gt;
+                &lt;artifactId&gt;supersafe_@{supersafeScalaVersion}&lt;/artifactId&gt;
                 &lt;version&gt;@{latestSuperSafeVersion}&lt;/version&gt;
             &lt;/compilerPlugin&gt;</b>
         &lt;/compilerPlugins&gt;
