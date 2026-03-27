@@ -60,16 +60,16 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
 
 object Application {
 
-  val latestVersion = "3.2.19"
+  val latestVersion = "3.2.20"
   val latestSuperSafeVersion = "1.1.12"
-  val supersafeScalaVersion = "2.13.14"
+  val supersafeScalaVersion = "2.13.18"
   val milestoneVersion = "3.1.0-RC3"
   val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.13/3.1.0-RC3/scalactic_2.10-3.1.0-RC3.jar"
   val latestJar = s"https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_3/$latestVersion/scalactic_3-$latestVersion.jar"
   val milestoneScaladoc = "http://www.artima.com/docs-scalatest-3.1.0-RC3"
   val scaladocsLocation = "http://doc.scalatest.org"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
-  val baseScalaVersion = "3.3.3"
+  val baseScalaVersion = "3.3.7"
   val majorMinorScalaVersion = "3"
 
   def scaladocsPageUrl(file: String, version: String = latestVersion): String = {
