@@ -1,0 +1,198 @@
+@*
+ * Copyright 2023-2026 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+*@
+
+@import controllers.Application.scaladocsPageUrl
+
+@userGuidePage("Using Opaque Types") {
+<div style="text-align: left">
+
+<h1>Using Opaque Types</h1>
+
+<p>Scalactic provides a suite of <strong>opaque types</strong> that enforce value constraints at compile time, starting with version 3.3.0 build for Scala 3. These types help you prevent invalid states by making it impossible to construct a value that doesn't meet the type's invariant.</p>
+
+<p>In traditional Scala, you might represent a positive integer as <code>Int</code>, but there's nothing stopping someone from passing <code>-5</code> where a positive value is expected. With opaque types, you can use <code>PosInt</code> to guarantee at compile time that the value is always positive.</p>
+
+<h2>Why Opaque Types?</h2>
+
+<p>Opaque types provide several benefits:</p>
+
+<ul>
+<li><strong>Compile-time safety</strong>: Invalid values cannot be constructed, catching bugs before runtime.</li>
+<li><strong>Self-documenting code</strong>: A method signature using <code>PosInt</code> clearly communicates that only positive integers are accepted.</li>
+<li><strong>Fewer runtime checks</strong>: Since the invariant is guaranteed by the type system, you don't need to validate values at runtime.</li>
+</ul>
+
+<h2>Numeric Opaque Types</h2>
+
+<p>Scalactic provides a comprehensive set of numeric opaque types across <code>Int</code>, <code>Long</code>, <code>Float</code>, and <code>Double</code>. Each type enforces a specific constraint:</p>
+
+<table>
+<thead>
+<tr><th>Constraint</th><th>Types</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>Positive (greater than zero)</td>
+<td><code>PosInt</code>, <code>PosLong</code>, <code>PosFloat</code>, <code>PosDouble</code></td>
+</tr>
+<tr>
+<td>Non-negative (zero or greater)</td>
+<td><code>PosZInt</code>, <code>PosZLong</code>, <code>PosZFloat</code>, <code>PosZDouble</code></td>
+</tr>
+<tr>
+<td>Negative (less than zero)</td>
+<td><code>NegInt</code>, <code>NegLong</code>, <code>NegFloat</code>, <code>NegDouble</code></td>
+</tr>
+<tr>
+<td>Non-positive (zero or less)</td>
+<td><code>NegZInt</code>, <code>NegZLong</code>, <code>NegZFloat</code>, <code>NegZDouble</code></td>
+</tr>
+<tr>
+<td>Non-zero</td>
+<td><code>NonZeroInt</code>, <code>NonZeroLong</code>, <code>NonZeroFloat</code>, <code>NonZeroDouble</code></td>
+</tr>
+<tr>
+<td>Finite (not NaN or infinity)</td>
+<td><code>FiniteFloat</code>, <code>FiniteDouble</code></td>
+</tr>
+<tr>
+<td>Finite and non-negative</td>
+<td><code>PosZFiniteDouble</code>, <code>PosFiniteDouble</code></td>
+</tr>
+<tr>
+<td>Finite and non-zero</td>
+<td><code>FiniteFloat</code> combined with <code>NonZeroFloat</code></td>
+</tr>
+</tbody>
+</table>
+
+<h3>Constructing opaque types</h3>
+
+<p>Each opaque type provides an <code>apply</code> method that validates the value at construction time. If the value violates the constraint, a compiler error is raised:</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalactic.opaquetypes.PosInts.<span class="stType">PosInt</span>
+<br />
+<span class="stComment">// Valid construction</span>
+<span class="stLiteral">val</span> positive: PosInt = PosInt(<span class="stLiteral">42</span>)
+<br />
+<span class="stComment">// This fails with compiler error</span>
+<span class="stLiteral">val</span> bad: PosInt = PosInt(<span class="stLiteral">-5</span>)
+</pre>
+
+<p>Similarly, for non-negative values:</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalactic.opaquetypes.PosInts.<span class="stType">PosZInt</span>
+<br />
+<span class="stLiteral">val</span> nonNeg: PosZInt = PosZInt(<span class="stLiteral">0</span>)    <span class="stComment">// OK: zero is non-negative</span>
+<br /><span class="stLiteral">val</span> alsoNonNeg: PosZInt = PosZInt(<span class="stLiteral">10</span>) <span class="stComment">// OK</span>
+<br />
+<span class="stComment">// This fails with compiler error</span>
+<span class="stLiteral">val</span> bad: PosZInt = PosZInt(<span class="stLiteral">-1</span>)
+</pre>
+
+<h2>Character Opaque Types</h2>
+
+<p>Scalactic also provides <code>NumericChar</code>, which constrains a <code>Char</code> to be a numeric digit (<code>'0'</code> through <code>'9'</code>):</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalactic.opaquetypes.Numerics.<span class="stType">NumericChar</span>
+<br />
+<span class="stLiteral">val</span> digit: NumericChar = NumericChar(<span class="stQuotedString">'5'</span>) <span class="stComment">// OK</span>
+<br />
+<span class="stComment">// This fails with compiler error</span>
+<span class="stLiteral">val</span> bad: NumericChar = NumericChar(<span class="stQuotedString">'a'</span>)
+</pre>
+
+<h2>Collection Opaque Types</h2>
+
+<p>Non-empty collection types ensure collections always contain at least one element:</p>
+
+<ul>
+<li><code>NonEmptyString</code> — a <code>String</code> that is not empty</li>
+<li><code>NonEmptySeq[A]</code> — a <code>Seq</code> with at least one element</li>
+<li><code>NonEmptyList[A]</code> — a <code>List</code> with at least one element</li>
+<li><code>NonEmptyVector[A]</code> — a <code>Vector</code> with at least one element</li>
+<li><code>NonEmptySet[A]</code> — a <code>Set</code> with at least one element</li>
+</ul>
+
+<h3>Example with NonEmptyString</h3>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalactic.opaquetypes.NonEmpties.<span class="stType">NonEmptyString</span>
+<br />
+<span class="stLiteral">val</span> name: NonEmptyString = NonEmptyString(<span class="stQuotedString">"Alice"</span>) <span class="stComment">// OK</span>
+<br />
+<span class="stComment">// This fails with compiler error</span>
+<span class="stLiteral">val</span> bad: NonEmptyString = NonEmptyString(<span class="stQuotedString">""</span>)
+</pre>
+
+<h2>Using Opaque Types in Tests</h2>
+
+<p>Opaque types shine when testing methods that accept constrained values. The type system guarantees correctness, so your tests focus on behavior rather than validation edge cases:</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.flatspec.AnyFlatSpec
+<br /><span class="stReserved">import</span> org.scalatest.matchers.should
+<br /><span class="stReserved">import</span> org.scalactic.opaquetypes.PosInts.<span class="stType">PosInt</span>
+<br />
+<span class="stReserved">class</span> <span class="stType">BankAccount</span> {
+<br />  <span class="stReserved">def</span> deposit(amount: PosInt): <span class="stType">Unit</span> = {
+<br />    <span class="stComment">// amount is guaranteed positive — no runtime check needed</span>
+<br />  }
+<br />}
+<br /><br />
+<span class="stReserved">class</span> <span class="stType">BankAccountSpec</span> <span class="stReserved">extends</span> AnyFlatSpec <span class="stReserved">with</span> should.Matchers {
+<br /><br />  <span class="stLiteral">val</span> account = <span class="stReserved">new</span> <span class="stType">BankAccount</span>()
+<br /><br />  it should <span class="stQuotedString">"accept a positive deposit"</span> in {
+<br />    <span class="stLiteral">val</span> amount: PosInt = PosInt(<span class="stLiteral">100</span>)
+<br />    account.deposit(amount)
+<br />    <span class="stComment">// ...assert account balance</span>
+<br />  }
+<br />
+<br />  <span class="stComment">// You don't need a test for negative deposits —</span>
+<br />  <span class="stComment">// the compiler prevents them from being constructed.</span>
+<br />}
+</pre>
+
+<h2>Where to find the API</h2>
+
+<p>All opaque types live in the <a href='@scaladocsPageUrl("org.scalactic.opaquetypes")'><code>org.scalactic.opaquetypes</code></a> package. The key objects include:</p>
+
+<ul>
+<li><a href='@scaladocsPageUrl("org.scalactic.opaquetypes.PosInts", "3.3.0")'><code>PosInts</code></a> — constructors for positive <code>Int</code>-based opaque types</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.opaquetypes.PosLongs", "3.3.0")'><code>PosLongs</code></a> — constructors for positive <code>Long</code>-based opaque types</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.opaquetypes.PosFloats", "3.3.0")'><code>PosFloats</code></a> — constructors for positive <code>Float</code>-based opaque types</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.opaquetypes.PosDoubles", "3.3.0")'><code>PosDoubles</code></a> — constructors for positive <code>Double</code>-based opaque types</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.opaquetypes.NegInts", "3.3.0")'><code>NegInts</code></a> — constructors for negative <code>Int</code>-based opaque types</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.opaquetypes.NegLongs", "3.3.0")'><code>NegLongs</code></a> — constructors for negative <code>Long</code>-based opaque types</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.opaquetypes.NegFloats", "3.3.0")'><code>NegFloats</code></a> — constructors for negative <code>Float</code>-based opaque types</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.opaquetypes.NegDoubles", "3.3.0")'><code>NegDoubles</code></a> — constructors for negative <code>Double</code>-based opaque types</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.opaquetypes.NonZeroInts", "3.3.0")'><code>NonZeroInts</code></a> — constructors for non-zero <code>Int</code>-based opaque types</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.opaquetypes.NonZeroLongs", "3.3.0")'><code>NonZeroLongs</code></a> — constructors for non-zero <code>Long</code>-based opaque types</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.opaquetypes.NonZeroFloats", "3.3.0")'><code>NonZeroFloats</code></a> — constructors for non-zero <code>Float</code>-based opaque types</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.opaquetypes.NonZeroDoubles", "3.3.0")'><code>NonZeroDoubles</code></a> — constructors for non-zero <code>Double</code>-based opaque types</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.opaquetypes.Finites", "3.3.0")'><code>Finites</code></a> — constructors for finite <code>Float</code> and <code>Double</code>-based opaque types</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.opaquetypes.Numerics", "3.3.0")'><code>Numerics</code></a> — constructors for numeric opaque types</li>
+</ul>
+
+<p>
+Next, learn about <a href="@routes.UserGuide.tolerance().url">Tolerance</a>.
+</p>
+
+</div>
+}

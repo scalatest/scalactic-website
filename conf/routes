@@ -25,6 +25,7 @@ GET        /user_guide/OrAndEvery                 controllers.UserGuide.orAndEve
 GET        /user_guide/Catcher                    controllers.UserGuide.catcher
 GET        /user_guide/Prettifier                 controllers.UserGuide.prettifier()
 GET        /user_guide/timesOnInt                 controllers.UserGuide.timesOnInt()
+GET        /user_guide/using_opaque_types         controllers.UserGuide.usingOpaqueTypes()
 
 GET        /release_notes                         controllers.ReleaseNotes.releaseNotesIndex()
 GET        /release-notes/2.0                     controllers.ReleaseNotes.v20()
