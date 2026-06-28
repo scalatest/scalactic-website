@@ -76,4 +76,8 @@ class UserGuide @Inject() (cc: ControllerComponents) extends AbstractController(
   def usingOpaqueTypes = Action {
     Ok(views.html.userGuide.usingOpaqueTypes())
   }
+
+  def usingAnyVals = Action {
+    Ok(views.html.userGuide.usingAnyVals())
+  }
 }

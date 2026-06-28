@@ -1,0 +1,295 @@
+@*
+ * Copyright 2010-2026 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+*@
+
+@import controllers.Application.scaladocsPageUrl
+
+@userGuidePage("Using AnyVals") {
+<div style="text-align: left">
+
+<h1>Using AnyVals</h1>
+
+<p>Scalactic provides a rich suite of <strong>AnyVal</strong> types in the <a href='@scaladocsPageUrl("org.scalactic.anyvals")'><code>org.scalactic.anyvals</code></a> package. These types enforce value constraints via a macro that checks <em>literals</em> at compile time, providing compile-time safety with zero runtime overhead. AnyVals are <em>value classes</em> (they extend <code>AnyVal</code>), meaning they erase to their underlying primitive at runtime.</p>
+
+<p>AnyVals are the original constrained-value mechanism in Scalactic. They work with Scala 2 and Scala 3, and are compatible with ScalaTest versions before 3.3.0 (which introduced opaque types as an alternative). If you're using Scala 3.3.0+ and need compile-time checks for <em>variables</em>, consider the newer <a href="@routes.UserGuide.usingOpaqueTypes().url">opaque types</a>.</p>
+
+<h2>Why AnyVals?</h2>
+
+<p>AnyVals provide several benefits:</p>
+
+<ul>
+<li><strong>Compile-time safety for literals</strong>: Invalid literal values are caught at compile time via a macro, producing a compiler error.</li>
+<li><strong>Zero runtime overhead</strong>: Being value classes, AnyVals erase to their underlying types at runtime.</li>
+<li><strong>Self-documenting code</strong>: A method signature using <code>PosInt</code> clearly communicates that only positive integers are expected.</li>
+<li><strong>Broad compatibility</strong>: Works with Scala 2.x, Scala 3.x, and ScalaTest versions before 3.3.0.</li>
+</ul>
+
+<h2>Numeric AnyVals</h2>
+
+<p>Scalactic provides a comprehensive set of numeric AnyVals across <code>Int</code>, <code>Long</code>, <code>Float</code>, and <code>Double</code>. Each type enforces a specific constraint:</p>
+
+<table>
+<thead>
+<tr><th>Constraint</th><th>Types</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>Positive (greater than zero)</td>
+<td><code>PosInt</code>, <code>PosLong</code>, <code>PosFloat</code>, <code>PosDouble</code></td>
+</tr>
+<tr>
+<td>Non-negative (zero or greater)</td>
+<td><code>PosZInt</code>, <code>PosZLong</code>, <code>PosZFloat</code>, <code>PosZDouble</code></td>
+</tr>
+<tr>
+<td>Negative (less than zero)</td>
+<td><code>NegInt</code>, <code>NegLong</code>, <code>NegFloat</code>, <code>NegDouble</code></td>
+</tr>
+<tr>
+<td>Non-positive (zero or less)</td>
+<td><code>NegZInt</code>, <code>NegZLong</code>, <code>NegZFloat</code>, <code>NegZDouble</code></td>
+</tr>
+<tr>
+<td>Non-zero</td>
+<td><code>NonZeroInt</code>, <code>NonZeroLong</code>, <code>NonZeroFloat</code>, <code>NonZeroDouble</code></td>
+</tr>
+<tr>
+<td>Finite (not NaN or infinity)</td>
+<td><code>FiniteFloat</code>, <code>FiniteDouble</code></td>
+</tr>
+<tr>
+<td>Finite and positive</td>
+<td><code>PosFiniteFloat</code>, <code>PosFiniteDouble</code></td>
+</tr>
+<tr>
+<td>Finite and non-negative</td>
+<td><code>PosZFiniteFloat</code>, <code>PosZFiniteDouble</code></td>
+</tr>
+<tr>
+<td>Finite and negative</td>
+<td><code>NegFiniteFloat</code>, <code>NegFiniteDouble</code></td>
+</tr>
+<tr>
+<td>Finite and non-positive</td>
+<td><code>NegZFiniteFloat</code>, <code>NegZFiniteDouble</code></td>
+</tr>
+<tr>
+<td>Finite and non-zero</td>
+<td><code>NonZeroFiniteFloat</code>, <code>NonZeroFiniteDouble</code></td>
+</tr>
+</tbody>
+</table>
+
+<h3>Constructing numeric AnyVals with literals</h3>
+
+<p>Each numeric AnyVal provides an <code>apply</code> method that is implemented as a <strong>macro</strong>. When you pass a <em>literal</em> value, the macro checks the value at compile time. If the value satisfies the constraint, compilation succeeds. If not, a compiler error is raised:</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalactic.anyvals.<span class="stType">PosInt</span>
+<br />
+<span class="stComment">// Valid: compiles fine</span>
+<span class="stLiteral">val</span> positive: PosInt = PosInt(<span class="stLiteral">42</span>)
+<br />
+<span class="stComment">// Compiler error: PosInt.apply can only be invoked on a positive (n > 0) integer literal, like PosInt(42).</span>
+<span class="stComment">val bad: PosInt = PosInt(-5)</span>
+</pre>
+
+<p>Similarly, for non-negative values:</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalactic.anyvals.<span class="stType">PosZInt</span>
+<br />
+<span class="stLiteral">val</span> nonNeg: PosZInt = PosZInt(<span class="stLiteral">0</span>)    <span class="stComment">// OK: zero is non-negative</span>
+<br /><span class="stLiteral">val</span> alsoNonNeg: PosZInt = PosZInt(<span class="stLiteral">10</span>) <span class="stComment">// OK</span>
+<br />
+<span class="stComment">// Compiler error: PosZInt.apply can only be invoked on a non-negative (n >= 0) integer literal, like PosZInt(42).</span>
+<span class="stComment">val bad: PosZInt = PosZInt(-1)</span>
+</pre>
+
+<h3>Handling variables with <code>from</code></h3>
+
+<p>The macro can only check <em>literal</em> values — it cannot determine the validity of <em>variables</em> at compile time. When the value comes from a variable (e.g., from a function argument, user input, or computation), use the <code>from</code> factory method instead, which returns an <code>Option[T]</code> and validates at runtime:</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalactic.anyvals.<span class="stType">PosInt</span>
+<br />
+<span class="stReserved">def</span> <span class="stMethod">process</span>(count: <span class="stType">Int</span>): <span class="stType">Unit</span> = {
+<br />  PosInt.from(count) <span class="stReserved">match</span> {
+<br />    <span class="stReserved">case</span> <span class="stType">Some</span>(pi) =&gt; <span class="stComment">// count was positive — use pi.value</span>
+<br />    <span class="stReserved">case</span> <span class="stType">None</span>      =&gt; <span class="stComment">// count was not positive — handle the error</span>
+<br />  }
+<br />}
+<br />
+<span class="stComment">// You can also use the Option directly:</span>
+<span class="stLiteral">val</span> maybePos: <span class="stType">Option[PosInt]</span> = PosInt.from(someVariable)
+</pre>
+
+<p>This gives you compile-time safety for literals (via the macro) and runtime safety for variables (via <code>from</code>).</p>
+
+<h3>Implicit widening conversions</h3>
+
+<p>AnyVals provide implicit widening conversions, so you can pass them where the underlying primitive type is expected:</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">def</span> add(a: <span class="stType">Int</span>, b: <span class="stType">Int</span>): <span class="stType">Int</span> = a + b
+<br />
+add(PosInt(<span class="stLiteral">1</span>), PosInt(<span class="stLiteral">2</span>)) <span class="stComment">// Implicit conversion from PosInt to Int</span>
+</pre>
+
+<h2>Character and String AnyVals</h2>
+
+<p>Scalactic provides constrained character and string types:</p>
+
+<ul>
+<li><code>NumericChar</code> — a <code>Char</code> that is a numeric digit (<code>'0'</code> through <code>'9'</code>)</li>
+<li><code>NumericString</code> — a <code>String</code> consisting entirely of digits</li>
+</ul>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalactic.anyvals.<span class="stType">NumericChar</span>
+<br /><span class="stReserved">import</span> org.scalactic.anyvals.<span class="stType">NumericString</span>
+<br />
+<span class="stLiteral">val</span> digit: NumericChar = NumericChar(<span class="stQuotedString">'5'</span>) <span class="stComment">// OK</span>
+<br /><span class="stLiteral">val</span> number: NumericString = NumericString(<span class="stQuotedString">"12345"</span>) <span class="stComment">// OK</span>
+<br />
+<span class="stComment">// Compiler errors for invalid literals</span>
+<span class="stComment">val badChar: NumericChar = NumericChar('a')</span>
+<span class="stComment">val badString: NumericString = NumericString("abc")</span>
+</pre>
+
+<h2>Collection AnyVals</h2>
+
+<p>Non-empty collection types ensure collections always contain at least one element:</p>
+
+<ul>
+<li><code>NonEmptyString</code> — a <code>String</code> that is not empty</li>
+<li><code>NonEmptySeq[A]</code> — a <code>Seq</code> with at least one element</li>
+<li><code>NonEmptyList[A]</code> — a <code>List</code> with at least one element</li>
+<li><code>NonEmptyVector[A]</code> — a <code>Vector</code> with at least one element</li>
+<li><code>NonEmptySet[A]</code> — a <code>Set</code> with at least one element</li>
+<li><code>NonEmptyMap[K, V]</code> — a <code>Map</code> with at least one entry</li>
+<li><code>NonEmptyArray[T]</code> — an <code>Array</code> with at least one element</li>
+</ul>
+
+<h3>Example with NonEmptyString</h3>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalactic.anyvals.<span class="stType">NonEmptyString</span>
+<br />
+<span class="stLiteral">val</span> name: NonEmptyString = NonEmptyString(<span class="stQuotedString">"Alice"</span>) <span class="stComment">// OK</span>
+<br />
+<span class="stComment">// Compiler error: NonEmptyString.apply can only be invoked on a non-empty string literal</span>
+<span class="stComment">// like NonEmptyString("hello").</span>
+<span class="stComment">val bad: NonEmptyString = NonEmptyString("")</span>
+</pre>
+
+<h3>Building NonEmptyList with End</h3>
+
+<p>The <code>NonEmptyList</code> AnyVal provides a convenient <code>::</code> operator for construction, terminated by <code>End</code>:</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalactic.anyvals.<span class="stType">NonEmptyList</span>
+<br /><span class="stReserved">import</span> org.scalactic.anyvals.<span class="stType">End</span>
+<br />
+<span class="stLiteral">val</span> numbers = <span class="stLiteral">1</span> :: <span class="stLiteral">2</span> :: <span class="stLiteral">3</span> :: End
+</pre>
+
+<h2>CompileTimeAssertions Trait</h2>
+
+<p>Scalactic provides a <a href='@scaladocsPageUrl("org.scalactic.anyvals.CompileTimeAssertions")'><code>CompileTimeAssertions</code></a> trait that makes it easy to import all AnyVal companion objects into scope. Mix it in to your test classes or production code to have all AnyVal constructors available:</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.flatspec.AnyFlatSpec
+<br /><span class="stReserved">import</span> org.scalatest.matchers.should
+<br /><span class="stReserved">import</span> org.scalactic.anyvals.<span class="stType">CompileTimeAssertions</span>
+<br />
+<span class="stReserved">class</span> <span class="stType">MyTests</span> <span class="stReserved">extends</span> AnyFlatSpec <span class="stReserved">with</span> should.Matchers <span class="stReserved">with</span> CompileTimeAssertions {
+<br />
+<br />  it should <span class="stQuotedString">"accept a valid PosInt"</span> in {
+<br />    <span class="stLiteral">val</span> pi = PosInt(<span class="stLiteral">42</span>)
+<br />    pi.value should be (<span class="stLiteral">42</span>)
+<br />  }
+<br />}
+</pre>
+
+<h2>AnyVals vs Opaque Types</h2>
+
+<p>Both AnyVals and opaque types provide constrained values, but they differ in important ways:</p>
+
+<table>
+<thead>
+<tr><th>Feature</th><th>AnyVals</th><th>Opaque Types</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>Literal validation</td>
+<td>Compile time (via macro)</td>
+<td>Compile time (via type system)</td>
+</tr>
+<tr>
+<td>Variable validation</td>
+<td>Runtime via <code>from</code> (returns <code>Option</code>)</td>
+<td>Compile time (compiler error)</td>
+</tr>
+<tr>
+<td>Error type</td>
+<td>Compiler error (literals) / <code>Option</code> (variables)</td>
+<td>Compiler error</td>
+</tr>
+<tr>
+<td>Scala version support</td>
+<td>Scala 2.x, Scala 3.x</td>
+<td>Scala 3.x only</td>
+</tr>
+<tr>
+<td>ScalaTest compatibility</td>
+<td>All versions</td>
+<td>3.3.0+</td>
+</tr>
+<tr>
+<td>Runtime overhead</td>
+<td>None (value class erasure)</td>
+<td>Minimal (type wrapper)</td>
+</tr>
+</tbody>
+</table>
+
+<p>For more on opaque types, see the <a href="@routes.UserGuide.usingOpaqueTypes().url">Using Opaque Types</a> guide.</p>
+
+<h2>Where to find the API</h2>
+
+<p>All AnyVals live in the <a href='@scaladocsPageUrl("org.scalactic.anyvals")'><code>org.scalactic.anyvals</code></a> package. Key members include:</p>
+
+<ul>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.PosInt", "3.2.20")'><code>PosInt</code></a> — positive Ints</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.PosZInt", "3.2.20")'><code>PosZInt</code></a> — non-negative Ints</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NegInt", "3.2.20")'><code>NegInt</code></a> — negative Ints</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NegZInt", "3.2.20")'><code>NegZInt</code></a> — non-positive Ints</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonZeroInt", "3.2.20")'><code>NonZeroInt</code></a> — non-zero Ints</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.FiniteDouble", "3.2.20")'><code>FiniteDouble</code></a> — finite Doubles (not NaN or infinity)</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NumericChar", "3.2.20")'><code>NumericChar</code></a> — numeric characters</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NumericString", "3.2.20")'><code>NumericString</code></a> — numeric strings</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonEmptyString", "3.2.20")'><code>NonEmptyString</code></a> — non-empty strings</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonEmptyList", "3.2.20")'><code>NonEmptyList</code></a> — non-empty lists</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonEmptyVector", "3.2.20")'><code>NonEmptyVector</code></a> — non-empty vectors</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonEmptySet", "3.2.20")'><code>NonEmptySet</code></a> — non-empty sets</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonEmptyMap", "3.2.20")'><code>NonEmptyMap</code></a> — non-empty maps</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonEmptyArray", "3.2.20")'><code>NonEmptyArray</code></a> — non-empty arrays</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.End", "3.2.20")'><code>End</code></a> — endpoint for NonEmptyList construction</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.CompileTimeAssertions", "3.2.20")'><code>CompileTimeAssertions</code></a> — trait for importing all AnyVal constructors</li>
+</ul>
+
+</div>
+}
