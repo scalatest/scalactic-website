@@ -15,6 +15,7 @@
 *@
 
 @import controllers.Application.scaladocsPageUrl
+@import controllers.Application.latestVersion
 
 @userGuidePage("Using AnyVals") {
 <div style="text-align: left">
@@ -23,7 +24,7 @@
 
 <p>Scalactic provides a rich suite of <strong>AnyVal</strong> types in the <a href='@scaladocsPageUrl("org.scalactic.anyvals")'><code>org.scalactic.anyvals</code></a> package. These types enforce value constraints via a macro that checks <em>literals</em> at compile time, providing compile-time safety with zero runtime overhead. AnyVals are <em>value classes</em> (they extend <code>AnyVal</code>), meaning they erase to their underlying primitive at runtime.</p>
 
-<p>AnyVals are the original constrained-value mechanism in Scalactic. They work with Scala 2 and Scala 3, and are compatible with ScalaTest versions before 3.3.0 (which introduced opaque types as an alternative). If you're using Scala 3.3.0+ and need compile-time checks for <em>variables</em>, consider the newer <a href="@routes.UserGuide.usingOpaqueTypes().url">opaque types</a>.</p>
+<p>AnyVals are the original constrained-value mechanism in Scalactic. They work with Scala 2 and Scala 3, and are compatible with ScalaTest versions before 3.3.0 (which introduced opaque types as an alternative). If you're using Scala 3.3.0+, consider the newer <a href="@routes.UserGuide.usingOpaqueTypes().url">opaque types</a> for stronger type-level separation while keeping an erased runtime representation.</p>
 
 <h2>Why AnyVals?</h2>
 
@@ -128,7 +129,7 @@
 <span class="stReserved">def</span> <span class="stMethod">process</span>(count: <span class="stType">Int</span>): <span class="stType">Unit</span> = {
 <br />  PosInt.from(count) <span class="stReserved">match</span> {
 <br />    <span class="stReserved">case</span> <span class="stType">Some</span>(pi) =&gt; <span class="stComment">// count was positive — use pi.value</span>
-<br />    <span class="stReserved">case</span> <span class="stType">None</span>      =&gt; <span class="stComment">// count was not positive — handle the error</span>
+<br />    <span class="stReserved">case</span> <span class="stType">None</span>     =&gt; <span class="stComment">// count was not positive — handle the error</span>
 <br />  }
 <br />}
 <br />
@@ -208,18 +209,23 @@ add(PosInt(<span class="stLiteral">1</span>), PosInt(<span class="stLiteral">2</
 
 <h2>CompileTimeAssertions Trait</h2>
 
-<p>Scalactic provides a <a href='@scaladocsPageUrl("org.scalactic.anyvals.CompileTimeAssertions")'><code>CompileTimeAssertions</code></a> trait that makes it easy to import all AnyVal companion objects into scope. Mix it in to your test classes or production code to have all AnyVal constructors available:</p>
+<p><a href='@scaladocsPageUrl("org.scalactic.anyvals.CompileTimeAssertions")'><code>CompileTimeAssertions</code></a> is primarily for <em>library authors</em> who implement macro-based constrained AnyVals. It provides helper methods such as <code>ensureValidIntLiteral</code>, <code>ensureValidLongLiteral</code>, and related methods for other literal-supported types. These helpers are used inside macro implementations to produce compiler errors for invalid or non-literal arguments.</p>
+
+<p>For day-to-day usage of built-in AnyVals (like <code>PosInt</code> and <code>NonEmptyString</code>), you do not need this trait.</p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.flatspec.AnyFlatSpec
-<br /><span class="stReserved">import</span> org.scalatest.matchers.should
-<br /><span class="stReserved">import</span> org.scalactic.anyvals.<span class="stType">CompileTimeAssertions</span>
+<span class="stReserved">import</span> org.scalactic.anyvals.<span class="stType">CompileTimeAssertions</span>
+<br /><span class="stReserved">import</span> reflect.macros.Context
 <br />
-<span class="stReserved">class</span> <span class="stType">MyTests</span> <span class="stReserved">extends</span> AnyFlatSpec <span class="stReserved">with</span> should.Matchers <span class="stReserved">with</span> CompileTimeAssertions {
+<span class="stReserved">object</span> <span class="stType">OddIntMacro</span> <span class="stReserved">extends</span> <span class="stType">CompileTimeAssertions</span> {
+<br />  <span class="stReserved">def</span> isValid(i: <span class="stType">Int</span>): <span class="stType">Boolean</span> = i.abs % <span class="stLiteral">2</span> == <span class="stLiteral">1</span>
 <br />
-<br />  it should <span class="stQuotedString">"accept a valid PosInt"</span> in {
-<br />    <span class="stLiteral">val</span> pi = PosInt(<span class="stLiteral">42</span>)
-<br />    pi.value should be (<span class="stLiteral">42</span>)
+<br />  <span class="stReserved">def</span> apply(c: <span class="stType">Context</span>)(value: c.Expr[<span class="stType">Int</span>]): c.Expr[OddInt] = {
+<br />    <span class="stLiteral">val</span> notValidMsg = <span class="stQuotedString">"OddInt.apply can only be invoked on odd Int literals, like OddInt(3)."</span>
+<br />    <span class="stLiteral">val</span> notLiteralMsg = <span class="stQuotedString">"OddInt.apply can only be invoked on Int literals. Please use OddInt.from instead."</span>
+<br />
+<br />    ensureValidIntLiteral(c)(value, notValidMsg, notLiteralMsg)(isValid)
+<br />    c.universe.reify { OddInt.ensuringValid(value.splice) }
 <br />  }
 <br />}
 </pre>
@@ -236,17 +242,17 @@ add(PosInt(<span class="stLiteral">1</span>), PosInt(<span class="stLiteral">2</
 <tr>
 <td>Literal validation</td>
 <td>Compile time (via macro)</td>
-<td>Compile time (via type system)</td>
+<td>Compile time for literals</td>
 </tr>
 <tr>
 <td>Variable validation</td>
 <td>Runtime via <code>from</code> (returns <code>Option</code>)</td>
-<td>Compile time (compiler error)</td>
+<td>Runtime at construction boundary</td>
 </tr>
 <tr>
 <td>Error type</td>
 <td>Compiler error (literals) / <code>Option</code> (variables)</td>
-<td>Compiler error</td>
+<td>Compiler error (literals) / runtime validation failure for non-literals</td>
 </tr>
 <tr>
 <td>Scala version support</td>
@@ -261,7 +267,7 @@ add(PosInt(<span class="stLiteral">1</span>), PosInt(<span class="stLiteral">2</
 <tr>
 <td>Runtime overhead</td>
 <td>None (value class erasure)</td>
-<td>Minimal (type wrapper)</td>
+<td>None for representation (erased to underlying type)</td>
 </tr>
 </tbody>
 </table>
@@ -270,25 +276,36 @@ add(PosInt(<span class="stLiteral">1</span>), PosInt(<span class="stLiteral">2</
 
 <h2>Where to find the API</h2>
 
-<p>All AnyVals live in the <a href='@scaladocsPageUrl("org.scalactic.anyvals")'><code>org.scalactic.anyvals</code></a> package. Key members include:</p>
+<p>All AnyVals live in the <a href='@scaladocsPageUrl("org.scalactic.anyvals")'><code>org.scalactic.anyvals</code></a> package. The list below is a representative subset (not exhaustive):</p>
 
 <ul>
-<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.PosInt", "3.2.20")'><code>PosInt</code></a> — positive Ints</li>
-<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.PosZInt", "3.2.20")'><code>PosZInt</code></a> — non-negative Ints</li>
-<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NegInt", "3.2.20")'><code>NegInt</code></a> — negative Ints</li>
-<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NegZInt", "3.2.20")'><code>NegZInt</code></a> — non-positive Ints</li>
-<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonZeroInt", "3.2.20")'><code>NonZeroInt</code></a> — non-zero Ints</li>
-<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.FiniteDouble", "3.2.20")'><code>FiniteDouble</code></a> — finite Doubles (not NaN or infinity)</li>
-<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NumericChar", "3.2.20")'><code>NumericChar</code></a> — numeric characters</li>
-<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NumericString", "3.2.20")'><code>NumericString</code></a> — numeric strings</li>
-<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonEmptyString", "3.2.20")'><code>NonEmptyString</code></a> — non-empty strings</li>
-<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonEmptyList", "3.2.20")'><code>NonEmptyList</code></a> — non-empty lists</li>
-<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonEmptyVector", "3.2.20")'><code>NonEmptyVector</code></a> — non-empty vectors</li>
-<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonEmptySet", "3.2.20")'><code>NonEmptySet</code></a> — non-empty sets</li>
-<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonEmptyMap", "3.2.20")'><code>NonEmptyMap</code></a> — non-empty maps</li>
-<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonEmptyArray", "3.2.20")'><code>NonEmptyArray</code></a> — non-empty arrays</li>
-<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.End", "3.2.20")'><code>End</code></a> — endpoint for NonEmptyList construction</li>
-<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.CompileTimeAssertions", "3.2.20")'><code>CompileTimeAssertions</code></a> — trait for importing all AnyVal constructors</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.PosInt", latestVersion)'><code>PosInt</code></a> — positive Ints</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.PosZInt", latestVersion)'><code>PosZInt</code></a> — non-negative Ints</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NegInt", latestVersion)'><code>NegInt</code></a> — negative Ints</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NegZInt", latestVersion)'><code>NegZInt</code></a> — non-positive Ints</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonZeroInt", latestVersion)'><code>NonZeroInt</code></a> — non-zero Ints</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.FiniteFloat", latestVersion)'><code>FiniteFloat</code></a> — finite Floats (not NaN or infinity)</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.FiniteDouble", latestVersion)'><code>FiniteDouble</code></a> — finite Doubles (not NaN or infinity)</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.PosFiniteFloat", latestVersion)'><code>PosFiniteFloat</code></a> — positive finite Floats</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.PosFiniteDouble", latestVersion)'><code>PosFiniteDouble</code></a> — positive finite Doubles</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.PosZFiniteFloat", latestVersion)'><code>PosZFiniteFloat</code></a> — non-negative finite Floats</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.PosZFiniteDouble", latestVersion)'><code>PosZFiniteDouble</code></a> — non-negative finite Doubles</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NegFiniteFloat", latestVersion)'><code>NegFiniteFloat</code></a> — negative finite Floats</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NegFiniteDouble", latestVersion)'><code>NegFiniteDouble</code></a> — negative finite Doubles</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NegZFiniteFloat", latestVersion)'><code>NegZFiniteFloat</code></a> — non-positive finite Floats</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NegZFiniteDouble", latestVersion)'><code>NegZFiniteDouble</code></a> — non-positive finite Doubles</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonZeroFiniteFloat", latestVersion)'><code>NonZeroFiniteFloat</code></a> — non-zero finite Floats</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonZeroFiniteDouble", latestVersion)'><code>NonZeroFiniteDouble</code></a> — non-zero finite Doubles</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NumericChar", latestVersion)'><code>NumericChar</code></a> — numeric characters</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NumericString", latestVersion)'><code>NumericString</code></a> — numeric strings</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonEmptyString", latestVersion)'><code>NonEmptyString</code></a> — non-empty strings</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonEmptyList", latestVersion)'><code>NonEmptyList</code></a> — non-empty lists</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonEmptyVector", latestVersion)'><code>NonEmptyVector</code></a> — non-empty vectors</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonEmptySet", latestVersion)'><code>NonEmptySet</code></a> — non-empty sets</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonEmptyMap", latestVersion)'><code>NonEmptyMap</code></a> — non-empty maps</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.NonEmptyArray", latestVersion)'><code>NonEmptyArray</code></a> — non-empty arrays</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.End", latestVersion)'><code>End</code></a> — endpoint for NonEmptyList construction</li>
+<li><a href='@scaladocsPageUrl("org.scalactic.anyvals.CompileTimeAssertions", latestVersion)'><code>CompileTimeAssertions</code></a> — macro helper trait for implementing custom AnyVals with compile-time literal validation</li>
 </ul>
 
 </div>
