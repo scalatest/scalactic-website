@@ -69,7 +69,7 @@ object Application {
   val milestoneScaladoc = "http://www.artima.com/docs-scalatest-3.1.0-RC3"
   val scaladocsLocation = "http://doc.scalatest.org"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
-  val baseScalaVersion = "3.3.7"
+  val baseScalaVersion = "3.3.8"
   val majorMinorScalaVersion = "3"
 
   def scaladocsPageUrl(file: String, version: String = latestVersion): String = {
