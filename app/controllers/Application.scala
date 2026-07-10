@@ -60,7 +60,7 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
 
 object Application {
 
-  val latestVersion = "3.2.20"
+  val latestVersion = "3.3.0"
   val latestSuperSafeVersion = "1.1.12"
   val supersafeScalaVersion = "2.13.18"
   val milestoneVersion = "3.1.0-RC3"
