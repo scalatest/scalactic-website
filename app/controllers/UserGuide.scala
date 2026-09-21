@@ -72,4 +72,12 @@ class UserGuide @Inject() (cc: ControllerComponents) extends AbstractController(
   def timesOnInt = Action {
     Ok(views.html.userGuide.TimesOnInt())
   }
+
+  def usingOpaqueTypes = Action {
+    Ok(views.html.userGuide.usingOpaqueTypes())
+  }
+
+  def usingAnyVals = Action {
+    Ok(views.html.userGuide.usingAnyVals())
+  }
 }
