@@ -1,7 +1,7 @@
 lazy val root = (project in file(".")).settings(
   name := "scalactic",
   version := "260903",
-  scalaVersion := "3.3.8",
+  scalaVersion := "3.9.0",
   libraryDependencies ++= Seq(
     guice,
     "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.0" % Test
